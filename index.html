@@ -1,859 +1,2522 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scuderia Bandeiras — Onde os negócios aceleram</title>
-<meta name="description" content="Um ecossistema onde esporte, estrutura e experiências se encontram para posicionar sua marca no mais alto nível.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#0F0F0F;
-  --deep:#080808;
-  --white:#FFFFFF;
-  --red:#F80100;
-  --red-dark:#C50000;
-  --red-faint:rgba(248,1,0,0.07);
-  --red-border:rgba(248,1,0,0.22);
-  --gray:rgba(255,255,255,0.6);
-  --gray-dim:rgba(255,255,255,0.25);
-  --gray-faint:rgba(255,255,255,0.06);
-  --ff-d:'Barlow Condensed',sans-serif;
-  --ff-b:'Inter',sans-serif;
-  --px:clamp(24px,6vw,100px);
-  --py:clamp(60px,8vw,120px);
-  --ease:cubic-bezier(.25,.1,.25,1);
-}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:var(--ff-b);overflow-x:hidden;line-height:1.5}
-img{display:block;max-width:100%}
-button{cursor:pointer;border:none;font-family:inherit}
-a{text-decoration:none;color:inherit}
+  <html lang="pt-BR">
 
-/* ── TYPOGRAPHY ── */
-.label{font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--red)}
-.hl{font-family:var(--ff-d);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.5px}
-.hl-xl{font-size:clamp(40px,6.5vw,100px);white-space:nowrap}
-@media(max-width:768px){.hl-xl{font-size:clamp(36px,11vw,64px);white-space:normal}}
-.hl-lg{font-size:clamp(40px,6vw,84px)}
-.hl-md{font-size:clamp(32px,4.5vw,60px)}
-.body-lg{font-size:clamp(15px,1.4vw,19px);line-height:1.75;color:var(--gray)}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scuderia Bandeiras — Onde os negócios aceleram</title>
+    <meta name="description"
+      content="Um ecossistema onde esporte, estrutura e experiências se encontram para posicionar sua marca no mais alto nível.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+      }
 
-/* ── UTILS ── */
-.red-line{width:40px;height:3px;background:var(--red);margin-bottom:20px}
-.red-line-c{margin-left:auto;margin-right:auto}
+      :root {
+        --black: #0F0F0F;
+        --deep: #080808;
+        --white: #FFFFFF;
+        --red: #F80100;
+        --red-dark: #C50000;
+        --red-faint: rgba(248, 1, 0, 0.07);
+        --red-border: rgba(248, 1, 0, 0.22);
+        --gray: rgba(255, 255, 255, 0.6);
+        --gray-dim: rgba(255, 255, 255, 0.25);
+        --gray-faint: rgba(255, 255, 255, 0.06);
+        --ff-d: 'Barlow Condensed', sans-serif;
+        --ff-b: 'Inter', sans-serif;
+        --px: clamp(24px, 6vw, 100px);
+        --py: clamp(80px, 9vw, 140px);
+        --ease: cubic-bezier(.25, .1, .25, 1);
+      }
 
-/* ── REVEAL ── */
-.r{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
-.r.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+      html {
+        scroll-behavior: smooth
+      }
 
-/* ── NAVBAR ── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px var(--px);display:flex;align-items:center;justify-content:space-between;transition:background .35s var(--ease),border-color .35s}
-#nav.on{background:rgba(8,8,8,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--red-border)}
-.nav-logo{height:34px;width:auto}
-.nav-btn{background:var(--red);color:var(--white);font-family:var(--ff-d);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:10px 26px;transition:background .25s var(--ease),transform .25s}
-.nav-btn:hover{background:var(--red-dark);transform:translateY(-1px)}
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: var(--ff-b);
+        overflow-x: hidden;
+        line-height: 1.5
+      }
 
-/* ── BTN ── */
-.btn{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:var(--white);font-family:var(--ff-d);font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:17px 42px;font-size:15px;transition:background .25s,transform .25s;overflow:hidden;position:relative}
-.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(255,255,255,.1);transition:left .4s ease}
-.btn:hover::before{left:100%}
-.btn:hover{background:var(--red-dark);transform:translateY(-2px)}
-.btn-arr{transition:transform .25s}
-.btn:hover .btn-arr{transform:translateX(4px)}
-.btn-ghost{background:transparent;border:1px solid var(--red-border);color:var(--white)}
-.btn-ghost:hover{background:var(--red-faint);border-color:var(--red)}
+      img {
+        display: block;
+        max-width: 100%
+      }
 
-/* ── HERO ── */
-#hero{position:relative;min-height:100svh;display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top;background-repeat:no-repeat}
-.hero-ov{position:absolute;inset:0;background:linear-gradient(108deg,rgba(8,8,8,.85) 0%,rgba(8,8,8,.4) 55%,rgba(8,8,8,.05) 100%),linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,.85) 25%,rgba(8,8,8,.3) 60%,transparent 100%)}
-.hero-lines{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-14deg,transparent,transparent 2px,rgba(248,1,0,.025) 2px,rgba(248,1,0,.025) 4px)}
-.hero-body{position:relative;z-index:2;padding:0 var(--px) clamp(80px,10vh,120px);max-width:820px;text-align:center;display:flex;flex-direction:column;align-items:center}
-@media(max-width:768px){
-  /* hero vira block — hero-body cobre tudo via absolute */
-  #hero{display:block;min-height:100svh}
-  .hero-bg{background-position:center top}
+      button {
+        cursor: pointer;
+        border: none;
+        font-family: inherit
+      }
 
-  /* overlay: escuro no topo (texto) + transparente no meio (pilotos) + escuro na base (texto) */
-  .hero-ov{
-    background:
-      linear-gradient(to bottom,
-        rgba(8,8,8,.82)  0%,
-        rgba(8,8,8,.45) 20%,
-        transparent     38%,
-        transparent     62%,
-        rgba(8,8,8,.75) 78%,
-        rgba(8,8,8,1)  100%
-      )
-  }
-  .hero-lines{display:none}
-  .hero-scroll{display:none}
+      a {
+        text-decoration: none;
+        color: inherit
+      }
 
-  /* hero-body estica para cobrir o hero inteiro */
-  .hero-body{
-    position:absolute;inset:0;z-index:2;
-    display:flex;flex-direction:column;justify-content:space-between;align-items:center;
-    padding:72px 20px 48px;   /* 72px = nav height + respiro */
-    max-width:100%;width:100%;text-align:center;
-  }
+      /* ── TYPOGRAPHY ── */
+      .label {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--red)
+      }
 
-  /* bloco do topo: label + título no céu */
-  .hero-top-block{
-    display:flex;flex-direction:column;align-items:center;gap:12px;
-    width:100%;
-  }
-  .hero-badge{margin-bottom:0}
+      .hl {
+        font-family: var(--ff-d);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: .92;
+        letter-spacing: -.5px
+      }
 
-  /* bloco da base: subtítulo + botões abaixo dos pilotos */
-  .hero-bottom-block{
-    display:flex;flex-direction:column;align-items:center;gap:20px;
-    width:100%;
-  }
-  .hero-desc{margin:0;max-width:100%;width:100%;font-size:clamp(14px,3.8vw,17px)}
-  .hero-acts{flex-direction:column;align-items:center;gap:12px;width:100%}
-  .hero-acts .btn{width:100%;justify-content:center}
-}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border:1px solid var(--red-border);background:var(--red-faint);margin-bottom:28px;opacity:0;animation:fu .8s .15s forwards}
-.hero-badge .dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-.hero-body h1{opacity:0;animation:fu .9s .3s forwards}
-.hero-body h1 em{font-style:normal;color:var(--red)}
-.hero-desc{margin:22px 0 38px;max-width:720px;width:90%;text-align:center;font-size:clamp(17px,1.6vw,21px);line-height:1.55;opacity:0;animation:fu .9s .45s forwards}
-@media(max-width:768px){.hero-desc{max-width:100%;width:100%;font-size:clamp(15px,4vw,18px)}}
-.hero-acts{display:flex;align-items:center;gap:18px;flex-wrap:wrap;opacity:0;animation:fu .9s .6s forwards}
-.hero-scroll{position:absolute;bottom:28px;right:var(--px);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fade 1s 1.2s forwards}
-.hero-scroll span{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-dim);writing-mode:vertical-rl}
-.scroll-line{width:1px;height:56px;background:linear-gradient(to bottom,var(--red),transparent);animation:sl 2.2s 1.5s infinite}
-@keyframes sl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
+      .hl-xl {
+        font-size: clamp(40px, 6.5vw, 100px);
+        white-space: nowrap
+      }
 
-/* ── SECTION ── */
-.sec{padding:var(--py) var(--px)}
-.sec-dark{background:var(--black)}
-.sec-deep{background:var(--deep)}
-.sec-mid{background:#0c0c0c}
+      @media(max-width:768px) {
+        .hl-xl {
+          font-size: clamp(36px, 11vw, 64px);
+          white-space: normal
+        }
+      }
 
-/* ── SOBRE ── */
-.sobre-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.ic{position:relative;overflow:hidden;aspect-ratio:3/4}
-.ic img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.ic:hover img{transform:scale(1.06)}
-.ic-ov{position:absolute;bottom:0;left:0;right:0;padding:48px 22px 22px;background:linear-gradient(to top,rgba(8,8,8,.97),transparent)}
-.ic-num{font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:4px;color:var(--red);margin-bottom:4px}
-.ic-title{font-family:var(--ff-d);font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
-.ic-desc{font-size:13px;color:rgba(255,255,255,.5);margin-top:5px}
+      .hl-lg {
+        font-size: clamp(40px, 6vw, 84px)
+      }
 
-/* ── AUTORIDADE ── */
-.aut-hd{text-align:center;margin-bottom:52px}
-.pilots{display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
-.pc{position:relative;overflow:hidden;aspect-ratio:3/4}
-.pc img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(25%);transition:transform .6s ease,filter .4s ease}
-.pc:hover img{transform:scale(1.05);filter:grayscale(0%)}
-.pc-ov{position:absolute;bottom:0;left:0;right:0;padding:56px 16px 16px;background:linear-gradient(to top,rgba(8,8,8,1),transparent)}
-.pc-name{font-family:var(--ff-d);font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;line-height:1.2}
-.pc::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:width .4s ease;z-index:2}
-.pc:hover::before{width:100%}
-.pilot-extra{margin-top:2px;padding:18px 22px;background:var(--red-faint);border:1px solid var(--red-border);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.pilot-extra .plus{font-family:var(--ff-d);font-size:26px;font-weight:900;color:var(--red)}
-.pilot-extra .names{font-family:var(--ff-d);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.6)}
+      .hl-md {
+        font-size: clamp(32px, 4.5vw, 60px)
+      }
 
-/* ── ESTRUTURA ── */
-.g6{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.ec{position:relative;overflow:hidden;aspect-ratio:4/3}
-.ec img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.ec:hover img{transform:scale(1.07)}
-.ec-ov{position:absolute;bottom:0;left:0;right:0;padding:48px 18px 16px;background:linear-gradient(to top,rgba(8,8,8,.95),transparent)}
-.ec-name{font-family:var(--ff-d);font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+      .body-lg {
+        font-size: clamp(15px, 1.4vw, 19px);
+        line-height: 1.75;
+        color: var(--gray)
+      }
 
-/* ── NÚMEROS ── */
-#numeros{position:relative;overflow:hidden}
-.num-bg{position:absolute;inset:0}
-.num-bg img{width:100%;height:100%;object-fit:cover;opacity:.11;filter:grayscale(100%)}
-.num-bg-ov{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 0%,rgba(8,8,8,.65) 65%,rgba(8,8,8,.92) 100%)}
-.num-body{position:relative;z-index:2;text-align:center}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;border:1px solid rgba(248,1,0,.12)}
-.sb{padding:44px 20px;background:rgba(8,8,8,.85);backdrop-filter:blur(8px);border-right:1px solid rgba(248,1,0,.12);text-align:center;position:relative;overflow:hidden}
-.sb:last-child{border-right:none}
-.sb::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--red),transparent);transform:scaleX(0);transition:transform .7s ease}
-.sb.in::after{transform:scaleX(1)}
-.sn{font-family:var(--ff-d);font-size:clamp(40px,5vw,68px);font-weight:900;color:var(--red);line-height:1;letter-spacing:-1px;margin-bottom:10px;display:block}
-.sl-t{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);line-height:1.5}
+      /* ── UTILS ── */
+      .red-line {
+        width: 40px;
+        height: 3px;
+        background: var(--red);
+        margin-bottom: 20px
+      }
 
-/* ── VISIBILIDADE ── */
-.vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.band-wrap{background:#111;border:1px solid var(--gray-faint);padding:56px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.band-wrap img{width:80%;max-width:280px}
-.vis-meta{font-size:12px;color:var(--gray-dim);letter-spacing:2px;text-transform:uppercase}
-.vis-stats{margin-top:36px}
-.vs{padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:baseline;gap:14px}
-.vs:first-child{border-top:1px solid rgba(255,255,255,.07)}
-.vs-num{font-family:var(--ff-d);font-size:clamp(36px,4vw,60px);font-weight:900;color:var(--red);line-height:1}
-.vs-desc{font-size:14px;color:rgba(255,255,255,.45)}
-.platforms{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
-.ptag{padding:7px 14px;border:1px solid rgba(255,255,255,.09);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);transition:all .25s}
-.ptag:hover{border-color:var(--red-border);color:var(--white)}
+      .red-line-c {
+        margin-left: auto;
+        margin-right: auto
+      }
 
-/* ── EXPERIÊNCIAS ── */
-#experiencias{padding:0;display:grid;grid-template-columns:1.15fr 1fr;min-height:680px}
-.exp-gal{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.eg-item{overflow:hidden;position:relative}
-.eg-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.eg-item:hover img{transform:scale(1.07)}
-.exp-panel{padding:clamp(36px,5vw,76px);display:flex;flex-direction:column;justify-content:center;background:#0a0a0a;border-left:1px solid var(--red-border)}
-.exp-list{list-style:none;margin-top:28px}
-.ei{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:14px;font-family:var(--ff-d);font-size:clamp(17px,2vw,21px);font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.6);transition:color .25s}
-.ei::before{content:'';width:6px;height:6px;background:var(--red);flex-shrink:0;transition:transform .25s}
-.ei:hover{color:var(--white)}
-.ei:hover::before{transform:scale(1.5)}
+      /* ── REVEAL ── */
+      .r {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity .75s ease, transform .75s ease
+      }
 
-/* ── TEAM / RACE EXP ── */
-#team{padding:0;display:grid;grid-template-columns:1fr 1.2fr;min-height:680px}
-.team-panel{padding:clamp(36px,5vw,76px);display:flex;flex-direction:column;justify-content:center;background:var(--black)}
-.team-img{overflow:hidden}
-.team-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
-.team-img:hover img{transform:scale(1.04)}
+      .r.in {
+        opacity: 1;
+        transform: none
+      }
 
-/* ── PALESTRAS ── */
-#palestras{text-align:center}
-.spk-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:40px}
-.stag{padding:13px 30px;border:1px solid rgba(255,255,255,.1);font-family:var(--ff-d);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.5);transition:all .25s}
-.stag:hover{border-color:var(--red);color:var(--white);background:var(--red-faint)}
-.spk-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-top:44px}
-.spk-card{position:relative;overflow:hidden;aspect-ratio:3/4}
-.spk-card img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(20%);transition:transform .6s ease,filter .4s ease}
-.spk-card:hover img{transform:scale(1.05);filter:grayscale(0%)}
-.spk-card-ov{position:absolute;bottom:0;left:0;right:0;padding:52px 16px 16px;background:linear-gradient(to top,rgba(8,8,8,1),transparent)}
-.spk-card-name{font-family:var(--ff-d);font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;line-height:1.2}
-.spk-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:width .4s ease;z-index:2}
-.spk-card:hover::before{width:100%}
-@media(max-width:768px){.spk-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:480px){.spk-grid{grid-template-columns:repeat(2,1fr)}}
+      .d1 {
+        transition-delay: .1s
+      }
 
-/* ── INCENTIVO ── */
-#incentivo{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:600px}
-.inc-panel{padding:clamp(36px,5vw,96px);display:flex;flex-direction:column;justify-content:center;background:var(--deep)}
-.inc-list{list-style:none;margin:28px 0}
-.inc-item{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:14px;font-family:var(--ff-d);font-size:clamp(18px,2.2vw,24px);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.chk{width:26px;height:26px;border:1px solid var(--red);display:flex;align-items:center;justify-content:center;color:var(--red);font-size:13px;flex-shrink:0}
-.inc-note{font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;padding-left:20px;border-left:2px solid var(--red)}
-.inc-img{background:var(--deep);display:flex;align-items:center;justify-content:center;padding:clamp(28px,4vw,60px)}
-.inc-img img{width:100%;max-width:520px;height:auto;object-fit:contain;transition:transform .6s ease}
-.inc-img:hover img{transform:scale(1.02)}
+      .d2 {
+        transition-delay: .2s
+      }
 
-/* ── MARCAS ── */
-#marcas{text-align:center}
-.marcas-wrap{margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.05)}
-.marcas-wrap img{max-width:100%;opacity:.82;filter:grayscale(25%);margin:0 auto;transition:filter .3s,opacity .3s}
-.marcas-wrap img:hover{opacity:1;filter:grayscale(0%)}
+      .d3 {
+        transition-delay: .3s
+      }
 
-/* ── CTA FINAL ── */
-#cta{position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.cta-bg{position:absolute;inset:0}
-.cta-bg img{width:100%;height:100%;object-fit:cover}
-.cta-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,.72) 45%,rgba(8,8,8,.42) 100%)}
-.cta-body{position:relative;z-index:2;padding:var(--py) var(--px);max-width:920px}
-.cta-body h2 em{font-style:normal;color:var(--red)}
-.cta-acts{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:18px}
-.cta-wa{font-size:13px;color:rgba(255,255,255,.38);letter-spacing:1px}
-.cta-wa a{color:var(--red);border-bottom:1px solid transparent;transition:border-color .25s}
-.cta-wa a:hover{border-color:var(--red)}
+      .d4 {
+        transition-delay: .4s
+      }
 
-/* ── FOOTER ── */
-footer{background:#040404;padding:32px var(--px);border-top:1px solid rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer img{height:26px;opacity:.55}
-footer p{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.5px}
+      .d5 {
+        transition-delay: .5s
+      }
 
-/* ── MODAL ── */
-.m-ov{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);padding:20px}
-.m-ov.open{display:flex}
-.m-box{width:100%;max-width:496px;background:#111;border:1px solid var(--red-border);position:relative;animation:mup .32s var(--ease)}
-@keyframes mup{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
-.m-bar{height:3px;background:var(--red)}
-.m-body{padding:38px 38px 32px}
-.m-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:none;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.m-close:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
-.m-logo{height:28px;margin-bottom:24px}
-.m-title{font-family:var(--ff-d);font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;line-height:1.1;margin-bottom:6px}
-.m-sub{font-size:12px;color:rgba(255,255,255,.38);line-height:1.6;margin-bottom:28px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:6px}
-.field input{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);color:var(--white);font-family:var(--ff-b);font-size:15px;padding:12px 15px;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;border-radius:0}
-.field input:focus{border-color:var(--red);background:rgba(248,1,0,.03)}
-.field input::placeholder{color:rgba(255,255,255,.16)}
-.field input.err{border-color:#ff5252!important}
-.ferr{font-size:11px;color:#ff6b6b;margin-top:4px;display:none}
-.ferr.show{display:block}
-.sub-btn{width:100%;background:var(--red);color:var(--white);font-family:var(--ff-d);font-size:16px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:16px;margin-top:6px;border:none;transition:background .25s}
-.sub-btn:hover:not(:disabled){background:var(--red-dark)}
-.sub-btn:disabled{opacity:.5;cursor:not-allowed}
-.m-priv{margin-top:14px;font-size:10px;color:rgba(255,255,255,.16);text-align:center;line-height:1.5}
-.m-ok{display:none;text-align:center;padding:38px}
-.m-ok.show{display:block}
-.ok-circle{width:60px;height:60px;border:1px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;color:var(--red)}
+      /* ── NAVBAR ── */
+      #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        padding: 18px var(--px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background .35s var(--ease), border-color .35s
+      }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .pilots{grid-template-columns:repeat(3,1fr)}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .vis-grid{grid-template-columns:1fr;gap:44px}
-  #experiencias{grid-template-columns:1fr}
-  .exp-panel{border-left:none;border-top:1px solid var(--red-border)}
-  #team{grid-template-columns:1fr}
-  .team-img{min-height:380px}
-  #incentivo{grid-template-columns:1fr}
-  .inc-img{min-height:380px}
-}
-@media(max-width:768px){
-  .nav-btn{display:none}
-  .sobre-hd{grid-template-columns:1fr;gap:24px}
-  .g3{grid-template-columns:1fr}
-  .ic{aspect-ratio:16/9}
-  .pilots{grid-template-columns:repeat(2,1fr)}
-  .g6{grid-template-columns:1fr 1fr}
-  .ec{aspect-ratio:16/10}
-  .exp-gal{grid-template-columns:1fr}
-  .eg-item{aspect-ratio:16/9}
-  .m-body{padding:26px 22px 22px}
-}
-@media(max-width:480px){
-  .stats{grid-template-columns:1fr 1fr}
-  .g6{grid-template-columns:1fr}
-}
-</style>
-</head>
-<body>
+      #nav.on {
+        background: rgba(8, 8, 8, .96);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--red-border)
+      }
 
-<!-- NAV -->
-<nav id="nav">
-  <img class="nav-logo" src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
-  <button class="nav-btn" onclick="openModal()">Quero fazer parte</button>
-</nav>
+      .nav-logo {
+        height: 34px;
+        width: auto
+      }
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<section id="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-ov"></div>
-  <div class="hero-lines"></div>
-  <div class="hero-body">
-    <div class="hero-top-block">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        <span style="font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.75)">Stock Car Pro Series</span>
-      </div>
-      <h1 class="hl hl-xl">Onde os <em>negócios</em> aceleram.</h1>
-    </div>
-    <div class="hero-bottom-block">
-      <p class="body-lg hero-desc">Um ecossistema onde esporte, estrutura e experiências se encontram para posicionar sua marca no mais alto nível.</p>
-      <div class="hero-acts">
-        <button class="btn" onclick="openModal()">Quero fazer parte <span class="btn-arr">→</span></button>
-        <a href="#sobre" class="btn btn-ghost">Conhecer o ecossistema</a>
-      </div>
-    </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>scroll</span>
-  </div>
-</section>
+      .nav-btn {
+        background: var(--red);
+        color: var(--white);
+        font-family: var(--ff-d);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 10px 26px;
+        transition: background .25s var(--ease), transform .25s
+      }
 
-<!-- ═══════════════════ SOBRE ═══════════════════ -->
-<section id="sobre" class="sec sec-dark">
-  <div class="sobre-hd">
-    <div class="r">
-      <div class="red-line"></div>
-      <h2 class="hl hl-lg">Um ecossistema<br>completo</h2>
-    </div>
-    <p class="body-lg r d1">Todo um ecossistema onde negócios e automobilismo se integram. Uma equipe de corrida com estrutura completa para empresas que entendem que o ambiente é importante.</p>
-  </div>
-  <div class="g3 r d2">
-    <div class="ic">
-      <img src="Imagens/o que é/esporte.png" alt="Esporte" loading="lazy">
-      <div class="ic-ov"><div class="ic-num">01</div><div class="ic-title">Esporte</div><p class="ic-desc">Equipe oficial da Stock Car Pro Series</p></div>
-    </div>
-    <div class="ic">
-      <img src="Imagens/o que é/estrutura.png" alt="Estrutura" loading="lazy">
-      <div class="ic-ov"><div class="ic-num">02</div><div class="ic-title">Estrutura</div><p class="ic-desc">Coworking, auditório, gastronomia e muito mais</p></div>
-    </div>
-    <div class="ic">
-      <img src="Imagens/o que é/experiencias.png" alt="Experiências" loading="lazy">
-      <div class="ic-ov"><div class="ic-num">03</div><div class="ic-title">Experiências</div><p class="ic-desc">Ativações, team building e eventos corporativos</p></div>
-    </div>
-  </div>
-</section>
+      .nav-btn:hover {
+        background: var(--red-dark);
+        transform: translateY(-1px)
+      }
 
-<!-- ═══════════════════ AUTORIDADE ═══════════════════ -->
-<section id="autoridade" class="sec sec-deep">
-  <div class="aut-hd">
-    <div class="red-line red-line-c r"></div>
-    <h2 class="hl hl-lg r d1">Nomes que o mercado respeita</h2>
-    <p class="body-lg r d2" style="max-width:480px;margin:0 auto">Histórias que inspiram dentro e fora da pista.</p>
-  </div>
-  <div class="pilots r d1">
-    <div class="pc">
-      <img src="Imagens/nosso time/Christian fittipaldi.png" alt="Christian Fittipaldi" loading="lazy">
-      <div class="pc-ov"><div class="pc-name">Christian<br>Fittipaldi</div></div>
-    </div>
-    <div class="pc">
-      <img src="Imagens/nosso time/atila abreu.png" alt="Átila Abreu" loading="lazy">
-      <div class="pc-ov"><div class="pc-name">Átila<br>Abreu</div></div>
-    </div>
-    <div class="pc">
-      <img src="Imagens/nosso time/image 4.png" alt="Rubens Barrichello" loading="lazy">
-      <div class="pc-ov"><div class="pc-name">Rubens<br>Barrichello</div></div>
-    </div>
-    <div class="pc">
-      <img src="Imagens/nosso time/image 5.png" alt="Nelson Piquet Jr." loading="lazy">
-      <div class="pc-ov"><div class="pc-name">Nelson<br>Piquet Jr.</div></div>
-    </div>
-    <div class="pc">
-      <img src="Imagens/nosso time/image 6.png" alt="Ingo Hoffmann" loading="lazy">
-      <div class="pc-ov"><div class="pc-name">Ingo<br>Hoffmann</div></div>
-    </div>
-    <div class="pc">
-      <img src="Imagens/pilotos/RAFAEL SUZUKI.png" alt="Rafael Suzuki" loading="lazy">
-      <div class="pc-ov"><div class="pc-name">Rafael<br>Suzuki</div></div>
-    </div>
-  </div>
-  <div class="pilot-extra r d2">
-    <span class="plus">+</span>
-    <span class="names">Outros nomes do automobilismo nacional</span>
-  </div>
-</section>
+      /* ── BTN ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--red);
+        color: var(--white);
+        font-family: var(--ff-d);
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 17px 42px;
+        font-size: 15px;
+        transition: background .25s, transform .25s;
+        overflow: hidden;
+        position: relative
+      }
 
-<!-- ═══════════════════ ESTRUTURA ═══════════════════ -->
-<section id="estrutura" class="sec sec-dark">
-  <div style="margin-bottom:36px" class="r">
-    <div class="red-line"></div>
-    <h2 class="hl hl-lg">Tudo no mesmo lugar<br>onde a corrida acontece</h2>
-  </div>
-  <div class="g6 r d1">
-    <div class="ec"><img src="Imagens/estrutura/garage by vonder.png" alt="Garagem by Vonder" loading="lazy"><div class="ec-ov"><div class="ec-name">Garagem by Vonder</div></div></div>
-    <div class="ec"><img src="Imagens/estrutura/auditorio.png" alt="Auditório" loading="lazy"><div class="ec-ov"><div class="ec-name">Auditório · até 300 pessoas</div></div></div>
-    <div class="ec"><img src="Imagens/estrutura/coworking.png" alt="Coworking" loading="lazy"><div class="ec-ov"><div class="ec-name">Coworking 350m²</div></div></div>
-    <div class="ec"><img src="Imagens/estrutura/area multiuso.png" alt="Arena Multiuso" loading="lazy"><div class="ec-ov"><div class="ec-name">Arena Multiuso</div></div></div>
-    <div class="ec"><img src="Imagens/estrutura/gastronom,ia.png" alt="Gastronomia Premium" loading="lazy"><div class="ec-ov"><div class="ec-name">Gastronomia Premium</div></div></div>
-    <div class="ec"><img src="Imagens/estrutura/acesso aereo.png" alt="Acesso Aéreo Exclusivo" loading="lazy"><div class="ec-ov"><div class="ec-name">Acesso Aéreo Exclusivo</div></div></div>
-  </div>
-</section>
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, .1);
+        transition: left .4s ease
+      }
 
-<!-- ═══════════════════ NÚMEROS ═══════════════════ -->
-<section id="numeros" class="sec">
-  <div class="num-bg">
-    <img src="Imagens/stock car em numeros/STOCK CAR EM NÚMEROS.png" alt="" loading="lazy">
-    <div class="num-bg-ov"></div>
-  </div>
-  <div class="num-body">
-    <div class="label r">Stock Car em Números</div>
-    <h2 class="hl hl-lg r d1" style="margin-top:10px">A maior categoria<br>do Brasil</h2>
-    <div class="stats">
-      <div class="sb r"><span class="sn" data-count="200" data-suffix="mil+">—</span><div class="sl-t">ingressos por temporada</div></div>
-      <div class="sb r d1"><span class="sn" data-count="20" data-suffix="mil+">—</span><div class="sl-t">convidados</div></div>
-      <div class="sb r d2"><span class="sn" data-count="30" data-suffix="mil+">—</span><div class="sl-t">visitantes nos boxes</div></div>
-      <div class="sb r d3"><span class="sn" data-prefix="R$" data-count="500" data-suffix="mi+">—</span><div class="sl-t">movimentados</div></div>
-    </div>
-  </div>
-</section>
+      .btn:hover::before {
+        left: 100%
+      }
 
-<!-- ═══════════════════ VISIBILIDADE ═══════════════════ -->
-<section id="visibilidade" class="sec sec-deep">
-  <div class="vis-grid">
-    <div class="r">
-      <div class="band-wrap"><img src="Imagens/visibilidade/logo band.svg" alt="Band TV" loading="lazy"></div>
-      <p class="vis-meta">+ YouTube · Twitch · Plataformas digitais</p>
-    </div>
-    <div>
-      <div class="red-line r"></div>
-      <h2 class="hl hl-lg r d1">Sua marca onde<br>o Brasil<br>está vendo</h2>
-      <p class="body-lg r d2" style="margin-top:18px">Todas as corridas na Band + 146h de transmissão ao vivo por temporada.</p>
-      <div class="vis-stats">
-        <div class="vs r d2"><span class="vs-num">2,1 mi</span><span class="vs-desc">seguidores nas redes sociais</span></div>
-        <div class="vs r d3"><span class="vs-num">20 mi</span><span class="vs-desc">de visualizações</span></div>
-        <div class="vs r d4"><span class="vs-num">146h</span><span class="vs-desc">de transmissão ao vivo</span></div>
-      </div>
-      <div class="platforms r d5">
-        <div class="ptag">Band TV</div><div class="ptag">YouTube</div><div class="ptag">Twitch</div><div class="ptag">Instagram</div>
-      </div>
-    </div>
-  </div>
-</section>
+      .btn:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px)
+      }
 
-<!-- ═══════════════════ EXPERIÊNCIAS ═══════════════════ -->
-<section id="experiencias">
-  <div class="exp-gal">
-    <div class="eg-item"><img src="Imagens/experiencia do evento/Camarotes.png" alt="Camarotes" loading="lazy"></div>
-    <div class="eg-item"><img src="Imagens/experiencia do evento/Arquibancada.png" alt="Arquibancada" loading="lazy"></div>
-    <div class="eg-item"><img src="Imagens/experiencia do evento/Truck Lounge.png" alt="Truck Lounge" loading="lazy"></div>
-    <div class="eg-item"><img src="Imagens/experiencia do evento/Visitação aos Boxe.png" alt="Visitação aos Boxes" loading="lazy"></div>
-  </div>
-  <div class="exp-panel">
-    <div class="red-line r"></div>
-    <h2 class="hl hl-lg r d1">Experiências<br>que ficam<br>na memória</h2>
-    <ul class="exp-list">
-      <li class="ei r d1">Box com tecnologia em tempo real</li>
-      <li class="ei r d2">Camarotes exclusivos</li>
-      <li class="ei r d3">Truck Lounge premium</li>
-      <li class="ei r d4">Visitação aos boxes</li>
-      <li class="ei r d5">Arquibancada com visão real da pista</li>
-    </ul>
-  </div>
-</section>
+      .btn-arr {
+        transition: transform .25s
+      }
 
-<!-- ═══════════════════ RACE EXPERIENCE ═══════════════════ -->
-<section id="team">
-  <div class="team-panel">
-    <div class="red-line r"></div>
-    <h2 class="hl hl-lg r d1">Não é motivação.<br>É experiência real.</h2>
-    <p class="body-lg r d2" style="margin-top:18px">Aqui o trabalho em equipe acontece com Stock Car real. Pressão, decisão e performance.</p>
-    <ul class="exp-list" style="margin-top:28px">
-      <li class="ei r d2">Volta rápida com piloto profissional</li>
-      <li class="ei r d3">Pit Stop Challenge</li>
-      <li class="ei r d4">Kart Challenge</li>
-      <li class="ei r d5">Crazy Cart</li>
-      <li class="ei r d5">Drift Arena</li>
-    </ul>
-  </div>
-  <div class="team-img">
-    <img src="Imagens/race experience/RACE EXPERIENCE.png" alt="Race Experience" loading="lazy">
-  </div>
-</section>
+      .btn:hover .btn-arr {
+        transform: translateX(4px)
+      }
 
-<!-- ═══════════════════ PALESTRAS ═══════════════════ -->
-<section id="palestras" class="sec sec-deep">
-  <div class="red-line red-line-c r"></div>
-  <h2 class="hl hl-lg r d1">Histórias que movem</h2>
-  <p class="body-lg r d2" style="max-width:460px;margin:0 auto">Pilotos que viveram pressão real e tomam decisões em segundos.</p>
-  <div class="spk-grid r d2">
-    <div class="spk-card">
-      <img src="Imagens/pilotos/Christian fittipaldi.png" alt="Christian Fittipaldi" loading="lazy">
-      <div class="spk-card-ov"><div class="spk-card-name">Christian<br>Fittipaldi</div></div>
-    </div>
-    <div class="spk-card">
-      <img src="Imagens/pilotos/image 4.png" alt="Rubens Barrichello" loading="lazy">
-      <div class="spk-card-ov"><div class="spk-card-name">Rubens<br>Barrichello</div></div>
-    </div>
-    <div class="spk-card">
-      <img src="Imagens/pilotos/atila abreu.png" alt="Átila Abreu" loading="lazy">
-      <div class="spk-card-ov"><div class="spk-card-name">Átila<br>Abreu</div></div>
-    </div>
-    <div class="spk-card">
-      <img src="Imagens/pilotos/image 5.png" alt="Nelson Piquet Jr." loading="lazy">
-      <div class="spk-card-ov"><div class="spk-card-name">Nelson<br>Piquet Jr.</div></div>
-    </div>
-    <div class="spk-card">
-      <img src="Imagens/pilotos/image 6.png" alt="Ingo Hoffmann" loading="lazy">
-      <div class="spk-card-ov"><div class="spk-card-name">Ingo<br>Hoffmann</div></div>
-    </div>
-    <div class="spk-card">
-      <img src="Imagens/pilotos/RAFAEL SUZUKI.png" alt="Rafael Suzuki" loading="lazy">
-      <div class="spk-card-ov"><div class="spk-card-name">Rafael<br>Suzuki</div></div>
-    </div>
-  </div>
-</section>
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid var(--red-border);
+        color: var(--white)
+      }
 
-<!-- ═══════════════════ INCENTIVO ═══════════════════ -->
-<section id="incentivo">
-  <div class="inc-panel">
-    <div class="red-line r"></div>
-    <h2 class="hl hl-lg r d1">Seu patrocínio<br>pode custar zero</h2>
-    <ul class="inc-list">
-      <li class="inc-item r d1"><span class="chk">✓</span>100% dedutível do IR</li>
-      <li class="inc-item r d2"><span class="chk">✓</span>Teto de até 2%</li>
-      <li class="inc-item r d3"><span class="chk">✓</span>Aprovado pelo Ministério do Esporte</li>
-    </ul>
-    <p class="inc-note r d4">Consulte seu contador e descubra quanto sua empresa pode investir sem custo adicional.</p>
-    <button class="btn r d5" style="margin-top:28px;align-self:flex-start" onclick="openModal()">Quero saber mais <span class="btn-arr">→</span></button>
-  </div>
-  <div class="inc-img">
-    <img src="Imagens/lei de incentivo/LEI DE INCENTIVO.png" alt="Lei de Incentivo" loading="lazy">
-  </div>
-</section>
+      .btn-ghost:hover {
+        background: var(--red-faint);
+        border-color: var(--red)
+      }
 
-<!-- ═══════════════════ MARCAS ═══════════════════ -->
-<section id="marcas" class="sec sec-dark">
-  <div class="red-line red-line-c r"></div>
-  <h2 class="hl hl-lg r d1">Quem já está aqui</h2>
-  <p class="body-lg r d2" style="max-width:420px;margin:0 auto">Empresas que entenderam antes.</p>
-  <div class="marcas-wrap r d3">
-    <img src="Imagens/marcas parceiras/MARCAS PARCEIRAS.png" alt="Marcas Parceiras" loading="lazy">
-  </div>
-</section>
+      /* ── HERO ── */
+      #hero {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: hidden
+      }
 
-<!-- ═══════════════════ CTA FINAL ═══════════════════ -->
-<section id="cta">
-  <div class="cta-bg">
-    <img src="Imagens/final/imagem final.png" alt="" loading="lazy">
-    <div class="cta-ov"></div>
-  </div>
-  <div class="cta-body">
-    <div class="label r">Faça parte do grid</div>
-    <h2 class="hl hl-xl r d1" style="margin-top:10px">Sua marca<br>já deveria<br><em>estar aqui.</em></h2>
-    <p class="body-lg r d2" style="margin-top:18px">Enquanto você analisa, seu concorrente já está no grid.</p>
-    <div class="cta-acts">
-      <button class="btn r d3" onclick="openModal()">Quero fazer parte da Scuderia <span class="btn-arr">→</span></button>
-      <p class="cta-wa r d4">Prefere WhatsApp? <a href="https://wa.me/5511999999999" target="_blank">Fale conosco agora</a></p>
-    </div>
-  </div>
-</section>
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat
+      }
 
-<!-- FOOTER -->
-<footer>
-  <img src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
-  <p>© 2025 Scuderia Bandeiras. Todos os direitos reservados.</p>
-</footer>
+      .hero-ov {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(108deg, rgba(8, 8, 8, .85) 0%, rgba(8, 8, 8, .4) 55%, rgba(8, 8, 8, .05) 100%), linear-gradient(to top, rgba(8, 8, 8, 1) 0%, rgba(8, 8, 8, .85) 25%, rgba(8, 8, 8, .3) 60%, transparent 100%)
+      }
 
-<!-- ═══════════════════ MODAL ═══════════════════ -->
-<div class="m-ov" id="mOv">
-  <div class="m-box">
-    <div class="m-bar"></div>
-    <button class="m-close" onclick="closeModal()">×</button>
+      .hero-lines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(-14deg, transparent, transparent 2px, rgba(248, 1, 0, .025) 2px, rgba(248, 1, 0, .025) 4px)
+      }
 
-    <!-- Form -->
-    <div class="m-body" id="mForm">
-      <img class="m-logo" src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
-      <div class="m-title">Quero fazer parte</div>
-      <p class="m-sub">Preencha os dados abaixo. Nossa equipe entrará em contato para apresentar as oportunidades disponíveis.</p>
-      <form id="captForm" onsubmit="submitForm(event)" novalidate>
-        <div class="field">
-          <label for="fNome">Nome completo</label>
-          <input type="text" id="fNome" name="nome" placeholder="Seu nome" autocomplete="name">
-          <span class="ferr" id="eNome">Informe seu nome completo</span>
+      .hero-body {
+        position: relative;
+        z-index: 2;
+        padding: 0 var(--px) clamp(80px, 10vh, 120px);
+        max-width: 820px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center
+      }
+
+      @media(max-width:768px) {
+
+        /* hero vira block — hero-body cobre tudo via absolute */
+        #hero {
+          display: block;
+          min-height: 100svh
+        }
+
+        .hero-bg {
+          background-position: center top
+        }
+
+        /* overlay: escuro no topo (texto) + transparente no meio (pilotos) + escuro na base (texto) */
+        .hero-ov {
+          background:
+            linear-gradient(to bottom,
+              rgba(8, 8, 8, .82) 0%,
+              rgba(8, 8, 8, .45) 20%,
+              transparent 38%,
+              transparent 62%,
+              rgba(8, 8, 8, .75) 78%,
+              rgba(8, 8, 8, 1) 100%)
+        }
+
+        .hero-lines {
+          display: none
+        }
+
+        .hero-scroll {
+          display: none
+        }
+
+        /* hero-body estica para cobrir o hero inteiro */
+        .hero-body {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          padding: 72px 20px 48px;
+          /* 72px = nav height + respiro */
+          max-width: 100%;
+          width: 100%;
+          text-align: center;
+        }
+
+        /* bloco do topo: label + título no céu */
+        .hero-top-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          width: 100%;
+        }
+
+        .hero-badge {
+          margin-bottom: 0
+        }
+
+        /* bloco da base: subtítulo + botões abaixo dos pilotos */
+        .hero-bottom-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+        }
+
+        .hero-desc {
+          margin: 0;
+          max-width: 100%;
+          width: 100%;
+          font-size: clamp(14px, 3.8vw, 17px)
+        }
+
+        .hero-acts {
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          width: 100%
+        }
+
+        .hero-acts .btn {
+          width: 100%;
+          justify-content: center
+        }
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 15px;
+        border: 1px solid var(--red-border);
+        background: var(--red-faint);
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fu .8s .15s forwards
+      }
+
+      .hero-badge .dot {
+        width: 6px;
+        height: 6px;
+        background: var(--red);
+        border-radius: 50%;
+        animation: blink 2s infinite
+      }
+
+      @keyframes blink {
+
+        0%,
+        100% {
+          opacity: 1
+        }
+
+        50% {
+          opacity: .35
+        }
+      }
+
+      .hero-body h1 {
+        opacity: 0;
+        animation: fu .9s .3s forwards
+      }
+
+      .hero-body h1 em {
+        font-style: normal;
+        color: var(--red)
+      }
+
+      .hero-desc {
+        margin: 22px 0 38px;
+        max-width: 720px;
+        width: 90%;
+        text-align: center;
+        font-size: clamp(17px, 1.6vw, 21px);
+        line-height: 1.55;
+        opacity: 0;
+        animation: fu .9s .45s forwards
+      }
+
+      @media(max-width:768px) {
+        .hero-desc {
+          max-width: 100%;
+          width: 100%;
+          font-size: clamp(15px, 4vw, 18px)
+        }
+      }
+
+      .hero-acts {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fu .9s .6s forwards
+      }
+
+      .hero-scroll {
+        position: absolute;
+        bottom: 28px;
+        right: var(--px);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        opacity: 0;
+        animation: fade 1s 1.2s forwards
+      }
+
+      .hero-scroll span {
+        font-size: 9px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gray-dim);
+        writing-mode: vertical-rl
+      }
+
+      .scroll-line {
+        width: 1px;
+        height: 56px;
+        background: linear-gradient(to bottom, var(--red), transparent);
+        animation: sl 2.2s 1.5s infinite
+      }
+
+      @keyframes sl {
+        0% {
+          transform: scaleY(0);
+          transform-origin: top
+        }
+
+        50% {
+          transform: scaleY(1);
+          transform-origin: top
+        }
+
+        51% {
+          transform-origin: bottom
+        }
+
+        100% {
+          transform: scaleY(0);
+          transform-origin: bottom
+        }
+      }
+
+      @keyframes fu {
+        from {
+          opacity: 0;
+          transform: translateY(22px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0
+        }
+
+        to {
+          opacity: 1
+        }
+      }
+
+      /* ── SECTION ── */
+      .sec {
+        padding: var(--py) var(--px)
+      }
+
+      .sec-dark {
+        background: var(--black)
+      }
+
+      .sec-deep {
+        background: var(--deep)
+      }
+
+      .sec-mid {
+        background: #0c0c0c
+      }
+
+      /* ── SOBRE ── */
+      .sobre-hd {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 80px
+      }
+
+      .g3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px
+      }
+
+      .ic {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3/4
+      }
+
+      .ic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .6s var(--ease)
+      }
+
+      .ic:hover img {
+        transform: scale(1.06)
+      }
+
+      .ic-ov {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 48px 22px 22px;
+        background: linear-gradient(to top, rgba(8, 8, 8, .97), transparent)
+      }
+
+      .ic-num {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        color: var(--red);
+        margin-bottom: 4px
+      }
+
+      .ic-title {
+        font-family: var(--ff-d);
+        font-size: 24px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px
+      }
+
+      .ic-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, .5);
+        margin-top: 5px
+      }
+
+      /* ── AUTORIDADE ── */
+      .aut-hd {
+        text-align: center;
+        margin-bottom: 72px
+      }
+
+      .pilots {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2px
+      }
+
+      .pc {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3/4
+      }
+
+      .pc img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        filter: grayscale(25%);
+        transition: transform .6s ease, filter .4s ease
+      }
+
+      .pc:hover img {
+        transform: scale(1.05);
+        filter: grayscale(0%)
+      }
+
+      .pc-ov {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 56px 16px 16px;
+        background: linear-gradient(to top, rgba(8, 8, 8, 1), transparent)
+      }
+
+      .pc-name {
+        font-family: var(--ff-d);
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        line-height: 1.2
+      }
+
+      .pc-desc {
+        font-size: 11px;
+        color: rgba(255, 255, 255, .45);
+        margin-top: 5px;
+        line-height: 1.4
+      }
+
+      .pc::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--red);
+        transition: width .4s ease;
+        z-index: 2
+      }
+
+      .pc:hover::before {
+        width: 100%
+      }
+
+      .pilot-extra {
+        margin-top: 28px;
+        padding: 22px 28px;
+        background: var(--red-faint);
+        border: 1px solid var(--red-border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap
+      }
+
+      .pilot-extra .plus {
+        font-family: var(--ff-d);
+        font-size: 26px;
+        font-weight: 900;
+        color: var(--red)
+      }
+
+      .pilot-extra .names {
+        font-family: var(--ff-d);
+        font-size: 17px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: rgba(255, 255, 255, .6)
+      }
+
+      /* ── ESTRUTURA ── */
+      .g6 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px
+      }
+
+      .ec {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4/3
+      }
+
+      .ec img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .6s ease
+      }
+
+      .ec:hover img {
+        transform: scale(1.07)
+      }
+
+      .ec-ov {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 48px 18px 16px;
+        background: linear-gradient(to top, rgba(8, 8, 8, .95), transparent)
+      }
+
+      .ec-name {
+        font-family: var(--ff-d);
+        font-size: 17px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px
+      }
+
+      /* ── NÚMEROS ── */
+      #numeros {
+        position: relative;
+        overflow: hidden
+      }
+
+      .num-bg {
+        position: absolute;
+        inset: 0
+      }
+
+      .num-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: .11;
+        filter: grayscale(100%)
+      }
+
+      .num-bg-ov {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 0%, rgba(8, 8, 8, .65) 65%, rgba(8, 8, 8, .92) 100%)
+      }
+
+      .num-body {
+        position: relative;
+        z-index: 2;
+        text-align: center
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1px;
+        margin-top: 56px;
+        border: 1px solid rgba(248, 1, 0, .12)
+      }
+
+      .sb {
+        padding: 56px 28px;
+        background: rgba(8, 8, 8, .85);
+        backdrop-filter: blur(8px);
+        border-right: 1px solid rgba(248, 1, 0, .12);
+        text-align: center;
+        position: relative;
+        overflow: hidden
+      }
+
+      .sb:last-child {
+        border-right: none
+      }
+
+      .sb::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--red), transparent);
+        transform: scaleX(0);
+        transition: transform .7s ease
+      }
+
+      .sb.in::after {
+        transform: scaleX(1)
+      }
+
+      .sn {
+        font-family: var(--ff-d);
+        font-size: clamp(40px, 5vw, 68px);
+        font-weight: 900;
+        color: var(--red);
+        line-height: 1;
+        letter-spacing: -1px;
+        margin-bottom: 10px;
+        display: block
+      }
+
+      .sl-t {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, .4);
+        line-height: 1.5
+      }
+
+      /* ── VISIBILIDADE ── */
+      .vis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center
+      }
+
+      .band-wrap {
+        background: #111;
+        border: 1px solid var(--gray-faint);
+        padding: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 26px
+      }
+
+      .band-wrap img {
+        width: 80%;
+        max-width: 280px
+      }
+
+      .vis-meta {
+        font-size: 12px;
+        color: var(--gray-dim);
+        letter-spacing: 2px;
+        text-transform: uppercase
+      }
+
+      .vis-stats {
+        margin-top: 52px
+      }
+
+      .vs {
+        padding: 30px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .07);
+        display: flex;
+        align-items: baseline;
+        gap: 14px
+      }
+
+      .vs:first-child {
+        border-top: 1px solid rgba(255, 255, 255, .07)
+      }
+
+      .vs-num {
+        font-family: var(--ff-d);
+        font-size: clamp(36px, 4vw, 60px);
+        font-weight: 900;
+        color: var(--red);
+        line-height: 1
+      }
+
+      .vs-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, .45)
+      }
+
+      .platforms {
+        margin-top: 36px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap
+      }
+
+      .ptag {
+        padding: 7px 14px;
+        border: 1px solid rgba(255, 255, 255, .09);
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, .35);
+        transition: all .25s
+      }
+
+      .ptag:hover {
+        border-color: var(--red-border);
+        color: var(--white)
+      }
+
+      /* ── EXPERIÊNCIAS ── */
+      #experiencias {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        min-height: 680px
+      }
+
+      .exp-gal {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px
+      }
+
+      .eg-item {
+        overflow: hidden;
+        position: relative
+      }
+
+      .eg-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .6s ease
+      }
+
+      .eg-item:hover img {
+        transform: scale(1.07)
+      }
+
+      .exp-panel {
+        padding: clamp(48px, 6vw, 96px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #0a0a0a;
+        border-left: 1px solid var(--red-border)
+      }
+
+      .exp-list {
+        list-style: none;
+        margin-top: 28px
+      }
+
+      .ei {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--ff-d);
+        font-size: clamp(17px, 2vw, 21px);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: rgba(255, 255, 255, .6);
+        transition: color .25s
+      }
+
+      .ei::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--red);
+        flex-shrink: 0;
+        transition: transform .25s
+      }
+
+      .ei:hover {
+        color: var(--white)
+      }
+
+      .ei:hover::before {
+        transform: scale(1.5)
+      }
+
+      /* ── VIDEOS ── */
+      .vid-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px
+      }
+
+      .vid-wrap {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        background: #000
+      }
+
+      .vid-wrap iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0
+      }
+
+      .vid-label {
+        font-family: var(--ff-d);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: rgba(255, 255, 255, .55);
+        padding: 17px 22px;
+        border-top: 2px solid var(--red);
+        background: #0a0a0a
+      }
+
+      .vid-facade {
+        position: absolute;
+        inset: 0;
+        cursor: pointer
+      }
+
+      .vid-facade img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: opacity .3s
+      }
+
+      .vid-facade:hover img {
+        opacity: .85
+      }
+
+      .vid-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 68px;
+        height: 68px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .25s, background .25s;
+        box-shadow: 0 0 0 8px rgba(248, 1, 0, .22)
+      }
+
+      .vid-facade:hover .vid-play {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: var(--red-dark)
+      }
+
+      .vid-play::after {
+        content: '';
+        border-style: solid;
+        border-width: 11px 0 11px 20px;
+        border-color: transparent transparent transparent #fff;
+        margin-left: 5px
+      }
+
+      @media(max-width:768px) {
+        .vid-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      /* ── TEAM / RACE EXP ── */
+      #team {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        min-height: 680px
+      }
+
+      .team-panel {
+        padding: clamp(48px, 6vw, 96px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--black)
+      }
+
+      .team-img {
+        overflow: hidden
+      }
+
+      .team-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .8s ease
+      }
+
+      .team-img:hover img {
+        transform: scale(1.04)
+      }
+
+      /* ── PALESTRAS ── */
+      #palestras {
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, .05)
+      }
+
+      .spk-tags {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 40px
+      }
+
+      .stag {
+        padding: 13px 30px;
+        border: 1px solid rgba(255, 255, 255, .1);
+        font-family: var(--ff-d);
+        font-size: 19px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(255, 255, 255, .5);
+        transition: all .25s
+      }
+
+      .stag:hover {
+        border-color: var(--red);
+        color: var(--white);
+        background: var(--red-faint)
+      }
+
+      .spk-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2px;
+        margin-top: 60px
+      }
+
+      .spk-card {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3/4
+      }
+
+      .spk-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        filter: grayscale(20%);
+        transition: transform .6s ease, filter .4s ease
+      }
+
+      .spk-card:hover img {
+        transform: scale(1.05);
+        filter: grayscale(0%)
+      }
+
+      .spk-card-ov {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 52px 16px 16px;
+        background: linear-gradient(to top, rgba(8, 8, 8, 1), transparent)
+      }
+
+      .spk-card-name {
+        font-family: var(--ff-d);
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        line-height: 1.2
+      }
+
+      .spk-card-topic {
+        font-size: 11px;
+        color: rgba(255, 255, 255, .45);
+        margin-top: 5px;
+        line-height: 1.4
+      }
+
+      .spk-card::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--red);
+        transition: width .4s ease;
+        z-index: 2
+      }
+
+      .spk-card:hover::before {
+        width: 100%
+      }
+
+      @media(max-width:768px) {
+        .spk-grid {
+          grid-template-columns: repeat(3, 1fr)
+        }
+      }
+
+      @media(max-width:480px) {
+        .spk-grid {
+          grid-template-columns: repeat(2, 1fr)
+        }
+      }
+
+      /* ── INCENTIVO ── */
+      #incentivo {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 600px
+      }
+
+      .inc-panel {
+        padding: clamp(48px, 6vw, 112px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--deep)
+      }
+
+      .inc-list {
+        list-style: none;
+        margin: 28px 0
+      }
+
+      .inc-item {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--ff-d);
+        font-size: clamp(18px, 2.2vw, 24px);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px
+      }
+
+      .chk {
+        width: 26px;
+        height: 26px;
+        border: 1px solid var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--red);
+        font-size: 13px;
+        flex-shrink: 0
+      }
+
+      .inc-note {
+        font-size: 13px;
+        color: rgba(255, 255, 255, .38);
+        line-height: 1.7;
+        padding-left: 20px;
+        border-left: 2px solid var(--red)
+      }
+
+      .inc-img {
+        background: var(--deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(28px, 4vw, 60px)
+      }
+
+      .inc-img img {
+        width: 100%;
+        max-width: 520px;
+        height: auto;
+        object-fit: contain;
+        transition: transform .6s ease
+      }
+
+      .inc-img:hover img {
+        transform: scale(1.02)
+      }
+
+      /* ── MARCAS ── */
+      #marcas {
+        text-align: center
+      }
+
+      .marcas-wrap {
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, .05)
+      }
+
+      .marcas-wrap img {
+        max-width: 100%;
+        opacity: .82;
+        filter: grayscale(25%);
+        margin: 0 auto;
+        transition: filter .3s, opacity .3s
+      }
+
+      .marcas-wrap img:hover {
+        opacity: 1;
+        filter: grayscale(0%)
+      }
+
+      /* ── CTA FINAL ── */
+      #cta {
+        position: relative;
+        min-height: 680px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden
+      }
+
+      .cta-bg {
+        position: absolute;
+        inset: 0
+      }
+
+      .cta-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+      }
+
+      .cta-ov {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(8, 8, 8, 1) 0%, rgba(8, 8, 8, .72) 45%, rgba(8, 8, 8, .42) 100%)
+      }
+
+      .cta-body {
+        position: relative;
+        z-index: 2;
+        padding: var(--py) var(--px);
+        max-width: 920px
+      }
+
+      .cta-body h2 em {
+        font-style: normal;
+        color: var(--red)
+      }
+
+      .cta-acts {
+        margin-top: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px
+      }
+
+      .cta-wa {
+        font-size: 13px;
+        color: rgba(255, 255, 255, .38);
+        letter-spacing: 1px
+      }
+
+      .cta-wa a {
+        color: var(--red);
+        border-bottom: 1px solid transparent;
+        transition: border-color .25s
+      }
+
+      .cta-wa a:hover {
+        border-color: var(--red)
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #040404;
+        padding: 32px var(--px);
+        border-top: 1px solid rgba(255, 255, 255, .04);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap
+      }
+
+      footer img {
+        height: 26px;
+        opacity: .55
+      }
+
+      footer p {
+        font-size: 11px;
+        color: rgba(255, 255, 255, .18);
+        letter-spacing: .5px
+      }
+
+      /* ── MODAL ── */
+      .m-ov {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, .88);
+        backdrop-filter: blur(10px);
+        padding: 20px
+      }
+
+      .m-ov.open {
+        display: flex
+      }
+
+      .m-box {
+        width: 100%;
+        max-width: 496px;
+        background: #111;
+        border: 1px solid var(--red-border);
+        position: relative;
+        animation: mup .32s var(--ease)
+      }
+
+      @keyframes mup {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(.97)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .m-bar {
+        height: 3px;
+        background: var(--red)
+      }
+
+      .m-body {
+        padding: 38px 38px 32px
+      }
+
+      .m-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 30px;
+        height: 30px;
+        background: none;
+        border: 1px solid rgba(255, 255, 255, .1);
+        color: rgba(255, 255, 255, .4);
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .2s
+      }
+
+      .m-close:hover {
+        border-color: rgba(255, 255, 255, .3);
+        color: var(--white)
+      }
+
+      .m-logo {
+        height: 28px;
+        margin-bottom: 24px
+      }
+
+      .m-title {
+        font-family: var(--ff-d);
+        font-size: 26px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        line-height: 1.1;
+        margin-bottom: 6px
+      }
+
+      .m-sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, .38);
+        line-height: 1.6;
+        margin-bottom: 28px
+      }
+
+      .field {
+        margin-bottom: 16px
+      }
+
+      .field label {
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, .32);
+        margin-bottom: 6px
+      }
+
+      .field input {
+        width: 100%;
+        background: rgba(255, 255, 255, .03);
+        border: 1px solid rgba(255, 255, 255, .1);
+        color: var(--white);
+        font-family: var(--ff-b);
+        font-size: 15px;
+        padding: 12px 15px;
+        outline: none;
+        transition: border-color .2s, background .2s;
+        -webkit-appearance: none;
+        border-radius: 0
+      }
+
+      .field input:focus {
+        border-color: var(--red);
+        background: rgba(248, 1, 0, .03)
+      }
+
+      .field input::placeholder {
+        color: rgba(255, 255, 255, .16)
+      }
+
+      .field input.err {
+        border-color: #ff5252 !important
+      }
+
+      .ferr {
+        font-size: 11px;
+        color: #ff6b6b;
+        margin-top: 4px;
+        display: none
+      }
+
+      .ferr.show {
+        display: block
+      }
+
+      .sub-btn {
+        width: 100%;
+        background: var(--red);
+        color: var(--white);
+        font-family: var(--ff-d);
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 16px;
+        margin-top: 6px;
+        border: none;
+        transition: background .25s
+      }
+
+      .sub-btn:hover:not(:disabled) {
+        background: var(--red-dark)
+      }
+
+      .sub-btn:disabled {
+        opacity: .5;
+        cursor: not-allowed
+      }
+
+      .m-priv {
+        margin-top: 14px;
+        font-size: 10px;
+        color: rgba(255, 255, 255, .16);
+        text-align: center;
+        line-height: 1.5
+      }
+
+      .m-ok {
+        display: none;
+        text-align: center;
+        padding: 38px
+      }
+
+      .m-ok.show {
+        display: block
+      }
+
+      .ok-circle {
+        width: 60px;
+        height: 60px;
+        border: 1px solid var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 24px;
+        color: var(--red)
+      }
+
+      /* ── RESPONSIVE ── */
+      @media(max-width:1100px) {
+        .pilots {
+          grid-template-columns: repeat(3, 1fr)
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, 1fr)
+        }
+
+        .vis-grid {
+          grid-template-columns: 1fr;
+          gap: 52px
+        }
+
+        #experiencias {
+          grid-template-columns: 1fr
+        }
+
+        .exp-panel {
+          border-left: none;
+          border-top: 1px solid var(--red-border)
+        }
+
+        #team {
+          grid-template-columns: 1fr
+        }
+
+        .team-img {
+          min-height: 420px
+        }
+
+        #incentivo {
+          grid-template-columns: 1fr
+        }
+
+        .inc-img {
+          min-height: 420px
+        }
+
+        .tl-panel {
+          border-right: none;
+          border-bottom: 1px solid var(--red-border)
+        }
+      }
+
+      @media(max-width:768px) {
+        .nav-btn {
+          display: none
+        }
+
+        .sobre-hd {
+          grid-template-columns: 1fr;
+          gap: 24px
+        }
+
+        .g3 {
+          grid-template-columns: 1fr
+        }
+
+        .ic {
+          aspect-ratio: 16/9
+        }
+
+        .pilots {
+          grid-template-columns: repeat(2, 1fr)
+        }
+
+        .g6 {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .ec {
+          aspect-ratio: 16/10
+        }
+
+        .exp-gal {
+          grid-template-columns: 1fr
+        }
+
+        .eg-item {
+          aspect-ratio: 16/9
+        }
+
+        .m-body {
+          padding: 26px 22px 22px
+        }
+      }
+
+      @media(max-width:480px) {
+        .stats {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .g6 {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .tl-video-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, .38);
+        cursor: pointer;
+        transition: background .3s
+      }
+      .tl-video-play:hover { background: rgba(0, 0, 0, .55) }
+
+      /* ── TRUCK LOUNGE ── */
+      #trucklounge {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        min-height: 680px
+      }
+
+      .tl-panel {
+        background: #0a0a0a;
+        border-right: 1px solid var(--red-border)
+      }
+      .tl-video{position:relative;overflow:hidden;background:#000;min-height:480px}
+      .tl-video .vid-facade{position:absolute;inset:0}
+      .tl-video .vid-facade img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s}
+      .tl-video .vid-facade:hover img{opacity:.85}
+      .tl-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+      /* ── ACTIVE EXPERIENCE ── */
+      #activexp { text-align: center }
+      .activexp-intro { max-width: 600px; margin: 0 auto }
+      .activexp-vids {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(16px, 2.5vw, 28px);
+        margin: 60px auto 0;
+        max-width: 940px;
+        text-align: left
+      }
+
+      .activexp-vids > div {
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 255, 255, .07);
+        overflow: hidden
+      }
+
+      @media(max-width:1100px) {
+        #trucklounge { grid-template-columns: 1fr }
+        #trucklounge .team-img { order: -1; min-height: 420px }
+      }
+
+      @media(max-width:768px) {
+        #trucklounge { display: block }
+        #trucklounge .team-img { height: 300px }
+        .activexp-vids { grid-template-columns: 1fr; max-width: 100% }
+        .sb { padding: 40px 20px }
+      }
+
+      @media(max-width:480px) {
+        .sb:last-child { grid-column: 1 / -1 }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- NAV -->
+    <nav id="nav">
+      <img class="nav-logo" src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
+      <button class="nav-btn" onclick="openModal()">Quero fazer parte</button>
+    </nav>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section id="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-ov"></div>
+      <div class="hero-lines"></div>
+      <div class="hero-body">
+        <div class="hero-top-block">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            <span
+              style="font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.75)">Stock
+              Car Pro Series</span>
+          </div>
+          <h1 class="hl hl-xl">Onde os <em>negócios</em> aceleram.</h1>
         </div>
-        <div class="field">
-          <label for="fTel">Telefone / WhatsApp</label>
-          <input type="tel" id="fTel" name="telefone" placeholder="(11) 99999-9999" autocomplete="tel" maxlength="15">
-          <span class="ferr" id="eTel">Informe um número válido</span>
+        <div class="hero-bottom-block">
+          <p class="body-lg hero-desc">Um ecossistema onde esporte, estrutura e experiências se encontram para
+            posicionar sua marca no mais alto nível.</p>
+          <div class="hero-acts">
+            <button class="btn" onclick="openModal()">Quero fazer parte <span class="btn-arr">→</span></button>
+            <a href="#sobre" class="btn btn-ghost">Conhecer o ecossistema</a>
+          </div>
         </div>
-        <div class="field">
-          <label for="fCNPJ">CNPJ</label>
-          <input type="text" id="fCNPJ" name="cnpj" placeholder="00.000.000/0000-00" autocomplete="off" maxlength="18">
-          <span class="ferr" id="eCNPJ">Informe um CNPJ válido</span>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ SOBRE ═══════════════════ -->
+    <section id="sobre" class="sec sec-dark">
+      <div class="sobre-hd">
+        <div class="r">
+          <div class="red-line"></div>
+          <h2 class="hl hl-lg">Um ecossistema<br>completo</h2>
         </div>
-        <button type="submit" class="sub-btn" id="subBtn">Quero fazer parte</button>
-        <p class="m-priv">Seus dados são protegidos e utilizados somente para contato comercial.</p>
-      </form>
+        <p class="body-lg r d1">A Scuderia Bandeiras é um ecossistema onde empresas acessam o automobilismo como
+          ferramenta de negócio. Uma equipe de corrida com estrutura completa para empresas que entendem que o ambiente
+          é importante. Aqui, marca, relacionamento e performance acontecem no mesmo ambiente.</p>
+      </div>
+      <div class="g3 r d2">
+        <div class="ic">
+          <img src="Imagens/o que é/esporte.png" alt="Esporte" loading="lazy">
+          <div class="ic-ov">
+            <div class="ic-num">01</div>
+            <div class="ic-title">Esporte</div>
+            <p class="ic-desc">Equipe oficial da Stock Car Pro Series</p>
+          </div>
+        </div>
+        <div class="ic">
+          <img src="Imagens/o que é/estrutura.png" alt="Estrutura" loading="lazy">
+          <div class="ic-ov">
+            <div class="ic-num">02</div>
+            <div class="ic-title">Estrutura</div>
+            <p class="ic-desc">Coworking, auditório, gastronomia, um dos complexos mais completos do automobilismo
+              nacional.</p>
+          </div>
+        </div>
+        <div class="ic">
+          <img src="Imagens/o que é/experiencias.png" alt="Experiências" loading="lazy">
+          <div class="ic-ov">
+            <div class="ic-num">03</div>
+            <div class="ic-title">Experiências</div>
+            <p class="ic-desc">Ativações e eventos que transformam relacionamento em negócio</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ AUTORIDADE ═══════════════════ -->
+    <section id="autoridade" class="sec sec-deep">
+      <div class="aut-hd">
+        <div class="red-line red-line-c r"></div>
+        <div class="label r">As pessoas por trás da pista</div>
+        <h2 class="hl hl-lg r d1" style="margin-top:10px">Nomes que o mercado respeita</h2>
+        <p class="body-lg r d2" style="max-width:480px;margin:0 auto">Histórias que inspiram dentro e fora da pista.</p>
+      </div>
+      <div class="pilots r d1">
+        <div class="pc">
+          <img src="Imagens/nosso time/Christian fittipaldi.png" alt="Christian Fittipaldi" loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Christian<br>Fittipaldi</div>
+            <div class="pc-desc">Chefe de equipe. Legado mundial no automobilismo.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/nosso time/atila abreu.png" alt="Átila Abreu" loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Átila<br>Abreu</div>
+            <div class="pc-desc">Piloto, empreendedor e comunicador.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/nosso time/image 4.png" alt="Rubens Barrichello" loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Rubens<br>Barrichello</div>
+            <div class="pc-desc">Lenda da F1. Referência de superação.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/nosso time/image 5.png" alt="Nelson Piquet Jr." loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Nelson<br>Piquet Jr.</div>
+            <div class="pc-desc">Personalidade mundial com audiência real.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/nosso time/image 6.png" alt="Ingo Hoffmann" loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Ingo<br>Hoffmann</div>
+            <div class="pc-desc">12x campeão Stock Car. Nosso embaixador.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/pilotos/RAFAEL SUZUKI.png" alt="Rafael Suzuki" loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Rafael<br>Suzuki</div>
+            <div class="pc-desc">Um dos grandes expoentes da geração atual.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pilot-extra r d2">
+        <span class="plus">+</span>
+        <span class="names">Outros nomes do automobilismo nacional</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ESTRUTURA ═══════════════════ -->
+    <section id="estrutura" class="sec sec-dark">
+      <div style="margin-bottom:56px" class="r">
+        <div class="red-line"></div>
+        <h2 class="hl hl-lg">Tudo no mesmo lugar<br>onde a corrida acontece</h2>
+      </div>
+      <div class="g6 r d1">
+        <div class="ec"><img src="Imagens/estrutura/garage by vonder.png" alt="Garagem by Vonder" loading="lazy">
+          <div class="ec-ov">
+            <div class="ec-name">Garagem by Vonder · O escritório mais instagramável do grid</div>
+          </div>
+        </div>
+        <div class="ec"><img src="Imagens/estrutura/auditorio.png" alt="Auditório" loading="lazy">
+          <div class="ec-ov">
+            <div class="ec-name">Auditório · até 300 pessoas · Telão de 6m, lounge e camarim</div>
+          </div>
+        </div>
+        <div class="ec"><img src="Imagens/estrutura/coworking.png" alt="Coworking" loading="lazy">
+          <div class="ec-ov">
+            <div class="ec-name">Coworking · 350m², salas temáticas, cabines e café networking</div>
+          </div>
+        </div>
+        <div class="ec"><img src="Imagens/estrutura/area multiuso.png" alt="Arena Multiuso" loading="lazy">
+          <div class="ec-ov">
+            <div class="ec-name">Arena Multiuso · 310m² com iluminação personalizada</div>
+          </div>
+        </div>
+        <div class="ec"><img src="Imagens/estrutura/gastronom,ia.png" alt="Gastronomia" loading="lazy">
+          <div class="ec-ov">
+            <div class="ec-name">Gastronomia · Pashonapaná, Casa Bauducco e Oakberry</div>
+          </div>
+        </div>
+        <div class="ec"><img src="Imagens/estrutura/acesso aereo.png" alt="Acesso Aéreo" loading="lazy">
+          <div class="ec-ov">
+            <div class="ec-name">Acesso Aéreo · Helicóptero próprio e heliponto ICAO para associados</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ NÚMEROS ═══════════════════ -->
+    <section id="numeros" class="sec">
+      <div class="num-bg">
+        <img src="Imagens/stock car em numeros/STOCK CAR EM NÚMEROS.png" alt="" loading="lazy">
+        <div class="num-bg-ov"></div>
+      </div>
+      <div class="num-body">
+        <div class="label r">A maior categoria do Brasil</div>
+        <h2 class="hl hl-lg r d1" style="margin-top:10px">Sua marca dentro da maior<br>audiência do automobilismo
+          nacional</h2>
+        <div class="stats">
+          <div class="sb r"><span class="sn" data-count="200" data-suffix="mil+">—</span>
+            <div class="sl-t">ingressos vendidos por temporada</div>
+          </div>
+          <div class="sb r d1"><span class="sn" data-count="20" data-suffix="mil+">—</span>
+            <div class="sl-t">convidados em camarotes</div>
+          </div>
+          <div class="sb r d2"><span class="sn" data-count="30" data-suffix="mil+">—</span>
+            <div class="sl-t">visitando os boxes</div>
+          </div>
+          <div class="sb r d3"><span class="sn" data-prefix="R$" data-count="500" data-suffix="mi+">—</span>
+            <div class="sl-t">movimentados pela categoria</div>
+          </div>
+          <div class="sb r d4"><span class="sn" style="font-size:clamp(28px,3.5vw,48px)">Desde 1979</span>
+            <div class="sl-t">os melhores pilotos do Brasil<br>numa só categoria</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ VISIBILIDADE ═══════════════════ -->
+    <section id="visibilidade" class="sec sec-deep">
+      <div class="vis-grid">
+        <div class="r">
+          <div class="band-wrap"><img src="Imagens/visibilidade/logo band.svg" alt="Band TV" loading="lazy"></div>
+          <p class="vis-meta">+ YouTube · Twitch · Plataformas digitais</p>
+        </div>
+        <div>
+          <div class="red-line r"></div>
+          <h2 class="hl hl-lg r d1">Sua marca onde<br>o Brasil<br>está sendo visto</h2>
+          <p class="body-lg r d2" style="margin-top:18px">Todas as corridas na Band TV aberta. +146h de transmissão por
+            temporada. Além de Band Sports, YouTube, Motorsport.com, Twitch e Facebook Watch.</p>
+          <p class="body-lg r d3" style="margin-top:12px;font-style:italic">Aqui não é nicho. É audiência, visibilidade
+            e presença nacional.</p>
+          <div class="vis-stats">
+            <div class="vs r d2"><span class="vs-num">2,1 mi</span><span class="vs-desc">seguidores no Instagram</span>
+            </div>
+            <div class="vs r d3"><span class="vs-num">20 mi</span><span class="vs-desc">vídeos</span></div>
+            <div class="vs r d4"><span class="vs-num">146h</span><span class="vs-desc">de transmissão ao vivo por
+                temporada</span></div>
+          </div>
+          <p class="r d4" style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-top:8px">Dados de
+            março/2026.</p>
+          <div class="platforms r d5">
+            <div class="ptag">Band TV</div>
+            <div class="ptag">Band Sports</div>
+            <div class="ptag">YouTube</div>
+            <div class="ptag">Motorsport.com</div>
+            <div class="ptag">Twitch</div>
+            <div class="ptag">Facebook Watch</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ TRUCK LOUNGE ═══════════════════ -->
+    <section id="trucklounge">
+      <div class="team-panel tl-panel">
+        <div class="red-line r"></div>
+        <h2 class="hl hl-lg r d1">Onde relacionamento<br>vira negócio</h2>
+        <p class="body-lg r d2" style="margin-top:18px;font-style:italic;color:rgba(255,255,255,.5)">Enquanto a corrida acontece na pista, decisões acontecem aqui.</p>
+        <p class="body-lg r d3" style="margin-top:20px">O Truck Lounge é o espaço exclusivo da Scuderia Bandeiras dentro do autódromo. Criado para empresas que entendem o valor do ambiente, ele transforma presença em conexão real.</p>
+        <p class="body-lg r d3" style="margin-top:12px">Aqui, seus convidados não apenas assistem ao evento. Eles vivem a experiência com acesso, conforto e proximidade da operação.</p>
+        <ul class="exp-list r d4" style="margin-top:4px">
+          <li class="ei">É onde conversas ganham contexto</li>
+          <li class="ei">Onde relações evoluem para oportunidades</li>
+        </ul>
+        <button class="btn r d5" style="margin-top:28px;align-self:flex-start" onclick="openModal()">Quero levar minha empresa <span class="btn-arr">→</span></button>
+      </div>
+      <div class="tl-video">
+        <img src="Imagens/experiencia do evento/Truck Lounge.png" alt="Truck Lounge"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+        <div class="tl-video-play" data-vid-id="-252nzMAL6w">
+          <div class="vid-play"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ EXPERIÊNCIAS ═══════════════════ -->
+    <section id="experiencias">
+      <div class="exp-gal">
+        <div class="eg-item"><img src="Imagens/experiencia do evento/Camarotes.png" alt="Camarotes" loading="lazy">
+        </div>
+        <div class="eg-item"><img src="Imagens/experiencia do evento/Arquibancada.png" alt="Arquibancada"
+            loading="lazy"></div>
+        <div class="eg-item"><img src="Imagens/experiencia do evento/Truck Lounge.png" alt="Truck Lounge"
+            loading="lazy"></div>
+        <div class="eg-item"><img src="Imagens/experiencia do evento/Visitação aos Boxe.png" alt="Visitação aos Boxes"
+            loading="lazy"></div>
+      </div>
+      <div class="exp-panel">
+        <div class="red-line r"></div>
+        <div class="label r d1">Experiência no autódromo</div>
+        <h2 class="hl hl-lg r d2" style="margin-top:10px">Experiências<br>que ficam<br>na memória</h2>
+        <ul class="exp-list">
+          <li class="ei r d1">Box com tecnologia em tempo real</li>
+          <li class="ei r d2">Camarotes exclusivos</li>
+          <li class="ei r d3">Truck Lounge premium</li>
+          <li class="ei r d4">Visitação aos boxes</li>
+          <li class="ei r d5">Arquibancada com visão real da pista</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ RACE EXPERIENCE ═══════════════════ -->
+    <section id="team">
+      <div class="team-panel">
+        <div class="red-line r"></div>
+        <div class="label r d1">Race Experience</div>
+        <h2 class="hl hl-lg r d2" style="margin-top:10px">Não é motivação.<br>É comportamento real<br>sob pressão.</h2>
+        <p class="body-lg r d2" style="margin-top:18px">Aqui, sua equipe não assiste. Ela participa. Decide. Executa.</p>
+        <ul class="exp-list" style="margin-top:28px">
+          <li class="ei r d2">Volta Rápida com piloto profissional</li>
+          <li class="ei r d3">Pit-Stop Challenge</li>
+          <li class="ei r d4">Kart Challenge</li>
+          <li class="ei r d5">Crazy Cart</li>
+          <li class="ei r d5">Drift Arena</li>
+          <li class="ei r d5">Show Car</li>
+        </ul>
+      </div>
+      <div class="team-img">
+        <img src="Imagens/race experience/RACE EXPERIENCE.png" alt="Race Experience" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ═══════════════════ EXPERIÊNCIA ATIVA ═══════════════════ -->
+    <section id="activexp" class="sec sec-deep">
+
+      <!-- cabeçalho centrado e compacto -->
+      <div class="activexp-intro">
+        <div class="red-line red-line-c r"></div>
+        <h2 class="hl hl-md r d1" style="margin-top:0">Quando a equipe<br>entra no jogo</h2>
+        <p class="body-lg r d2" style="margin-top:16px">Cenários reais onde o tempo é limitado, as decisões são imediatas e a execução faz diferença. O comportamento aparece quando o ambiente exige.</p>
+      </div>
+
+      <!-- vídeos lado a lado, tamanho controlado -->
+      <div class="activexp-vids r d3">
+        <div>
+          <div class="vid-wrap">
+            <div class="vid-facade" data-id="GprQ3YQdKL8">
+              <img src="https://img.youtube.com/vi/GprQ3YQdKL8/maxresdefault.jpg" alt="Scuderia Challenge"
+                loading="lazy" onerror="this.src='https://img.youtube.com/vi/GprQ3YQdKL8/hqdefault.jpg'">
+              <div class="vid-play"></div>
+            </div>
+          </div>
+          <div class="vid-label">Scuderia Challenge</div>
+        </div>
+        <div>
+          <div class="vid-wrap">
+            <div class="vid-facade" data-id="YZdJI-F4YpI">
+              <img src="https://img.youtube.com/vi/YZdJI-F4YpI/maxresdefault.jpg" alt="Pit Stop Challenge"
+                loading="lazy" onerror="this.src='https://img.youtube.com/vi/YZdJI-F4YpI/hqdefault.jpg'">
+              <div class="vid-play"></div>
+            </div>
+          </div>
+          <div class="vid-label">Pit Stop Challenge</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="r d4" style="margin-top:52px">
+        <button class="btn" onclick="openModal()">Quero levar minha equipe para essa experiência <span class="btn-arr">→</span></button>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════ PALESTRAS ═══════════════════ -->
+    <section id="palestras" class="sec sec-deep">
+      <div class="red-line red-line-c r"></div>
+      <h2 class="hl hl-lg r d1">Histórias que movem</h2>
+      <p class="body-lg r d2" style="max-width:560px;margin:0 auto">Pilotos que operaram no limite, sob pressão real,
+        com exposição total e resultado imediato. O que eles trazem não é teoria — é repertório aplicável para quem
+        também precisa decidir todos os dias.</p>
+      <div class="spk-grid r d2">
+        <div class="spk-card">
+          <img src="Imagens/pilotos/Christian fittipaldi.png" alt="Christian Fittipaldi" loading="lazy">
+          <div class="spk-card-ov">
+            <div class="spk-card-name">Christian<br>Fittipaldi</div>
+            <div class="spk-card-topic">Liderança sob pressão, resiliência e construção de legado</div>
+          </div>
+        </div>
+        <div class="spk-card">
+          <img src="Imagens/pilotos/image 4.png" alt="Rubens Barrichello" loading="lazy">
+          <div class="spk-card-ov">
+            <div class="spk-card-name">Rubens<br>Barrichello</div>
+            <div class="spk-card-topic">Carreira, reinvenção e longevidade em alta performance</div>
+          </div>
+        </div>
+        <div class="spk-card">
+          <img src="Imagens/pilotos/atila abreu.png" alt="Átila Abreu" loading="lazy">
+          <div class="spk-card-ov">
+            <div class="spk-card-name">Átila<br>Abreu</div>
+            <div class="spk-card-topic">Mentalidade de performance, negócios e tomada de decisão</div>
+          </div>
+        </div>
+        <div class="spk-card">
+          <img src="Imagens/pilotos/image 5.png" alt="Nelson Piquet Jr." loading="lazy">
+          <div class="spk-card-ov">
+            <div class="spk-card-name">Nelson<br>Piquet Jr.</div>
+            <div class="spk-card-topic">Trajetória, escolhas e vida no automobilismo mundial</div>
+          </div>
+        </div>
+        <div class="spk-card">
+          <img src="Imagens/pilotos/image 6.png" alt="Ingo Hoffmann" loading="lazy">
+          <div class="spk-card-ov">
+            <div class="spk-card-name">Ingo<br>Hoffmann</div>
+            <div class="spk-card-topic">12 títulos, muitas histórias e muitos casos</div>
+          </div>
+        </div>
+        <div class="spk-card">
+          <img src="Imagens/pilotos/RAFAEL SUZUKI.png" alt="Rafael Suzuki" loading="lazy">
+          <div class="spk-card-ov">
+            <div class="spk-card-name">Rafael<br>Suzuki</div>
+            <div class="spk-card-topic">Consistência, estratégia e performance em ambiente de alta competitividade</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ INCENTIVO ═══════════════════ -->
+    <section id="incentivo">
+      <div class="inc-panel">
+        <div class="red-line r"></div>
+        <h2 class="hl hl-lg r d1">Seu patrocínio<br>pode custar zero</h2>
+        <ul class="inc-list">
+          <li class="inc-item r d1"><span class="chk">✓</span>100% dedutível do Imposto de Renda (Lucro Real)</li>
+          <li class="inc-item r d2"><span class="chk">✓</span>Teto de 2% do IR devido no período</li>
+          <li class="inc-item r d3"><span class="chk">✓</span>Projeto aprovado — Ministério do Esporte | DOU 17/04/2025
+          </li>
+        </ul>
+        <p class="inc-note r d4">Consulte seu contador e descubra quanto sua empresa pode investir sem custo adicional.
+        </p>
+        <button class="btn r d5" style="margin-top:28px;align-self:flex-start" onclick="openModal()">Quero saber mais
+          <span class="btn-arr">→</span></button>
+      </div>
+      <div class="inc-img">
+        <img src="Imagens/lei de incentivo/LEI DE INCENTIVO.png" alt="Lei de Incentivo" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ═══════════════════ MARCAS ═══════════════════ -->
+    <section id="marcas" class="sec sec-dark">
+      <div class="red-line red-line-c r"></div>
+      <h2 class="hl hl-lg r d1">Quem já está aqui</h2>
+      <p class="body-lg r d2" style="max-width:420px;margin:0 auto">Algumas marcas já entendiam antes de todo o mundo.
+      </p>
+      <div class="marcas-wrap r d3">
+        <img src="Imagens/marcas parceiras/MARCAS PARCEIRAS.png" alt="Marcas Parceiras" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+    <section id="cta">
+      <div class="cta-bg">
+        <img src="Imagens/final/imagem final.png" alt="" loading="lazy">
+        <div class="cta-ov"></div>
+      </div>
+      <div class="cta-body">
+        <div class="label r">Faça parte do grid</div>
+        <h2 class="hl hl-xl r d1" style="margin-top:10px">Sua marca<br>já deveria<br><em>estar aqui.</em></h2>
+        <p class="body-lg r d2" style="margin-top:18px">A Scuderia Bandeiras reúne esporte, estrutura, audiência e
+          experiências num único ecossistema. Enquanto você estiver aqui, outro concorrente já está no grid.</p>
+        <div class="cta-acts">
+          <button class="btn r d3" onclick="openModal()">Quero fazer parte da Scuderia <span
+              class="btn-arr">→</span></button>
+          <p class="cta-wa r d4">Prefere WhatsApp? <a href="https://wa.me/5515998570854" target="_blank">Fale conosco
+              agora</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <img src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
+      <p>© 2026 Scuderia Bandeiras. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- ═══════════════════ MODAL ═══════════════════ -->
+    <div class="m-ov" id="mOv">
+      <div class="m-box">
+        <div class="m-bar"></div>
+        <button class="m-close" onclick="closeModal()">×</button>
+
+        <!-- Form -->
+        <div class="m-body" id="mForm">
+          <img class="m-logo" src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
+          <div class="m-title">Quero fazer parte</div>
+          <p class="m-sub">Preencha os dados abaixo. Nossa equipe entrará em contato para apresentar as oportunidades
+            disponíveis.</p>
+          <form id="captForm" onsubmit="submitForm(event)" novalidate>
+            <div class="field">
+              <label for="fNome">Nome completo</label>
+              <input type="text" id="fNome" name="nome" placeholder="Seu nome" autocomplete="name">
+              <span class="ferr" id="eNome">Informe seu nome completo</span>
+            </div>
+            <div class="field">
+              <label for="fTel">Telefone / WhatsApp</label>
+              <input type="tel" id="fTel" name="telefone" placeholder="(11) 99999-9999" autocomplete="tel"
+                maxlength="15">
+              <span class="ferr" id="eTel">Informe um número válido</span>
+            </div>
+            <div class="field">
+              <label for="fCNPJ">CNPJ</label>
+              <input type="text" id="fCNPJ" name="cnpj" placeholder="00.000.000/0000-00" autocomplete="off"
+                maxlength="18">
+              <span class="ferr" id="eCNPJ">Informe um CNPJ válido</span>
+            </div>
+            <button type="submit" class="sub-btn" id="subBtn">Quero fazer parte</button>
+            <p class="m-priv">Seus dados são protegidos e utilizados somente para contato comercial.</p>
+          </form>
+        </div>
+
+        <!-- Success -->
+        <div class="m-ok" id="mOk">
+          <img class="m-logo" src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras"
+            style="margin:0 auto 22px">
+          <div class="ok-circle">✓</div>
+          <div class="m-title" style="margin-bottom:10px">Recebemos!</div>
+          <p class="m-sub" style="margin-bottom:0">Nossa equipe entrará em contato em breve para apresentar as
+            oportunidades da Scuderia Bandeiras.</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Success -->
-    <div class="m-ok" id="mOk">
-      <img class="m-logo" src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras" style="margin:0 auto 22px">
-      <div class="ok-circle">✓</div>
-      <div class="m-title" style="margin-bottom:10px">Recebemos!</div>
-      <p class="m-sub" style="margin-bottom:0">Nossa equipe entrará em contato em breve para apresentar as oportunidades da Scuderia Bandeiras.</p>
-    </div>
-  </div>
-</div>
+    <script>
+      /* ── HERO BG responsive ── */
+      function setHeroBg() {
+        const bg = document.getElementById('heroBg');
+        const src = window.innerWidth < 768
+          ? "Imagens/topo/imagem topo mobile.png"
+          : "Imagens/topo/imagem topo desk.png";
+        bg.style.backgroundImage = `url('${src}')`;
+      }
+      setHeroBg();
+      window.addEventListener('resize', setHeroBg, { passive: true });
 
-<script>
-/* ── HERO BG responsive ── */
-function setHeroBg(){
-  const bg=document.getElementById('heroBg');
-  const src=window.innerWidth<768
-    ?"Imagens/topo/imagem topo mobile.png"
-    :"Imagens/topo/imagem topo desk.png";
-  bg.style.backgroundImage=`url('${src}')`;
-}
-setHeroBg();
-window.addEventListener('resize',setHeroBg,{passive:true});
+      /* ── NAV scroll ── */
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 60), { passive: true });
 
-/* ── NAV scroll ── */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>60),{passive:true});
+      /* ── MODAL ── */
+      function openModal() { document.getElementById('mOv').classList.add('open'); document.body.style.overflow = 'hidden' }
+      function closeModal() { document.getElementById('mOv').classList.remove('open'); document.body.style.overflow = '' }
+      document.getElementById('mOv').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal() });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() });
 
-/* ── MODAL ── */
-function openModal(){document.getElementById('mOv').classList.add('open');document.body.style.overflow='hidden'}
-function closeModal(){document.getElementById('mOv').classList.remove('open');document.body.style.overflow=''}
-document.getElementById('mOv').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+      /* ── MASKS ── */
+      document.getElementById('fTel').addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '').slice(0, 11);
+        v = v.length <= 10 ? v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3') : v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+        this.value = v;
+      });
+      document.getElementById('fCNPJ').addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '').slice(0, 14);
+        v = v.replace(/^(\d{2})(\d)/, '$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3').replace(/\.(\d{3})(\d)/, '.$1/$2').replace(/(\d{4})(\d)/, '$1-$2');
+        this.value = v;
+      });
 
-/* ── MASKS ── */
-document.getElementById('fTel').addEventListener('input',function(){
-  let v=this.value.replace(/\D/g,'').slice(0,11);
-  v=v.length<=10?v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3'):v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
-  this.value=v;
-});
-document.getElementById('fCNPJ').addEventListener('input',function(){
-  let v=this.value.replace(/\D/g,'').slice(0,14);
-  v=v.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2');
-  this.value=v;
-});
+      /* ── CNPJ VALIDATION ── */
+      function validCNPJ(s) {
+        const n = s.replace(/\D/g, '');
+        if (n.length !== 14 || /^(\d)\1+$/.test(n)) return false;
+        const calc = len => { let sum = 0, pos = len - 7; for (let i = len; i >= 1; i--) { sum += +n[len - i] * pos--; if (pos < 2) pos = 9; } const r = sum % 11; return r < 2 ? 0 : 11 - r; };
+        return calc(12) === +n[12] && calc(13) === +n[13];
+      }
 
-/* ── CNPJ VALIDATION ── */
-function validCNPJ(s){
-  const n=s.replace(/\D/g,'');
-  if(n.length!==14||/^(\d)\1+$/.test(n))return false;
-  const calc=len=>{let sum=0,pos=len-7;for(let i=len;i>=1;i--){sum+=+n[len-i]*pos--;if(pos<2)pos=9;}const r=sum%11;return r<2?0:11-r;};
-  return calc(12)===+n[12]&&calc(13)===+n[13];
-}
+      /* ── FORM SUBMIT ── */
+      async function submitForm(e) {
+        e.preventDefault();
+        const nome = document.getElementById('fNome'), tel = document.getElementById('fTel'), cnpj = document.getElementById('fCNPJ'), btn = document.getElementById('subBtn');
+        document.querySelectorAll('.field input').forEach(f => f.classList.remove('err'));
+        document.querySelectorAll('.ferr').forEach(f => f.classList.remove('show'));
+        let ok = true;
+        const bad = (f, eid) => { f.classList.add('err'); document.getElementById(eid).classList.add('show'); ok = false };
+        if (nome.value.trim().length < 3) bad(nome, 'eNome');
+        if (tel.value.replace(/\D/g, '').length < 10) bad(tel, 'eTel');
+        if (!validCNPJ(cnpj.value)) bad(cnpj, 'eCNPJ');
+        if (!ok) return;
+        btn.disabled = true; btn.textContent = 'Enviando...';
+        const payload = { nome: nome.value.trim(), telefone: tel.value.trim(), cnpj: cnpj.value.trim(), origem: 'LP Scuderia Bandeiras', ts: new Date().toISOString() };
+        try {
+          // ← Substitua pela URL do seu CRM / webhook
+          await fetch('https://SEU_CRM_ENDPOINT/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        } catch (_) { }
+        document.getElementById('mForm').style.display = 'none';
+        document.getElementById('mOk').classList.add('show');
+      }
 
-/* ── FORM SUBMIT ── */
-async function submitForm(e){
-  e.preventDefault();
-  const nome=document.getElementById('fNome'),tel=document.getElementById('fTel'),cnpj=document.getElementById('fCNPJ'),btn=document.getElementById('subBtn');
-  document.querySelectorAll('.field input').forEach(f=>f.classList.remove('err'));
-  document.querySelectorAll('.ferr').forEach(f=>f.classList.remove('show'));
-  let ok=true;
-  const bad=(f,eid)=>{f.classList.add('err');document.getElementById(eid).classList.add('show');ok=false};
-  if(nome.value.trim().length<3)bad(nome,'eNome');
-  if(tel.value.replace(/\D/g,'').length<10)bad(tel,'eTel');
-  if(!validCNPJ(cnpj.value))bad(cnpj,'eCNPJ');
-  if(!ok)return;
-  btn.disabled=true;btn.textContent='Enviando...';
-  const payload={nome:nome.value.trim(),telefone:tel.value.trim(),cnpj:cnpj.value.trim(),origem:'LP Scuderia Bandeiras',ts:new Date().toISOString()};
-  try{
-    // ← Substitua pela URL do seu CRM / webhook
-    await fetch('https://SEU_CRM_ENDPOINT/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  }catch(_){}
-  document.getElementById('mForm').style.display='none';
-  document.getElementById('mOk').classList.add('show');
-}
+      /* ── COUNTER ── */
+      function runCounter(el) {
+        const target = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '', dur = 1800, tick = 16, steps = dur / tick;
+        let cur = 0;
+        const t = setInterval(() => { cur += target / steps; if (cur >= target) { cur = target; clearInterval(t); } el.textContent = pre + Math.round(cur) + suf; }, tick);
+      }
 
-/* ── COUNTER ── */
-function runCounter(el){
-  const target=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',dur=1800,tick=16,steps=dur/tick;
-  let cur=0;
-  const t=setInterval(()=>{cur+=target/steps;if(cur>=target){cur=target;clearInterval(t);}el.textContent=pre+Math.round(cur)+suf;},tick);
-}
-
-/* ── INTERSECTION OBSERVERS ── */
-const ro=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){en.target.classList.add('in');ro.unobserve(en.target);}
-  });
-},{threshold:.12});
-document.querySelectorAll('.r,.sb').forEach(el=>ro.observe(el));
-
-const co=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{if(en.isIntersecting){runCounter(en.target);co.unobserve(en.target);}});
-},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
-</script>
-
-<canvas id="trailCanvas" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999"></canvas>
-<script>
-(function(){
-  const canvas = document.getElementById('trailCanvas');
-  const ctx    = canvas.getContext('2d');
-
-  function resize(){
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, {passive:true});
-
-  const LIFETIME = 480; /* ms que cada ponto vive */
-  const pts      = [];
-  const sparks   = [];
-  let mx = -300, my = -300;
-  let lastX = -300, lastY = -300;
-
-  window.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    pts.push({x: mx, y: my, born: performance.now()});
-
-    const dx = mx - lastX, dy = my - lastY;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    if(dist > 10){
-      for(let i = 0; i < 3; i++){
-        sparks.push({
-          x: mx, y: my,
-          vx: (Math.random() - .5) * 4 - dx * .06,
-          vy: (Math.random() - .5) * 4 - dy * .06,
-          life: 1,
-          size: Math.random() * 3.5 + 1.5
+      /* ── INTERSECTION OBSERVERS ── */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
         });
-      }
-      lastX = mx; lastY = my;
-    }
-  }, {passive:true});
+      }, { threshold: .12 });
+      document.querySelectorAll('.r,.sb').forEach(el => ro.observe(el));
 
-  function draw(){
-    const now = performance.now();
+      const co = new IntersectionObserver(entries => {
+        entries.forEach(en => { if (en.isIntersecting) { runCounter(en.target); co.unobserve(en.target); } });
+      }, { threshold: .5 });
+      document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
+    </script>
 
-    /* remove pontos expirados — rastro some quando mouse para */
-    while(pts.length && now - pts[0].born > LIFETIME) pts.shift();
+    <script>
+      /* ── VÍDEOS INLINE ── */
+      var YT_PARAMS = '?autoplay=1&rel=0&modestbranding=1';
+      var YT_ALLOW  = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    /* ── RASTRO DIFUSO ── */
-    if(pts.length > 1){
-      ctx.save();
-      ctx.filter = 'blur(5px)'; /* espalhamento */
-
-      for(let i = 1; i < pts.length; i++){
-        const p0   = pts[i-1];
-        const p1   = pts[i];
-        const age  = 1 - (now - p1.born) / LIFETIME; /* 1=novo 0=expirado */
-        const t    = i / pts.length;
-        const alpha = age * Math.pow(t, 1.4) * .75;
-        const width = age * t * 22; /* espessura generosa para efeito difuso */
-
-        const grad = ctx.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
-        grad.addColorStop(0, `rgba(248,1,0,0)`);
-        grad.addColorStop(1, `rgba(248,1,0,${alpha})`);
-
-        ctx.beginPath();
-        ctx.moveTo(p0.x, p0.y);
-        ctx.lineTo(p1.x, p1.y);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth   = width;
-        ctx.lineCap     = 'round';
-        ctx.lineJoin    = 'round';
-        ctx.stroke();
+      function makeIframe(id, extraStyle) {
+        return '<iframe src="https://www.youtube.com/embed/' + id + YT_PARAMS + '"'
+          + ' title="YouTube video player" frameborder="0"'
+          + ' allow="' + YT_ALLOW + '"'
+          + ' referrerpolicy="strict-origin-when-cross-origin" allowfullscreen'
+          + ' style="position:absolute;top:0;left:0;width:100%;height:100%;border:0' + (extraStyle || '') + '"></iframe>';
       }
 
-      ctx.restore();
-    }
+      /* facades normais (vid-wrap) */
+      document.querySelectorAll('.vid-facade').forEach(function (el) {
+        el.addEventListener('click', function () {
+          el.parentElement.innerHTML = makeIframe(el.dataset.id);
+        });
+      });
 
-    /* ── FAÍSCAS ── */
-    for(let i = sparks.length - 1; i >= 0; i--){
-      const s = sparks[i];
-      s.x    += s.vx;
-      s.y    += s.vy;
-      s.life -= .04;
-      s.vx   *= .88;
-      s.vy   *= .88;
+      /* Truck Lounge: substitui o conteúdo do .tl-video inteiro */
+      document.querySelectorAll('.tl-video-play').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var container = el.closest('.tl-video');
+          container.innerHTML = makeIframe(el.dataset.vidId);
+        });
+      });
+    </script>
 
-      if(s.life <= 0){ sparks.splice(i, 1); continue; }
+    <canvas id="trailCanvas" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999"></canvas>
+    <script>
+      (function () {
+        const canvas = document.getElementById('trailCanvas');
+        const ctx = canvas.getContext('2d');
 
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(248,1,0,${s.life * .7})`;
-      ctx.fill();
-    }
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize, { passive: true });
 
-    /* ── CURSOR ── */
-    if(mx > -200){
-      ctx.beginPath();
-      ctx.arc(mx, my, 4, 0, Math.PI * 2);
-      ctx.fillStyle = '#F80100';
-      ctx.fill();
+        const LIFETIME = 480; /* ms que cada ponto vive */
+        const pts = [];
+        const sparks = [];
+        let mx = -300, my = -300;
+        let lastX = -300, lastY = -300;
 
-      ctx.beginPath();
-      ctx.arc(mx, my, 10, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(248,1,0,.3)';
-      ctx.lineWidth   = 1;
-      ctx.stroke();
-    }
+        window.addEventListener('mousemove', e => {
+          mx = e.clientX;
+          my = e.clientY;
+          pts.push({ x: mx, y: my, born: performance.now() });
 
-    requestAnimationFrame(draw);
-  }
+          const dx = mx - lastX, dy = my - lastY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist > 10) {
+            for (let i = 0; i < 3; i++) {
+              sparks.push({
+                x: mx, y: my,
+                vx: (Math.random() - .5) * 4 - dx * .06,
+                vy: (Math.random() - .5) * 4 - dy * .06,
+                life: 1,
+                size: Math.random() * 3.5 + 1.5
+              });
+            }
+            lastX = mx; lastY = my;
+          }
+        }, { passive: true });
 
-  draw();
+        function draw() {
+          const now = performance.now();
 
-  if(!('ontouchstart' in window)){
-    document.body.style.cursor = 'none';
-  }
-})();
-</script>
-</body>
-</html>
+          /* remove pontos expirados — rastro some quando mouse para */
+          while (pts.length && now - pts[0].born > LIFETIME) pts.shift();
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          /* ── RASTRO DIFUSO ── */
+          if (pts.length > 1) {
+            ctx.save();
+            ctx.filter = 'blur(5px)'; /* espalhamento */
+
+            for (let i = 1; i < pts.length; i++) {
+              const p0 = pts[i - 1];
+              const p1 = pts[i];
+              const age = 1 - (now - p1.born) / LIFETIME; /* 1=novo 0=expirado */
+              const t = i / pts.length;
+              const alpha = age * Math.pow(t, 1.4) * .75;
+              const width = age * t * 22; /* espessura generosa para efeito difuso */
+
+              const grad = ctx.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
+              grad.addColorStop(0, `rgba(248,1,0,0)`);
+              grad.addColorStop(1, `rgba(248,1,0,${alpha})`);
+
+              ctx.beginPath();
+              ctx.moveTo(p0.x, p0.y);
+              ctx.lineTo(p1.x, p1.y);
+              ctx.strokeStyle = grad;
+              ctx.lineWidth = width;
+              ctx.lineCap = 'round';
+              ctx.lineJoin = 'round';
+              ctx.stroke();
+            }
+
+            ctx.restore();
+          }
+
+          /* ── FAÍSCAS ── */
+          for (let i = sparks.length - 1; i >= 0; i--) {
+            const s = sparks[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.life -= .04;
+            s.vx *= .88;
+            s.vy *= .88;
+
+            if (s.life <= 0) { sparks.splice(i, 1); continue; }
+
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(248,1,0,${s.life * .7})`;
+            ctx.fill();
+          }
+
+          /* ── CURSOR ── */
+          if (mx > -200) {
+            ctx.beginPath();
+            ctx.arc(mx, my, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#F80100';
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(mx, my, 10, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(248,1,0,.3)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+
+          requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        if (!('ontouchstart' in window)) {
+          document.body.style.cursor = 'none';
+        }
+      })();
+    </script>
+  </body>
+
+  </html>
