@@ -1771,6 +1771,278 @@
       @media(max-width:480px) {
         .sb:last-child { grid-column: 1 / -1 }
       }
+
+      /* ── SHOWROOM 360 ── */
+      #showroom {
+        background: #000;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(100px, 12vw, 180px) var(--px);
+      }
+
+      .sr-canvas {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .sr-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+        max-width: 1040px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sr-micro {
+        font-family: var(--ff-b);
+        font-size: 9px;
+        font-weight: 300;
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.13);
+        margin-bottom: 36px;
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 1.4s ease, transform 1.4s ease;
+      }
+
+      #showroom.sr-in .sr-micro {
+        opacity: 1;
+        transform: none;
+      }
+
+      .sr-headlines {
+        margin-bottom: 60px;
+      }
+
+      .sr-title {
+        font-family: var(--ff-d);
+        font-size: clamp(18px, 4vw, 64px);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 1;
+        letter-spacing: -0.5px;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1.2s ease 0.1s, transform 1.2s ease 0.1s;
+      }
+
+      .sr-title em {
+        font-style: normal;
+        color: var(--red);
+      }
+
+      #showroom.sr-in .sr-title {
+        opacity: 1;
+        transform: none;
+      }
+
+      .sr-sub {
+        font-family: var(--ff-b);
+        font-size: clamp(11px, 1.1vw, 14px);
+        font-weight: 300;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.28);
+        margin-top: 16px;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 1.2s ease 0.25s, transform 1.2s ease 0.25s;
+      }
+
+      #showroom.sr-in .sr-sub {
+        opacity: 1;
+        transform: none;
+      }
+
+      .sr-stage {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sr-glow {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 360px;
+        background: radial-gradient(ellipse 72% 52% at 50% 100%, rgba(248, 1, 0, 0.30) 0%, rgba(248, 1, 0, 0.10) 38%, rgba(248, 1, 0, 0.03) 62%, transparent 76%);
+        filter: blur(48px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 2.4s ease 0.7s;
+      }
+
+      #showroom.sr-in .sr-glow {
+        opacity: 1;
+      }
+
+      .sr-car-wrap {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(34px);
+        transition: opacity 1.7s ease 0.25s, transform 1.7s ease 0.25s;
+        width: 100%;
+      }
+
+      #showroom.sr-in .sr-car-wrap {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .sr-car-row {
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 3vw, 36px);
+        width: 100%;
+      }
+
+      .sr-arrow {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.32);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: border-color .3s, color .3s, background .3s, transform .18s;
+        position: relative;
+        z-index: 2;
+      }
+
+      .sr-arrow:hover:not(:disabled) {
+        border-color: rgba(248, 1, 0, 0.5);
+        color: rgba(248, 1, 0, 0.85);
+        background: rgba(248, 1, 0, 0.05);
+      }
+
+      .sr-arrow:active:not(:disabled) {
+        transform: scale(0.9);
+      }
+
+      .sr-arrow:disabled {
+        opacity: 0.16;
+        cursor: default;
+      }
+
+      .sr-float-inner {
+        flex: 1;
+        min-width: 0;
+        animation: sr-float 6s ease-in-out 2s infinite;
+      }
+
+      .sr-viewport {
+        position: relative;
+        width: 100%;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      .sr-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        user-select: none;
+        -webkit-user-drag: none;
+        pointer-events: none;
+        filter: drop-shadow(0 50px 90px rgba(0, 0, 0, 0.95));
+      }
+
+      .sr-img-b {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0;
+      }
+
+      .sr-dots {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+        opacity: 0;
+        transition: opacity 1s ease 1.4s;
+      }
+
+      #showroom.sr-in .sr-dots {
+        opacity: 1;
+      }
+
+      .sr-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+        cursor: pointer;
+        transition: background .3s, transform .3s;
+      }
+
+      .sr-dot.active {
+        background: var(--red);
+        transform: scale(1.5);
+      }
+
+      .sr-floor-shadow {
+        width: 50%;
+        height: 14px;
+        background: radial-gradient(ellipse at center, rgba(4, 4, 4, 0.9) 0%, transparent 70%);
+        filter: blur(15px);
+        margin: 8px auto 0;
+        position: relative;
+        z-index: 0;
+      }
+
+      @media (max-width: 768px) {
+        #showroom {
+          padding: clamp(80px, 16vw, 130px) var(--px);
+        }
+
+        .sr-micro {
+          font-size: 8px;
+          letter-spacing: 5px;
+          margin-bottom: 24px;
+        }
+
+        .sr-headlines {
+          margin-bottom: 44px;
+        }
+
+        .sr-arrow {
+          width: 40px;
+          height: 40px;
+        }
+
+        .sr-glow {
+          width: 92%;
+          height: 240px;
+        }
+      }
+
+      @keyframes sr-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
     </style>
   </head>
 
@@ -2060,6 +2332,50 @@
           <li class="ei r d4">Visitação aos boxes</li>
           <li class="ei r d5">Arquibancada com visão real da pista</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ SHOWROOM 360 ═══════════════════ -->
+    <section id="showroom">
+      <canvas class="sr-canvas" id="srCanvas"></canvas>
+      <div class="sr-content">
+        <p class="sr-micro">UMA EXPERIÊNCIA QUE CONTINUA EM MOVIMENTO</p>
+        <div class="sr-headlines">
+          <h2 class="sr-title">Sua marca. <em>Seu piloto.</em> Sua corrida.</h2>
+          <p class="sr-sub">Escolha sua cota &mdash; o espaço no carro</p>
+        </div>
+        <div class="sr-stage" id="srStage">
+          <div class="sr-glow"></div>
+          <div class="sr-car-wrap" id="srCarWrap">
+            <div class="sr-car-row">
+              <button class="sr-arrow" id="srPrev" aria-label="Ângulo anterior">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M11 3L5 9L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="sr-float-inner">
+                <div class="sr-viewport" id="srViewport">
+                  <img class="sr-img sr-img-a" id="srImgA" alt="Scuderia Bandeiras Stock Car" draggable="false">
+                  <img class="sr-img sr-img-b" id="srImgB" alt="" draggable="false" aria-hidden="true">
+                </div>
+              </div>
+              <button class="sr-arrow" id="srNext" aria-label="Próximo ângulo">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M7 3L13 9L7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="sr-dots" id="srDots">
+            <span class="sr-dot active" data-frame="0"></span>
+            <span class="sr-dot" data-frame="1"></span>
+            <span class="sr-dot" data-frame="2"></span>
+            <span class="sr-dot" data-frame="3"></span>
+            <span class="sr-dot" data-frame="4"></span>
+            <span class="sr-dot" data-frame="5"></span>
+          </div>
+          <div class="sr-floor-shadow"></div>
+        </div>
       </div>
     </section>
 
@@ -2514,6 +2830,198 @@
         if (!('ontouchstart' in window)) {
           document.body.style.cursor = 'none';
         }
+      })();
+    </script>
+
+    <script>
+      /* ── SHOWROOM 360 ── */
+      (function () {
+        var FRAMES = [
+          'carros/Frontal Lateral Diretia 1.png',
+          'carros/Lateral Direita 1.png',
+          'carros/Traseira direita 1.png',
+          'carros/Traseira Esquerda 1.png',
+          'carros/Lateral Esquerda 1.png',
+          'carros/Frontal Lateral Esquerda 1.png'
+        ];
+
+        var section = document.getElementById('showroom');
+        var imgA    = document.getElementById('srImgA');
+        var imgB    = document.getElementById('srImgB');
+        var canvas  = document.getElementById('srCanvas');
+        var btnPrev = document.getElementById('srPrev');
+        var btnNext = document.getElementById('srNext');
+        var dotsEl  = document.querySelectorAll('#srDots .sr-dot');
+        if (!section || !imgA || !imgB || !canvas) return;
+
+        var ctx = canvas.getContext('2d');
+        var w = 0, h = 0;
+
+        /* ── PRELOAD ── */
+        var images = FRAMES.map(function (src) {
+          var img = new Image(); img.src = src; return img;
+        });
+
+        imgA.src = images[0].src; imgA.setAttribute('data-idx', '0');
+        imgB.src = images[1].src; imgB.setAttribute('data-idx', '1');
+
+        /* ── STATE ── */
+        var targetFrame  = 0.0;
+        var currentFrame = 0.0;
+        var raf = null;
+        var visible = false;
+
+        /* ── RENDER ── */
+        function render() {
+          var max  = FRAMES.length - 1;
+          var f    = Math.max(0, Math.min(max, currentFrame));
+          var idxA = Math.floor(f);
+          var idxB = Math.min(max, idxA + 1);
+          var frac = f - idxA;
+
+          if (imgA.getAttribute('data-idx') !== String(idxA)) {
+            imgA.src = images[idxA].src;
+            imgA.setAttribute('data-idx', String(idxA));
+          }
+          if (imgB.getAttribute('data-idx') !== String(idxB)) {
+            imgB.src = images[idxB].src;
+            imgB.setAttribute('data-idx', String(idxB));
+          }
+          imgA.style.opacity = (1 - frac).toFixed(4);
+          imgB.style.opacity = frac.toFixed(4);
+
+          /* sync dots */
+          var active = Math.round(f);
+          for (var i = 0; i < dotsEl.length; i++)
+            dotsEl[i].classList.toggle('active', i === active);
+
+          /* sync arrow states */
+          var t = Math.round(targetFrame);
+          if (btnPrev) btnPrev.disabled = t <= 0;
+          if (btnNext) btnNext.disabled = t >= FRAMES.length - 1;
+        }
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        /* ── NAVIGATION ── */
+        function goTo(idx) {
+          targetFrame = Math.max(0, Math.min(FRAMES.length - 1, idx));
+          idleBase = targetFrame;
+        }
+
+        if (btnPrev) btnPrev.addEventListener('click', function () { goTo(Math.round(targetFrame) - 1); });
+        if (btnNext) btnNext.addEventListener('click', function () { goTo(Math.round(targetFrame) + 1); });
+
+        for (var d = 0; d < dotsEl.length; d++) {
+          dotsEl[d].addEventListener('click', (function (dot) {
+            return function () { goTo(parseInt(dot.getAttribute('data-frame'), 10)); };
+          })(dotsEl[d]));
+        }
+
+        /* keyboard */
+        section.setAttribute('tabindex', '0');
+        section.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(Math.round(targetFrame) - 1); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.round(targetFrame) + 1); }
+        });
+
+        /* ── MOBILE IDLE + TOUCH ── */
+        var touching    = false;
+        var idleBase    = 0.0;
+        var idleAngle   = 0.0;
+        var touchStartX = 0;
+        var frameAtStart = 0;
+
+        function isMobile() { return window.innerWidth < 768 || ('ontouchstart' in window); }
+
+        section.addEventListener('touchstart', function (e) {
+          touching = true;
+          touchStartX = e.touches[0].clientX;
+          frameAtStart = currentFrame;
+          idleBase = currentFrame;
+        }, { passive: true });
+
+        section.addEventListener('touchmove', function (e) {
+          if (!touching) return;
+          var dx = e.touches[0].clientX - touchStartX;
+          var delta = -(dx / window.innerWidth) * FRAMES.length * 1.5;
+          targetFrame = Math.max(0, Math.min(FRAMES.length - 1, frameAtStart + delta));
+        }, { passive: true });
+
+        section.addEventListener('touchend', function () {
+          touching = false;
+          idleBase = currentFrame;
+        }, { passive: true });
+
+        /* ── MAIN LOOP ── */
+        function tick() {
+          if (isMobile() && !touching) {
+            idleAngle += 0.006;
+            targetFrame = idleBase + Math.sin(idleAngle) * 0.38;
+          }
+          currentFrame = lerp(currentFrame, targetFrame, 0.075);
+          render();
+          drawParticles();
+          raf = requestAnimationFrame(tick);
+        }
+
+        /* ── PARTICLES ── */
+        function resizeCanvas() {
+          var r = section.getBoundingClientRect();
+          w = canvas.width  = Math.round(r.width);
+          h = canvas.height = Math.round(r.height);
+        }
+
+        var pts = [];
+
+        function mkPt(fromBottom) {
+          return {
+            x: Math.random() * w,
+            y: fromBottom ? h + Math.random() * 80 : Math.random() * h,
+            r: Math.random() * 1.1 + 0.3,
+            vy: -(Math.random() * 0.25 + 0.07),
+            vx: (Math.random() - 0.5) * 0.1,
+            a: Math.random() * 0.045 + 0.008,
+            red: Math.random() < 0.18
+          };
+        }
+
+        function initPts() {
+          resizeCanvas();
+          pts = [];
+          for (var i = 0; i < 50; i++) pts.push(mkPt(false));
+        }
+
+        function drawParticles() {
+          ctx.clearRect(0, 0, w, h);
+          for (var i = 0; i < pts.length; i++) {
+            var p = pts[i];
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.red ? 'rgba(248,30,0,' + p.a + ')' : 'rgba(255,255,255,' + p.a + ')';
+            ctx.fill();
+            p.x += p.vx; p.y += p.vy;
+            if (p.y < -5) { pts[i] = mkPt(true); pts[i].x = Math.random() * w; }
+          }
+        }
+
+        /* ── ENTRY OBSERVER ── */
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            visible = en.isIntersecting;
+            if (visible) {
+              section.classList.add('sr-in');
+              if (!raf) tick();
+            } else {
+              if (raf) { cancelAnimationFrame(raf); raf = null; }
+            }
+          });
+        }, { threshold: 0.1 });
+
+        io.observe(section);
+        window.addEventListener('resize', initPts, { passive: true });
+        initPts();
+        render();
       })();
     </script>
   </body>
