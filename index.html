@@ -2043,6 +2043,45 @@
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-8px); }
       }
+
+      /* ── RACE EXP CARDS ── */
+      .re-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 28px
+      }
+      .re-card {
+        padding: 20px 18px;
+        background: var(--red-faint);
+        border: 1px solid var(--red-border)
+      }
+      .re-num {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: var(--red);
+        display: block;
+        margin-bottom: 6px
+      }
+      .re-title {
+        font-family: var(--ff-d);
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        margin-bottom: 8px
+      }
+      .re-desc {
+        font-size: 12px;
+        color: rgba(255,255,255,.45);
+        line-height: 1.6
+      }
+      @media(max-width:768px) {
+        .re-grid { grid-template-columns: 1fr }
+      }
+
     </style>
   </head>
 
@@ -2131,6 +2170,8 @@
         <div class="label r">As pessoas por trás da pista</div>
         <h2 class="hl hl-lg r d1" style="margin-top:10px">Nomes que o mercado respeita</h2>
         <p class="body-lg r d2" style="max-width:480px;margin:0 auto">Histórias que inspiram dentro e fora da pista.</p>
+        <h3 class="hl hl-md r d3" style="margin-top:22px">Autoridade não se constrói.<br><em style="font-style:normal;color:var(--red)">Se prova.</em></h3>
+        <p class="body-lg r d4" style="max-width:560px;margin:10px auto 0">Nomes que performaram no mais alto nível do automobilismo mundial e hoje fazem parte desse ecossistema.</p>
       </div>
       <div class="pilots r d1">
         <div class="pc">
@@ -2185,7 +2226,9 @@
     <section id="estrutura" class="sec sec-dark">
       <div style="margin-bottom:56px" class="r">
         <div class="red-line"></div>
+        <div class="label" style="margin-bottom:10px">O Complexo</div>
         <h2 class="hl hl-lg">Tudo no mesmo lugar<br>onde a corrida acontece</h2>
+        <p class="body-lg" style="margin-top:18px;max-width:640px">Onde a operação acontece e sua marca ganha velocidade. Um complexo pensado para receber empresas que entendem o valor do ambiente, experiência e posicionamento.</p>
       </div>
       <div class="g6 r d1">
         <div class="ec"><img src="Imagens/estrutura/garage by vonder.png" alt="Garagem by Vonder" loading="lazy">
@@ -2260,20 +2303,18 @@
         </div>
         <div>
           <div class="red-line r"></div>
+          <div class="label r" style="margin-bottom:10px">Onde sua marca aparece</div>
           <h2 class="hl hl-lg r d1">Sua marca onde<br>o Brasil<br>está sendo visto</h2>
           <p class="body-lg r d2" style="margin-top:18px">Todas as corridas na Band TV aberta. +146h de transmissão por
             temporada. Além de Band Sports, YouTube, Motorsport.com, Twitch e Facebook Watch.</p>
           <p class="body-lg r d3" style="margin-top:12px;font-style:italic">Aqui não é nicho. É audiência, visibilidade
             e presença nacional.</p>
           <div class="vis-stats">
-            <div class="vs r d2"><span class="vs-num">2,1 mi</span><span class="vs-desc">seguidores no Instagram</span>
-            </div>
-            <div class="vs r d3"><span class="vs-num">20 mi</span><span class="vs-desc">vídeos</span></div>
-            <div class="vs r d4"><span class="vs-num">146h</span><span class="vs-desc">de transmissão ao vivo por
-                temporada</span></div>
+            <div class="vs r d2"><span class="vs-num">146h</span><span class="vs-desc">de transmissão ao vivo por temporada</span></div>
+            <div class="vs r d3"><span class="vs-num">2,1 mi</span><span class="vs-desc">seguidores no Instagram dos pilotos</span></div>
+            <div class="vs r d4"><span class="vs-num">20 mi</span><span class="vs-desc">vídeos</span></div>
           </div>
-          <p class="r d4" style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-top:8px">Dados de
-            março/2026.</p>
+          <p class="r d4" style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-top:8px;line-height:1.8">E no digital dos pilotos: Fittipaldi · Átila Abreu · Piquet Jr. · Barrichello · Suzuki · Ingo Hoffmann<br>Dados de março/2026.</p>
           <div class="platforms r d5">
             <div class="ptag">Band TV</div>
             <div class="ptag">Band Sports</div>
@@ -2323,14 +2364,15 @@
       </div>
       <div class="exp-panel">
         <div class="red-line r"></div>
-        <div class="label r d1">Experiência no autódromo</div>
+        <div class="label r d1">No dia da corrida</div>
         <h2 class="hl hl-lg r d2" style="margin-top:10px">Experiências<br>que ficam<br>na memória</h2>
+        <p class="body-lg r d2" style="margin-top:16px">Seu cliente no paddock. Sua marca fazendo parte da experiência. Ambientes onde relacionamento vira percepção de valor — e percepção vira negócio.</p>
         <ul class="exp-list">
-          <li class="ei r d1">Box com tecnologia em tempo real</li>
-          <li class="ei r d2">Camarotes exclusivos</li>
-          <li class="ei r d3">Truck Lounge premium</li>
-          <li class="ei r d4">Visitação aos boxes</li>
-          <li class="ei r d5">Arquibancada com visão real da pista</li>
+          <li class="ei r d1">Box — A experiência mais próxima da corrida</li>
+          <li class="ei r d2">Camarotes — Vista privilegiada, ambiente premium</li>
+          <li class="ei r d3">Truck Lounge — Sua marca como anfitriã</li>
+          <li class="ei r d4">Visitação aos Boxes — Bastidores e operação real</li>
+          <li class="ei r d5">Arquibancada — A energia da pista do jeito mais real</li>
         </ul>
       </div>
     </section>
@@ -2383,17 +2425,17 @@
     <section id="team">
       <div class="team-panel">
         <div class="red-line r"></div>
-        <div class="label r d1">Race Experience</div>
-        <h2 class="hl hl-lg r d2" style="margin-top:10px">Não é motivação.<br>É comportamento real<br>sob pressão.</h2>
-        <p class="body-lg r d2" style="margin-top:18px">Aqui, sua equipe não assiste. Ela participa. Decide. Executa.</p>
-        <ul class="exp-list" style="margin-top:28px">
-          <li class="ei r d2">Volta Rápida com piloto profissional</li>
-          <li class="ei r d3">Pit-Stop Challenge</li>
-          <li class="ei r d4">Kart Challenge</li>
-          <li class="ei r d5">Crazy Cart</li>
-          <li class="ei r d5">Drift Arena</li>
-          <li class="ei r d5">Show Car</li>
-        </ul>
+        <div class="label r d1">A Experiência</div>
+        <h2 class="hl hl-lg r d2" style="margin-top:10px">A única no Brasil onde<br>sua equipe acelera<br>numa corrida real.</h2>
+        <p class="body-lg r d2" style="margin-top:18px">Dividindo a pista com pilotos profissionais. Aqui sua equipe entra na pista, enfrenta pressão real e sai diferente.</p>
+        <div class="re-grid r d3">
+          <div class="re-card"><span class="re-num">01</span><div class="re-title">Donos de negócio</div><p class="re-desc">Se você passa a semana resolvendo tudo, precisa de algo que recarregue energia e devolva clareza. Um dia para sair da rotina e voltar mais refinado.</p></div>
+          <div class="re-card"><span class="re-num">02</span><div class="re-title">Líderes</div><p class="re-desc">Seu time aprende mais com o que você faz do que com o que você fala. Na pista, pressão revela postura. E isso volta com você na segunda-feira.</p></div>
+          <div class="re-card"><span class="re-num">03</span><div class="re-title">Times comerciais</div><p class="re-desc">Chega de motivação em slide. Aqui tem adrenalina, decisão rápida e competitividade real. O que performa na pista também performa nas vendas.</p></div>
+          <div class="re-card"><span class="re-num">04</span><div class="re-title">Alta performance</div><p class="re-desc">Se vocês já entregam resultados, o próximo passo é fortalecer a conexão e a confiança. Experiências marcantes criam times mais fortes.</p></div>
+        </div>
+        <p class="r d4" style="margin-top:28px;font-family:var(--ff-d);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">28 de maio · Vagas limitadas · Para empresas e equipes corporativas</p>
+        <button class="btn r d5" style="margin-top:20px;align-self:flex-start" onclick="openModal()">Quero participar <span class="btn-arr">→</span></button>
       </div>
       <div class="team-img">
         <img src="Imagens/race experience/RACE EXPERIENCE.png" alt="Race Experience" loading="lazy">
@@ -2403,11 +2445,11 @@
     <!-- ═══════════════════ EXPERIÊNCIA ATIVA ═══════════════════ -->
     <section id="activexp" class="sec sec-deep">
 
-      <!-- cabeçalho centrado e compacto -->
       <div class="activexp-intro">
         <div class="red-line red-line-c r"></div>
-        <h2 class="hl hl-md r d1" style="margin-top:0">Quando a equipe<br>entra no jogo</h2>
-        <p class="body-lg r d2" style="margin-top:16px">Cenários reais onde o tempo é limitado, as decisões são imediatas e a execução faz diferença. O comportamento aparece quando o ambiente exige.</p>
+        <div class="label r" style="margin-bottom:10px">Team Building</div>
+        <h2 class="hl hl-md r d1" style="margin-top:0">Aqui não é integração.<br>É performance sob pressão.</h2>
+        <p class="body-lg r d2" style="margin-top:16px">Adrenalina de verdade, pilotos profissionais ao lado e pressão que revela quem é cada pessoa. Uma experiência que fica na memória e muda à medida que as pessoas trabalham juntas.</p>
       </div>
 
       <!-- vídeos lado a lado, tamanho controlado -->
@@ -2444,7 +2486,8 @@
     <!-- ═══════════════════ PALESTRAS ═══════════════════ -->
     <section id="palestras" class="sec sec-deep">
       <div class="red-line red-line-c r"></div>
-      <h2 class="hl hl-lg r d1">Histórias que movem</h2>
+      <div class="label r d1" style="margin-bottom:10px">Histórias que movem</div>
+      <h2 class="hl hl-lg r d1">Não é palestra.<br>É vivência traduzida<br>em decisão.</h2>
       <p class="body-lg r d2" style="max-width:560px;margin:0 auto">Pilotos que operaram no limite, sob pressão real,
         com exposição total e resultado imediato. O que eles trazem não é teoria — é repertório aplicável para quem
         também precisa decidir todos os dias.</p>
@@ -2498,7 +2541,9 @@
     <section id="incentivo">
       <div class="inc-panel">
         <div class="red-line r"></div>
-        <h2 class="hl hl-lg r d1">Seu patrocínio<br>pode custar zero</h2>
+        <div class="label r" style="margin-bottom:10px">Seu patrocínio pode custar zero</div>
+        <h2 class="hl hl-lg r d1">Sua marca na Stock Car<br>usando imposto que você<br>já pagaria de qualquer forma.</h2>
+        <p class="body-lg r d2" style="margin-top:18px">Muitas empresas deixam esse benefício passar por desconhecimento. Empresas que apuram IR pelo Lucro Real podem deduzir 100% do valor investido, dentro do teto permitido por lei.</p>
         <ul class="inc-list">
           <li class="inc-item r d1"><span class="chk">✓</span>100% dedutível do Imposto de Renda (Lucro Real)</li>
           <li class="inc-item r d2"><span class="chk">✓</span>Teto de 2% do IR devido no período</li>
@@ -2535,8 +2580,7 @@
       <div class="cta-body">
         <div class="label r">Faça parte do grid</div>
         <h2 class="hl hl-xl r d1" style="margin-top:10px">Sua marca<br>já deveria<br><em>estar aqui.</em></h2>
-        <p class="body-lg r d2" style="margin-top:18px">A Scuderia Bandeiras reúne esporte, estrutura, audiência e
-          experiências num único ecossistema. Enquanto você estiver aqui, outro concorrente já está no grid.</p>
+        <p class="body-lg r d2" style="margin-top:18px">A Scuderia Bandeiras reúne esporte, estrutura, audiência e experiências num único ecossistema. Uma oportunidade de associar sua marca a pilotos lendários, uma audiência apaixonada e as experiências que nenhuma outra empresa oferece.<br><br>Enquanto você estiver aqui, outro concorrente já está no grid.</p>
         <div class="cta-acts">
           <button class="btn r d3" onclick="openModal()">Quero fazer parte da Scuderia <span
               class="btn-arr">→</span></button>
