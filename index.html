@@ -67,6 +67,14 @@
         color: inherit
       }
 
+      /* ── TYPOGRAPHIC BALANCE — widows & orphans ── */
+      h1, h2, h3, .hl {
+        text-wrap: balance;
+      }
+      .body-lg, .hero-desc, .m-sub, .inc-note, .re-desc {
+        text-wrap: pretty;
+      }
+
       /* ── TYPOGRAPHY ── */
       .label {
         font-family: var(--ff-d);
@@ -103,6 +111,39 @@
 
       .hl-md {
         font-size: clamp(32px, 4.5vw, 60px)
+      }
+
+      .hl-sm {
+        font-size: clamp(22px, 2.6vw, 42px)
+      }
+
+      @media(max-width:768px) {
+        .hl {
+          line-height: 1.05;
+          letter-spacing: 0
+        }
+
+        .hl-xl {
+          line-height: 1.0
+        }
+
+        .hl-lg {
+          font-size: clamp(26px, 7.5vw, 36px);
+          line-height: 1.08
+        }
+
+        .hl-md {
+          font-size: clamp(28px, 8vw, 42px);
+          line-height: 1.08
+        }
+
+        .hl-sm {
+          line-height: 1.1
+        }
+
+        .hl-lg br {
+          display: none
+        }
       }
 
       .body-lg {
@@ -244,6 +285,19 @@
         transform: translateX(4px)
       }
 
+      .btn-2l {
+        flex-direction: column;
+        gap: 2px;
+        line-height: 1.25;
+        text-align: center;
+        padding: 14px 48px
+      }
+
+      .btn-2l .btn-arr {
+        display: inline;
+        margin-left: 6px
+      }
+
       .btn-ghost {
         background: transparent;
         border: 1px solid var(--red-border);
@@ -383,7 +437,11 @@
 
         .hero-acts .btn {
           width: 100%;
-          justify-content: center
+          justify-content: center;
+          font-size: 13px;
+          letter-spacing: 2px;
+          padding: 15px 56px;
+          white-space: nowrap
         }
       }
 
@@ -431,7 +489,7 @@
 
       .hero-desc {
         margin: 22px 0 38px;
-        max-width: 720px;
+        max-width: 580px;
         width: 90%;
         text-align: center;
         font-size: clamp(17px, 1.6vw, 21px);
@@ -546,6 +604,16 @@
       }
 
       /* ── SOBRE ── */
+      .sobre-br { display: inline }
+      .mob-br { display: inline }
+      .desk-br { display: inline }
+
+      @media(max-width:768px) {
+        .sobre-br { display: block; line-height: 0 }
+        .mob-br { display: block; line-height: 0 }
+        .desk-br { display: none }
+      }
+
       .sobre-hd {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -615,6 +683,16 @@
         margin-bottom: 72px
       }
 
+      .aut-sub {
+        margin-top: 0
+      }
+
+      @media(max-width:768px) {
+        .aut-sub {
+          margin-top: 28px !important
+        }
+      }
+
       .pilots {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -646,8 +724,9 @@
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 56px 16px 16px;
-        background: linear-gradient(to top, rgba(8, 8, 8, 1), transparent)
+        padding: 48px 16px 16px;
+        background: linear-gradient(to top, rgba(8, 8, 8, .98) 50%, transparent);
+        transition: padding .35s ease
       }
 
       .pc-name {
@@ -661,9 +740,26 @@
 
       .pc-desc {
         font-size: 11px;
-        color: rgba(255, 255, 255, .45);
-        margin-top: 5px;
-        line-height: 1.4
+        color: rgba(255, 255, 255, .65);
+        margin-top: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: max-height .4s ease, opacity .3s ease .08s, transform .35s ease .05s, margin-top .3s ease
+      }
+
+      .pc:hover .pc-desc,
+      .pc.active .pc-desc {
+        max-height: 60px;
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 7px
+      }
+
+      .pc:hover .pc-ov,
+      .pc.active .pc-ov {
+        padding-top: 64px
       }
 
       .pc::before {
@@ -709,6 +805,25 @@
         color: rgba(255, 255, 255, .6)
       }
 
+      @media(max-width:768px) {
+        .pilot-extra {
+          text-align: center;
+          justify-content: center;
+          padding: 24px 20px
+        }
+
+        .pilot-extra .names {
+          font-family: var(--ff-b);
+          font-size: 14px;
+          font-weight: 400;
+          text-transform: none;
+          letter-spacing: 0;
+          line-height: 1.7;
+          color: rgba(255,255,255,.5);
+          font-style: italic
+        }
+      }
+
       /* ── ESTRUTURA ── */
       .g6 {
         display: grid;
@@ -748,6 +863,33 @@
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: .5px
+      }
+
+      .ec-desc {
+        font-size: 12px;
+        color: rgba(255,255,255,.55);
+        margin-top: 5px;
+        line-height: 1.5
+      }
+
+      @media(max-width:768px) {
+        .ec-desc {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          margin-top: 0;
+          transition: max-height .35s ease, opacity .3s ease, margin-top .3s ease
+        }
+
+        .ec.open .ec-desc {
+          max-height: 60px;
+          opacity: 1;
+          margin-top: 6px
+        }
+
+        .ec-ov {
+          padding: 32px 14px 14px
+        }
       }
 
       /* ── NÚMEROS ── */
@@ -897,6 +1039,32 @@
         color: rgba(255, 255, 255, .45)
       }
 
+      @media(max-width:768px) {
+        .vis-stats {
+          margin-top: 36px;
+          display: flex;
+          flex-direction: column;
+          gap: 0
+        }
+
+        .vs {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 28px 0;
+          gap: 8px
+        }
+
+        .vs-num {
+          font-size: clamp(52px, 16vw, 80px)
+        }
+
+        .vs-desc {
+          font-size: 13px;
+          letter-spacing: .5px
+        }
+      }
+
       .platforms {
         margin-top: 36px;
         display: flex;
@@ -917,6 +1085,199 @@
       .ptag:hover {
         border-color: var(--red-border);
         color: var(--white)
+      }
+
+      /* ── DIGITAL PILOTOS ── */
+      .dig-block {
+        margin-top: clamp(56px, 7vw, 96px);
+        padding-top: clamp(48px, 5vw, 72px);
+        border-top: 1px solid rgba(255,255,255,.08);
+        text-align: center
+      }
+
+      .dig-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: clamp(36px, 4vw, 52px)
+      }
+
+      .dig-title {
+        font-family: var(--ff-d);
+        font-size: clamp(22px, 2.4vw, 32px);
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1
+      }
+
+      .dig-macro {
+        display: flex;
+        justify-content: center;
+        gap: clamp(28px, 4vw, 64px);
+        flex-wrap: wrap;
+        margin-top: 10px
+      }
+
+      .dig-stat {
+        display: flex;
+        align-items: baseline;
+        gap: 8px
+      }
+
+      .dig-stat-num {
+        font-family: var(--ff-d);
+        font-size: clamp(28px, 3vw, 44px);
+        font-weight: 900;
+        color: var(--red);
+        line-height: 1
+      }
+
+      .dig-stat-label {
+        font-size: 12px;
+        color: rgba(255,255,255,.4);
+        letter-spacing: .5px
+      }
+
+      /* count-up animation */
+      .dig-stat-num {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity .5s ease, transform .5s ease
+      }
+      .dig-block.in-view .dig-stat-num {
+        opacity: 1;
+        transform: translateY(0)
+      }
+      .dig-block.in-view .dig-stat:nth-child(2) .dig-stat-num { transition-delay: .15s }
+
+      .dig-pilots {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px
+      }
+
+      .dig-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity .5s ease, transform .5s ease
+      }
+      .dig-block.in-view .dig-card { opacity: 1; transform: translateY(0) }
+      .dig-block.in-view .dig-card:nth-child(1) { transition-delay: .10s }
+      .dig-block.in-view .dig-card:nth-child(2) { transition-delay: .18s }
+      .dig-block.in-view .dig-card:nth-child(3) { transition-delay: .26s }
+      .dig-block.in-view .dig-card:nth-child(4) { transition-delay: .34s }
+      .dig-block.in-view .dig-card:nth-child(5) { transition-delay: .42s }
+      .dig-block.in-view .dig-card:nth-child(6) { transition-delay: .50s }
+
+      .dig-avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(255,255,255,.1);
+        background: #1a1a1a;
+        flex-shrink: 0;
+        transition: border-color .3s ease, box-shadow .3s ease
+      }
+
+      .dig-card:hover .dig-avatar {
+        border-color: var(--red);
+        box-shadow: 0 0 0 4px rgba(248,1,0,.15)
+      }
+
+      .dig-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top
+      }
+
+      .dig-name {
+        font-family: var(--ff-d);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.8);
+        letter-spacing: .5px;
+        line-height: 1.2
+      }
+
+      .dig-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 11px;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.5);
+        background: none;
+        transition: border-color .25s, color .25s, background .25s;
+        white-space: nowrap
+      }
+
+      .dig-btn:hover {
+        border-color: var(--red);
+        color: #fff;
+        background: rgba(248,1,0,.08)
+      }
+
+      .dig-btn svg {
+        width: 11px;
+        height: 11px;
+        opacity: .65
+      }
+
+      .dig-footnote {
+        margin-top: 28px;
+        font-size: 11px;
+        color: rgba(255,255,255,.22);
+        letter-spacing: 1px
+      }
+
+      @media(max-width:900px) {
+        .dig-pilots { grid-template-columns: repeat(3, 1fr) }
+      }
+
+      @media(max-width:768px) {
+        .dig-pilots { grid-template-columns: repeat(3, 1fr); gap: 16px }
+        .dig-avatar { width: 72px; height: 72px }
+
+        .dig-macro {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px
+        }
+
+        .dig-stat {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 5px
+        }
+
+        .dig-stat-num {
+          font-size: clamp(48px, 14vw, 72px)
+        }
+
+        .dig-stat-label {
+          font-size: 12px;
+          letter-spacing: .5px
+        }
+      }
+
+      @media(max-width:480px) {
+        .dig-pilots { grid-template-columns: repeat(2, 1fr) }
       }
 
       /* ── EXPERIÊNCIAS ── */
@@ -961,6 +1322,102 @@
       .exp-list {
         list-style: none;
         margin-top: 28px
+      }
+
+      /* accordion desktop: hide controls, show full text */
+      .ea-trigger { display: contents; font: inherit; background: none; border: none; color: inherit; cursor: default }
+      .ea-icon { display: none }
+      .ea-title::after { content: ' — ' }
+      .ea-body { display: inline }
+      .ea-desc { display: inline; font-size: inherit; color: inherit }
+
+      @media(max-width:768px) {
+        .exp-acc {
+          margin-top: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px
+        }
+
+        /* reset .ei flex que causa layout lado a lado */
+        .ea.ei {
+          display: block !important;
+          padding: 0;
+          border: 1px solid rgba(255,255,255,.09);
+          border-radius: 4px;
+          background: rgba(255,255,255,.03);
+          overflow: hidden;
+          transition: border-color .3s ease, box-shadow .3s ease
+        }
+
+        .ea.ei::before { display: none }
+
+        .ea.open {
+          border-color: var(--red);
+          box-shadow: 0 0 14px rgba(248,1,0,.18)
+        }
+
+        .ea-trigger {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          padding: 18px 20px;
+          background: none;
+          border: none;
+          cursor: pointer
+        }
+
+        .ea-title {
+          font-family: var(--ff-d);
+          font-size: clamp(16px, 5vw, 22px);
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: rgba(255,255,255,.85);
+          text-align: center;
+          transition: color .25s
+        }
+
+        .ea-title::after { content: none }
+        .ea.open .ea-title { color: #fff }
+
+        .ea-icon {
+          display: block;
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 1;
+          color: rgba(255,255,255,.25);
+          flex-shrink: 0;
+          transition: transform .35s ease, color .25s ease
+        }
+
+        .ea.open .ea-icon {
+          transform: rotate(45deg);
+          color: var(--red)
+        }
+
+        .ea-body {
+          display: block !important;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height .45s ease
+        }
+
+        .ea.open .ea-body { max-height: 280px }
+
+        .ea-desc {
+          display: block !important;
+          font-family: var(--ff-b);
+          font-size: 13px;
+          font-weight: 400;
+          color: rgba(255,255,255,.45);
+          line-height: 1.75;
+          text-transform: none;
+          text-align: left;
+          padding: 0 20px 20px
+        }
       }
 
       .ei {
@@ -1147,6 +1604,143 @@
         background: var(--red-faint)
       }
 
+      /* ── PALESTRAS layout ── */
+      #palestras {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        min-height: 680px;
+        text-align: left
+      }
+
+      .pal-img {
+        position: relative;
+        overflow: hidden
+      }
+
+      .pal-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block
+      }
+
+      .pal-img::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, transparent 55%, var(--deep) 100%),
+                    linear-gradient(to top, var(--deep) 0%, transparent 25%);
+        pointer-events: none
+      }
+
+      .pal-panel {
+        padding: clamp(48px, 5vw, 90px) clamp(32px, 4vw, 72px) clamp(48px, 5vw, 90px) clamp(24px, 3vw, 48px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--deep)
+      }
+
+      .spk-rows {
+        margin-top: 8px
+      }
+
+      @media(max-width:768px) {
+        #palestras {
+          grid-template-columns: 1fr;
+          min-height: unset;
+          text-align: left
+        }
+        .pal-img { min-height: 260px }
+        .pal-img::after {
+          background: linear-gradient(to top, var(--deep) 0%, transparent 40%)
+        }
+        .pal-panel {
+          padding: 36px var(--px) 48px
+        }
+      }
+
+      .spk-rows {
+        max-width: 700px;
+        margin: 8px auto 0;
+        width: 100%
+      }
+
+      .spk-row {
+        border-top: 1px solid rgba(255,255,255,.1)
+      }
+
+      .spk-row:last-child {
+        border-bottom: 1px solid rgba(255,255,255,.1)
+      }
+
+      .spk-row-trigger {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        padding: 18px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left
+      }
+
+      .spk-row-name {
+        font-family: var(--ff-d);
+        font-size: clamp(14px, 1.5vw, 18px);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: #fff;
+        flex: 1;
+        transition: color .2s ease
+      }
+
+      .spk-row-icon {
+        font-size: 22px;
+        font-weight: 300;
+        color: rgba(255,255,255,.35);
+        flex-shrink: 0;
+        line-height: 1;
+        transition: transform .35s ease, color .2s ease
+      }
+
+      .spk-row.open .spk-row-icon {
+        transform: rotate(45deg);
+        color: var(--red)
+      }
+
+      .spk-row.open .spk-row-name {
+        color: var(--red)
+      }
+
+      .spk-row-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease
+      }
+
+      .spk-row.open .spk-row-body {
+        max-height: 100px
+      }
+
+      .spk-row-topic {
+        font-size: 14px;
+        color: rgba(255,255,255,.5);
+        line-height: 1.65;
+        padding-bottom: 18px;
+        text-align: left
+      }
+
+      @media(max-width:768px) {
+        .spk-photo-wrap { margin-top: 36px }
+        .spk-rows { margin-top: 0 }
+      }
+
+      /* legacy — kept for backwards compat */
       .spk-grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -1357,7 +1951,7 @@
         position: relative;
         z-index: 2;
         padding: var(--py) var(--px);
-        max-width: 920px
+        max-width: 800px
       }
 
       .cta-body h2 em {
@@ -1653,6 +2247,15 @@
           border-right: none;
           border-bottom: 1px solid var(--red-border)
         }
+
+        .btn-tl {
+          align-self: center !important;
+          justify-content: center;
+          font-size: 13px;
+          letter-spacing: 2px;
+          padding: 16px 48px;
+          white-space: nowrap
+        }
       }
 
       @media(max-width:768px) {
@@ -1671,6 +2274,24 @@
 
         .ic {
           aspect-ratio: 16/9
+        }
+
+        .ic-ov {
+          padding: 32px 16px 16px
+        }
+
+        .ic-desc {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          margin-top: 0;
+          transition: max-height .35s ease, opacity .3s ease, margin-top .3s ease
+        }
+
+        .ic.open .ic-desc {
+          max-height: 80px;
+          opacity: 1;
+          margin-top: 6px
         }
 
         .pilots {
@@ -1741,19 +2362,88 @@
       /* ── ACTIVE EXPERIENCE ── */
       #activexp { text-align: center }
       .activexp-intro { max-width: 600px; margin: 0 auto }
-      .activexp-vids {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(16px, 2.5vw, 28px);
-        margin: 60px auto 0;
-        max-width: 940px;
+
+      .tb-list {
+        max-width: 680px;
+        margin: 52px auto 0;
+        width: 100%;
         text-align: left
       }
 
-      .activexp-vids > div {
-        background: #0a0a0a;
-        border: 1px solid rgba(255, 255, 255, .07);
-        overflow: hidden
+      .tb-item {
+        border-top: 1px solid rgba(255,255,255,.1)
+      }
+
+      .tb-item:last-child {
+        border-bottom: 1px solid rgba(255,255,255,.1)
+      }
+
+      .tb-trigger {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        width: 100%;
+        padding: 20px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left
+      }
+
+      .tb-num {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--red);
+        letter-spacing: 2px;
+        flex-shrink: 0;
+        width: 24px
+      }
+
+      .tb-label {
+        font-family: var(--ff-d);
+        font-size: clamp(15px, 1.8vw, 20px);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: #fff;
+        flex: 1;
+        transition: color .2s ease
+      }
+
+      .tb-icon {
+        font-size: 22px;
+        font-weight: 300;
+        color: rgba(255,255,255,.35);
+        flex-shrink: 0;
+        line-height: 1;
+        transition: transform .35s ease, color .2s ease
+      }
+
+      .tb-item.open .tb-icon {
+        transform: rotate(45deg);
+        color: var(--red)
+      }
+
+      .tb-item.open .tb-label {
+        color: var(--red)
+      }
+
+      .tb-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease
+      }
+
+      .tb-item.open .tb-body {
+        max-height: 160px
+      }
+
+      .tb-desc {
+        color: rgba(255,255,255,.5);
+        font-size: 14px;
+        line-height: 1.65;
+        padding: 0 0 22px 42px
       }
 
       @media(max-width:1100px) {
@@ -1764,7 +2454,7 @@
       @media(max-width:768px) {
         #trucklounge { display: block }
         #trucklounge .team-img { height: 300px }
-        .activexp-vids { grid-template-columns: 1fr; max-width: 100% }
+        .tb-list { margin-top: 36px }
         .sb { padding: 40px 20px }
       }
 
@@ -1848,15 +2538,27 @@
 
       .sr-sub {
         font-family: var(--ff-b);
-        font-size: clamp(11px, 1.1vw, 14px);
-        font-weight: 300;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.28);
+        font-size: clamp(13px, 1.1vw, 15px);
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
         margin-top: 16px;
+        max-width: 560px;
         opacity: 0;
         transform: translateY(12px);
         transition: opacity 1.2s ease 0.25s, transform 1.2s ease 0.25s;
+      }
+
+      @media(max-width:768px) {
+        #showroom {
+          padding: clamp(52px, 10vw, 80px) var(--px)
+        }
+
+        .sr-headlines {
+          margin-bottom: 32px
+        }
       }
 
       #showroom.sr-in .sr-sub {
@@ -2082,6 +2784,37 @@
         .re-grid { grid-template-columns: 1fr }
       }
 
+      /* ── MOBILE GLOBAL SPACING ── */
+      @media(max-width:768px) {
+        :root { --py: 52px }
+
+        #incentivo {
+          grid-template-columns: 1fr;
+          min-height: unset
+        }
+
+        .inc-panel {
+          padding: 48px var(--px)
+        }
+
+        .inc-img {
+          padding: 24px var(--px) 40px
+        }
+
+        .inc-item {
+          font-size: clamp(14px, 4vw, 18px)
+        }
+
+        .marcas-wrap {
+          margin-top: 32px;
+          padding-top: 0
+        }
+
+        .spk-photo-wrap {
+          margin-top: 28px
+        }
+      }
+
     </style>
   </head>
 
@@ -2128,11 +2861,14 @@
       <div class="sobre-hd">
         <div class="r">
           <div class="red-line"></div>
-          <h2 class="hl hl-lg">Um ecossistema<br>completo</h2>
+          <div class="label" style="margin-bottom:10px">Quem somos</div>
+          <h2 class="hl hl-md">Sobre a<span class="sobre-br"> </span>Scuderia Bandeiras</h2>
         </div>
-        <p class="body-lg r d1">A Scuderia Bandeiras é um ecossistema onde empresas acessam o automobilismo como
-          ferramenta de negócio. Uma equipe de corrida com estrutura completa para empresas que entendem que o ambiente
-          é importante. Aqui, marca, relacionamento e performance acontecem no mesmo ambiente.</p>
+        <div class="r d1">
+          <p class="body-lg" style="margin-bottom:16px">Com sede em Votorantim (SP), a Scuderia Bandeiras é o maior ecossistema do automobilismo nacional. A estrutura da equipe combina tecnologia e sustentabilidade, sendo um hub de negócios, relacionamento estratégico e experiências exclusivas que usa o automobilismo como plataforma de conexão entre marcas, empresas e clientes.</p>
+          <p class="body-lg" style="margin-bottom:16px">Fundada pelo piloto e empresário Átila Abreu, a equipe une performance esportiva de alto nível à inovação empresarial, criando oportunidades únicas para patrocinadores e parceiros.</p>
+          <p class="body-lg">Em 2026, o time conta com Átila Abreu, Rubens Barrichello, Nelsinho Piquet e Rafael Suzuki, capitaneados pelo chefe de equipe Christian Fittipaldi e com toda a experiência do embaixador Ingo Hoffmann.</p>
+        </div>
       </div>
       <div class="g3 r d2">
         <div class="ic">
@@ -2168,49 +2904,47 @@
       <div class="aut-hd">
         <div class="red-line red-line-c r"></div>
         <div class="label r">As pessoas por trás da pista</div>
-        <h2 class="hl hl-lg r d1" style="margin-top:10px">Nomes que o mercado respeita</h2>
-        <p class="body-lg r d2" style="max-width:480px;margin:0 auto">Histórias que inspiram dentro e fora da pista.</p>
-        <h3 class="hl hl-md r d3" style="margin-top:22px">Autoridade não se constrói.<br><em style="font-style:normal;color:var(--red)">Se prova.</em></h3>
-        <p class="body-lg r d4" style="max-width:560px;margin:10px auto 0">Nomes que performaram no mais alto nível do automobilismo mundial e hoje fazem parte desse ecossistema.</p>
+        <h2 class="hl hl-lg r d1" style="margin-top:10px">Nomes que o mercado respeita.<br>Histórias que inspiram<br>dentro e fora da pista.</h2>
+        <p class="body-lg r d2 aut-sub" style="max-width:520px;margin:0 auto">Pilotos que operaram no mais alto nível do automobilismo mundial e hoje fazem parte desse ecossistema.</p>
       </div>
       <div class="pilots r d1">
         <div class="pc">
-          <img src="Imagens/nosso time/Christian fittipaldi.png" alt="Christian Fittipaldi" loading="lazy">
+          <img src="Imagens/pilotos-premium/cristian-fitipalidi.jpg" alt="Christian Fittipaldi" loading="lazy">
           <div class="pc-ov">
             <div class="pc-name">Christian<br>Fittipaldi</div>
             <div class="pc-desc">Chefe de equipe. Legado mundial no automobilismo.</div>
           </div>
         </div>
         <div class="pc">
-          <img src="Imagens/nosso time/atila abreu.png" alt="Átila Abreu" loading="lazy">
-          <div class="pc-ov">
-            <div class="pc-name">Átila<br>Abreu</div>
-            <div class="pc-desc">Piloto, empreendedor e comunicador.</div>
-          </div>
-        </div>
-        <div class="pc">
-          <img src="Imagens/nosso time/image 4.png" alt="Rubens Barrichello" loading="lazy">
+          <img src="Imagens/pilotos-premium/rubens-barrichelo.jpg" alt="Rubens Barrichello" loading="lazy">
           <div class="pc-ov">
             <div class="pc-name">Rubens<br>Barrichello</div>
             <div class="pc-desc">Lenda da F1. Referência de superação.</div>
           </div>
         </div>
         <div class="pc">
-          <img src="Imagens/nosso time/image 5.png" alt="Nelson Piquet Jr." loading="lazy">
-          <div class="pc-ov">
-            <div class="pc-name">Nelson<br>Piquet Jr.</div>
-            <div class="pc-desc">Personalidade mundial com audiência real.</div>
-          </div>
-        </div>
-        <div class="pc">
-          <img src="Imagens/nosso time/image 6.png" alt="Ingo Hoffmann" loading="lazy">
+          <img src="Imagens/pilotos-premium/ingo-hoffman.jpg" alt="Ingo Hoffmann" loading="lazy">
           <div class="pc-ov">
             <div class="pc-name">Ingo<br>Hoffmann</div>
             <div class="pc-desc">12x campeão Stock Car. Nosso embaixador.</div>
           </div>
         </div>
         <div class="pc">
-          <img src="Imagens/pilotos/RAFAEL SUZUKI.png" alt="Rafael Suzuki" loading="lazy">
+          <img src="Imagens/pilotos-premium/atila-abreu.jpg" alt="Átila Abreu" loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Átila<br>Abreu</div>
+            <div class="pc-desc">Piloto, empreendedor e comunicador.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/pilotos-premium/nelson-piquet.jpg" alt="Nelson Piquet Jr." loading="lazy">
+          <div class="pc-ov">
+            <div class="pc-name">Nelson<br>Piquet Jr.</div>
+            <div class="pc-desc">Personalidade mundial com audiência real.</div>
+          </div>
+        </div>
+        <div class="pc">
+          <img src="Imagens/pilotos-premium/rafael-suzuki.jpg" alt="Rafael Suzuki" loading="lazy">
           <div class="pc-ov">
             <div class="pc-name">Rafael<br>Suzuki</div>
             <div class="pc-desc">Um dos grandes expoentes da geração atual.</div>
@@ -2226,39 +2960,45 @@
     <section id="estrutura" class="sec sec-dark">
       <div style="margin-bottom:56px" class="r">
         <div class="red-line"></div>
-        <div class="label" style="margin-bottom:10px">O Complexo</div>
+        <div class="label" style="margin-bottom:10px">Nosso Complexo</div>
         <h2 class="hl hl-lg">Tudo no mesmo lugar<br>onde a corrida acontece</h2>
-        <p class="body-lg" style="margin-top:18px;max-width:640px">Onde a operação acontece e sua marca ganha velocidade. Um complexo pensado para receber empresas que entendem o valor do ambiente, experiência e posicionamento.</p>
+        <p class="body-lg" style="margin-top:18px;max-width:640px">Um hub pensado para receber empresas que entendem o valor do ambiente, da experiência e do posicionamento. Aqui a operação acontece e sua marca ganha velocidade.</p>
       </div>
       <div class="g6 r d1">
         <div class="ec"><img src="Imagens/estrutura/garage by vonder.png" alt="Garagem by Vonder" loading="lazy">
           <div class="ec-ov">
-            <div class="ec-name">Garagem by Vonder · O escritório mais instagramável do grid</div>
+            <div class="ec-name">Garagem by Vonder</div>
+            <p class="ec-desc">O escritório mais instagramável do grid</p>
           </div>
         </div>
         <div class="ec"><img src="Imagens/estrutura/auditorio.png" alt="Auditório" loading="lazy">
           <div class="ec-ov">
-            <div class="ec-name">Auditório · até 300 pessoas · Telão de 6m, lounge e camarim</div>
+            <div class="ec-name">Auditório</div>
+            <p class="ec-desc">Até 300 pessoas. Telão de 6m, lounge e camarim</p>
           </div>
         </div>
         <div class="ec"><img src="Imagens/estrutura/coworking.png" alt="Coworking" loading="lazy">
           <div class="ec-ov">
-            <div class="ec-name">Coworking · 350m², salas temáticas, cabines e café networking</div>
+            <div class="ec-name">Coworking</div>
+            <p class="ec-desc">350m², salas temáticas, cabines e café networking</p>
           </div>
         </div>
         <div class="ec"><img src="Imagens/estrutura/area multiuso.png" alt="Arena Multiuso" loading="lazy">
           <div class="ec-ov">
-            <div class="ec-name">Arena Multiuso · 310m² com iluminação personalizada</div>
+            <div class="ec-name">Arena Multiuso</div>
+            <p class="ec-desc">310m² com iluminação personalizada</p>
           </div>
         </div>
         <div class="ec"><img src="Imagens/estrutura/gastronom,ia.png" alt="Gastronomia" loading="lazy">
           <div class="ec-ov">
-            <div class="ec-name">Gastronomia · Pashonapaná, Casa Bauducco e Oakberry</div>
+            <div class="ec-name">Gastronomia</div>
+            <p class="ec-desc">Panapaná, Casa Bauducco e Oakberry</p>
           </div>
         </div>
         <div class="ec"><img src="Imagens/estrutura/acesso aereo.png" alt="Acesso Aéreo" loading="lazy">
           <div class="ec-ov">
-            <div class="ec-name">Acesso Aéreo · Helicóptero próprio e heliponto ICAO para associados</div>
+            <div class="ec-name">Acesso Aéreo</div>
+            <p class="ec-desc">Helicóptero próprio e heliponto ICAO para associados</p>
           </div>
         </div>
       </div>
@@ -2272,8 +3012,7 @@
       </div>
       <div class="num-body">
         <div class="label r">A maior categoria do Brasil</div>
-        <h2 class="hl hl-lg r d1" style="margin-top:10px">Sua marca dentro da maior<br>audiência do automobilismo
-          nacional</h2>
+        <h2 class="hl hl-lg r d1" style="margin-top:10px">Sua marca dentro<br>da <span style="color:var(--red)">maior audiência</span><br class="desk-br"><span class="mob-br"> </span>do automobilismo nacional</h2>
         <div class="stats">
           <div class="sb r"><span class="sn" data-count="200" data-suffix="mil+">—</span>
             <div class="sl-t">ingressos vendidos por temporada</div>
@@ -2304,17 +3043,13 @@
         <div>
           <div class="red-line r"></div>
           <div class="label r" style="margin-bottom:10px">Onde sua marca aparece</div>
-          <h2 class="hl hl-lg r d1">Sua marca onde<br>o Brasil<br>está sendo visto</h2>
-          <p class="body-lg r d2" style="margin-top:18px">Todas as corridas na Band TV aberta. +146h de transmissão por
-            temporada. Além de Band Sports, YouTube, Motorsport.com, Twitch e Facebook Watch.</p>
-          <p class="body-lg r d3" style="margin-top:12px;font-style:italic">Aqui não é nicho. É audiência, visibilidade
-            e presença nacional.</p>
+          <h2 class="hl hl-lg r d1">Sua marca<br>onde o Brasil<br>está assistindo</h2>
+          <p class="body-lg r d2" style="margin-top:18px">Todas as corridas na Band, TV aberta. Mais de 146h de transmissão por temporada. Band Sports, YouTube, Motorsport.com, Twitch e Facebook Watch.</p>
           <div class="vis-stats">
             <div class="vs r d2"><span class="vs-num">146h</span><span class="vs-desc">de transmissão ao vivo por temporada</span></div>
             <div class="vs r d3"><span class="vs-num">2,1 mi</span><span class="vs-desc">seguidores no Instagram dos pilotos</span></div>
             <div class="vs r d4"><span class="vs-num">20 mi</span><span class="vs-desc">vídeos</span></div>
           </div>
-          <p class="r d4" style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-top:8px;line-height:1.8">E no digital dos pilotos: Fittipaldi · Átila Abreu · Piquet Jr. · Barrichello · Suzuki · Ingo Hoffmann<br>Dados de março/2026.</p>
           <div class="platforms r d5">
             <div class="ptag">Band TV</div>
             <div class="ptag">Band Sports</div>
@@ -2325,21 +3060,118 @@
           </div>
         </div>
       </div>
+
+      <!-- ── DIGITAL DOS PILOTOS ── -->
+      <div class="dig-block">
+        <div class="dig-header">
+          <p class="label">No digital dos pilotos</p>
+          <h3 class="dig-title">Audiência real, além da pista</h3>
+          <div class="dig-macro">
+            <div class="dig-stat">
+              <span class="dig-stat-num">2,1 MI</span>
+              <span class="dig-stat-label">seguidores no Instagram</span>
+            </div>
+            <div class="dig-stat">
+              <span class="dig-stat-num">20 MI</span>
+              <span class="dig-stat-label">visualizações em vídeo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dig-pilots">
+
+          <!-- Christian Fittipaldi -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/fittipaldi.jpg" alt="Christian Fittipaldi">
+            </div>
+            <span class="dig-name">Christian<br>Fittipaldi</span>
+            <a href="https://www.instagram.com/fittigram/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- Rubens Barrichello -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/rubens-barrichelo.jpg" alt="Rubens Barrichello">
+            </div>
+            <span class="dig-name">Rubens<br>Barrichello</span>
+            <a href="https://www.instagram.com/rubarrichello/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- Ingo Hoffmann -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/Ingo-Hoffmann.jpg" alt="Ingo Hoffmann">
+            </div>
+            <span class="dig-name">Ingo<br>Hoffmann</span>
+            <a href="https://www.instagram.com/ingohoffmann/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- Átila Abreu -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/atila-abreu.jpg" alt="Átila Abreu">
+            </div>
+            <span class="dig-name">Átila<br>Abreu</span>
+            <a href="https://www.instagram.com/atilaabreu51/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- Nelson Piquet Jr. -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/nelson-piquet.jpg" alt="Nelson Piquet Jr.">
+            </div>
+            <span class="dig-name">Nelsinho<br>Piquet</span>
+            <a href="https://www.instagram.com/piquetjr/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- Rafael Suzuki -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/rafael-suzuki.jpg" alt="Rafael Suzuki">
+            </div>
+            <span class="dig-name">Rafael<br>Suzuki</span>
+            <a href="https://www.instagram.com/rafaelsuzuki/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+        </div><!-- /dig-pilots -->
+
+        <p class="dig-footnote">Dados de março/2026.</p>
+      </div><!-- /dig-block -->
+
     </section>
 
     <!-- ═══════════════════ TRUCK LOUNGE ═══════════════════ -->
     <section id="trucklounge">
       <div class="team-panel tl-panel">
         <div class="red-line r"></div>
-        <h2 class="hl hl-lg r d1">Onde relacionamento<br>vira negócio</h2>
-        <p class="body-lg r d2" style="margin-top:18px;font-style:italic;color:rgba(255,255,255,.5)">Enquanto a corrida acontece na pista, decisões acontecem aqui.</p>
-        <p class="body-lg r d3" style="margin-top:20px">O Truck Lounge é o espaço exclusivo da Scuderia Bandeiras dentro do autódromo. Criado para empresas que entendem o valor do ambiente, ele transforma presença em conexão real.</p>
-        <p class="body-lg r d3" style="margin-top:12px">Aqui, seus convidados não apenas assistem ao evento. Eles vivem a experiência com acesso, conforto e proximidade da operação.</p>
+        <h2 class="hl hl-md r d1">Onde relacionamento<br>vira negócio</h2>
+        <p class="body-lg r d2" style="margin-top:28px;font-style:italic;color:rgba(255,255,255,.5)">Enquanto a corrida acontece na pista, decisões acontecem aqui.</p>
+        <p class="body-lg r d3" style="margin-top:20px">O produto mais exclusivo do automobilismo brasileiro. Um espaço próprio da Scuderia, com estrutura premium, gastronomia completa e ativações de marca. Nenhuma outra equipe do país oferece algo parecido.</p>
+        <p class="body-lg r d3" style="margin-top:12px">Sua marca é a anfitriã. Seus convidados vivem a experiência com acesso, conforto e proximidade real da operação.</p>
         <ul class="exp-list r d4" style="margin-top:4px">
           <li class="ei">É onde conversas ganham contexto</li>
           <li class="ei">Onde relações evoluem para oportunidades</li>
         </ul>
-        <button class="btn r d5" style="margin-top:28px;align-self:flex-start" onclick="openModal()">Quero levar minha empresa <span class="btn-arr">→</span></button>
+        <button class="btn r d5 btn-tl" style="margin-top:28px;align-self:flex-start" onclick="openModal()">Quero levar minha empresa <span class="btn-arr">→</span></button>
       </div>
       <div class="tl-video">
         <img src="Imagens/experiencia do evento/Truck Lounge.png" alt="Truck Lounge"
@@ -2365,14 +3197,33 @@
       <div class="exp-panel">
         <div class="red-line r"></div>
         <div class="label r d1">No dia da corrida</div>
-        <h2 class="hl hl-lg r d2" style="margin-top:10px">Experiências<br>que ficam<br>na memória</h2>
-        <p class="body-lg r d2" style="margin-top:16px">Seu cliente no paddock. Sua marca fazendo parte da experiência. Ambientes onde relacionamento vira percepção de valor — e percepção vira negócio.</p>
-        <ul class="exp-list">
-          <li class="ei r d1">Box — A experiência mais próxima da corrida</li>
-          <li class="ei r d2">Camarotes — Vista privilegiada, ambiente premium</li>
-          <li class="ei r d3">Truck Lounge — Sua marca como anfitriã</li>
-          <li class="ei r d4">Visitação aos Boxes — Bastidores e operação real</li>
-          <li class="ei r d5">Arquibancada — A energia da pista do jeito mais real</li>
+        <h2 class="hl hl-lg r d2" style="margin-top:10px">Seu cliente no paddock.<br>Sua marca fazendo parte<br>da experiência.</h2>
+        <p class="body-lg r d2" style="margin-top:16px">Ambientes onde relacionamento vira percepção de valor. Enquanto outras marcas aparecem em banner, a sua fica gravada na memória de quem importa.</p>
+        <ul class="exp-list exp-acc">
+          <li class="ei ea r d1">
+            <button class="ea-trigger"><span class="ea-title">Box</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">Dentro do box, ao lado da equipe, acompanhando cada decisão em tempo real. A experiência mais próxima que seu cliente pode ter de uma corrida real.</p></div>
+          </li>
+          <li class="ei ea r d2">
+            <button class="ea-trigger"><span class="ea-title">Camarote</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">Vista privilegiada da pista. Ambiente premium para receber, conectar e fechar.</p></div>
+          </li>
+          <li class="ei ea r d3">
+            <button class="ea-trigger"><span class="ea-title">Truck Lounge</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">O produto mais exclusivo do automobilismo brasileiro. Um espaço próprio da Scuderia, com estrutura premium, gastronomia completa e ativações de marca. Nenhuma outra equipe do país oferece algo parecido. Sua marca é a anfitriã.</p></div>
+          </li>
+          <li class="ei ea r d4">
+            <button class="ea-trigger"><span class="ea-title">Visitação aos Boxes</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">Contato direto com pilotos e a operação real da equipe. Um momento que transforma percepção em conexão.</p></div>
+          </li>
+          <li class="ei ea r d5">
+            <button class="ea-trigger"><span class="ea-title">Arquibancada</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">A energia da pista do jeito mais real que existe.</p></div>
+          </li>
+          <li class="ei ea r d5">
+            <button class="ea-trigger"><span class="ea-title">Paddock Collection ou Race Collection</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">Miniaturas numeradas do carro, bonés, polos e camisetas oficiais da equipe. Itens que carregam a história da temporada e chegam no escritório, na casa e no dia a dia de quem recebe. Quem tem um item oficial da Scuderia Bandeiras não esquece de onde veio.</p></div>
+          </li>
         </ul>
       </div>
     </section>
@@ -2383,8 +3234,8 @@
       <div class="sr-content">
         <p class="sr-micro">UMA EXPERIÊNCIA QUE CONTINUA EM MOVIMENTO</p>
         <div class="sr-headlines">
-          <h2 class="sr-title">Sua marca. <em>Seu piloto.</em> Sua corrida.</h2>
-          <p class="sr-sub">Escolha sua cota &mdash; o espaço no carro</p>
+          <h2 class="sr-title">Seu logo. <em>Seu piloto.</em> Sua corrida.</h2>
+          <p class="sr-sub">A cada etapa, seu logo passa a 300km/h nas câmeras da Band. No macacão, no carro, nos boxes — ao longo das 12 etapas da temporada.</p>
         </div>
         <div class="sr-stage" id="srStage">
           <div class="sr-glow"></div>
@@ -2426,16 +3277,15 @@
       <div class="team-panel">
         <div class="red-line r"></div>
         <div class="label r d1">A Experiência</div>
-        <h2 class="hl hl-lg r d2" style="margin-top:10px">A única no Brasil onde<br>sua equipe acelera<br>numa corrida real.</h2>
-        <p class="body-lg r d2" style="margin-top:18px">Dividindo a pista com pilotos profissionais. Aqui sua equipe entra na pista, enfrenta pressão real e sai diferente.</p>
+        <h2 class="hl hl-sm r d2" style="margin-top:10px">A única no Brasil onde<br>sua equipe acelera<br>em uma corrida real,<br>dividindo a pista<br>com pilotos profissionais.</h2>
         <div class="re-grid r d3">
-          <div class="re-card"><span class="re-num">01</span><div class="re-title">Donos de negócio</div><p class="re-desc">Se você passa a semana resolvendo tudo, precisa de algo que recarregue energia e devolva clareza. Um dia para sair da rotina e voltar mais refinado.</p></div>
-          <div class="re-card"><span class="re-num">02</span><div class="re-title">Líderes</div><p class="re-desc">Seu time aprende mais com o que você faz do que com o que você fala. Na pista, pressão revela postura. E isso volta com você na segunda-feira.</p></div>
-          <div class="re-card"><span class="re-num">03</span><div class="re-title">Times comerciais</div><p class="re-desc">Chega de motivação em slide. Aqui tem adrenalina, decisão rápida e competitividade real. O que performa na pista também performa nas vendas.</p></div>
-          <div class="re-card"><span class="re-num">04</span><div class="re-title">Alta performance</div><p class="re-desc">Se vocês já entregam resultados, o próximo passo é fortalecer a conexão e a confiança. Experiências marcantes criam times mais fortes.</p></div>
+          <div class="re-card"><span class="re-num">01</span><div class="re-title">Donos de negócio</div><p class="re-desc">Um dia para sair da rotina, recarregar e voltar com a cabeça mais clara.</p></div>
+          <div class="re-card"><span class="re-num">02</span><div class="re-title">Líderes</div><p class="re-desc">Na pista, pressão revela postura. O que acontece aqui volta com você na segunda-feira.</p></div>
+          <div class="re-card"><span class="re-num">03</span><div class="re-title">Times comerciais</div><p class="re-desc">Adrenalina, decisão rápida e competitividade real. O que performa na pista também performa nas vendas.</p></div>
+          <div class="re-card"><span class="re-num">04</span><div class="re-title">Alta performance</div><p class="re-desc">Experiências marcantes criam times mais fortes. O próximo passo é a pista.</p></div>
         </div>
         <p class="r d4" style="margin-top:28px;font-family:var(--ff-d);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">28 de maio · Vagas limitadas · Para empresas e equipes corporativas</p>
-        <button class="btn r d5" style="margin-top:20px;align-self:flex-start" onclick="openModal()">Quero participar <span class="btn-arr">→</span></button>
+        <button class="btn btn-tl r d5" style="margin-top:20px;align-self:flex-start" onclick="openModal()">Quero participar <span class="btn-arr">→</span></button>
       </div>
       <div class="team-img">
         <img src="Imagens/race experience/RACE EXPERIENCE.png" alt="Race Experience" loading="lazy">
@@ -2448,90 +3298,116 @@
       <div class="activexp-intro">
         <div class="red-line red-line-c r"></div>
         <div class="label r" style="margin-bottom:10px">Team Building</div>
-        <h2 class="hl hl-md r d1" style="margin-top:0">Aqui não é integração.<br>É performance sob pressão.</h2>
-        <p class="body-lg r d2" style="margin-top:16px">Adrenalina de verdade, pilotos profissionais ao lado e pressão que revela quem é cada pessoa. Uma experiência que fica na memória e muda à medida que as pessoas trabalham juntas.</p>
+        <h2 class="hl hl-md r d1" style="margin-top:0">Aqui não é integração.<br>É performance<br>sob pressão.</h2>
+        <p class="body-lg r d2" style="margin-top:16px">Adrenalina de verdade, pilotos profissionais ao lado e pressão que revela quem é cada pessoa. Uma vivência que fortalece times, gera memória e muda a forma como as pessoas trabalham juntas.</p>
       </div>
 
-      <!-- vídeos lado a lado, tamanho controlado -->
-      <div class="activexp-vids r d3">
-        <div>
-          <div class="vid-wrap">
-            <div class="vid-facade" data-id="GprQ3YQdKL8">
-              <img src="https://img.youtube.com/vi/GprQ3YQdKL8/maxresdefault.jpg" alt="Scuderia Challenge"
-                loading="lazy" onerror="this.src='https://img.youtube.com/vi/GprQ3YQdKL8/hqdefault.jpg'">
-              <div class="vid-play"></div>
-            </div>
+      <!-- accordion de atividades -->
+      <div class="tb-list r d3">
+        <div class="tb-item">
+          <button class="tb-trigger" aria-expanded="false">
+            <span class="tb-num">01</span>
+            <span class="tb-label">Volta Rápida</span>
+            <span class="tb-icon">+</span>
+          </button>
+          <div class="tb-body">
+            <p class="tb-desc">Ingo Hoffmann conduz uma volta no autódromo. Velocidade e confiança ao lado de quem já operou no limite.</p>
           </div>
-          <div class="vid-label">Scuderia Challenge</div>
         </div>
-        <div>
-          <div class="vid-wrap">
-            <div class="vid-facade" data-id="YZdJI-F4YpI">
-              <img src="https://img.youtube.com/vi/YZdJI-F4YpI/maxresdefault.jpg" alt="Pit Stop Challenge"
-                loading="lazy" onerror="this.src='https://img.youtube.com/vi/YZdJI-F4YpI/hqdefault.jpg'">
-              <div class="vid-play"></div>
-            </div>
+        <div class="tb-item">
+          <button class="tb-trigger" aria-expanded="false">
+            <span class="tb-num">02</span>
+            <span class="tb-label">Pit-Stop Challenge</span>
+            <span class="tb-icon">+</span>
+          </button>
+          <div class="tb-body">
+            <p class="tb-desc">Trabalho em equipe com um carro da Stock Car. Cada segundo conta.</p>
           </div>
-          <div class="vid-label">Pit Stop Challenge</div>
+        </div>
+        <div class="tb-item">
+          <button class="tb-trigger" aria-expanded="false">
+            <span class="tb-num">03</span>
+            <span class="tb-label">Kart Challenge</span>
+            <span class="tb-icon">+</span>
+          </button>
+          <div class="tb-body">
+            <p class="tb-desc">Competição real. Memória garantida.</p>
+          </div>
+        </div>
+        <div class="tb-item">
+          <button class="tb-trigger" aria-expanded="false">
+            <span class="tb-num">04</span>
+            <span class="tb-label">Crazy Cart</span>
+            <span class="tb-icon">+</span>
+          </button>
+          <div class="tb-body">
+            <p class="tb-desc">Carrinhos elétricos radicais em arena exclusiva.</p>
+          </div>
+        </div>
+        <div class="tb-item">
+          <button class="tb-trigger" aria-expanded="false">
+            <span class="tb-num">05</span>
+            <span class="tb-label">Drift Arena</span>
+            <span class="tb-icon">+</span>
+          </button>
+          <div class="tb-body">
+            <p class="tb-desc">3.285m² de adrenalina pura.</p>
+          </div>
+        </div>
+        <div class="tb-item">
+          <button class="tb-trigger" aria-expanded="false">
+            <span class="tb-num">06</span>
+            <span class="tb-label">Show Car</span>
+            <span class="tb-icon">+</span>
+          </button>
+          <div class="tb-body">
+            <p class="tb-desc">Exposição itinerante que encanta onde passa.</p>
+          </div>
         </div>
       </div>
 
       <!-- CTA -->
       <div class="r d4" style="margin-top:52px">
-        <button class="btn" onclick="openModal()">Quero levar minha equipe para essa experiência <span class="btn-arr">→</span></button>
+        <button class="btn btn-2l" onclick="openModal()">Quero levar minha equipe<br>para essa experiência <span class="btn-arr">→</span></button>
       </div>
 
     </section>
 
     <!-- ═══════════════════ PALESTRAS ═══════════════════ -->
-    <section id="palestras" class="sec sec-deep">
-      <div class="red-line red-line-c r"></div>
-      <div class="label r d1" style="margin-bottom:10px">Histórias que movem</div>
-      <h2 class="hl hl-lg r d1">Não é palestra.<br>É vivência traduzida<br>em decisão.</h2>
-      <p class="body-lg r d2" style="max-width:560px;margin:0 auto">Pilotos que operaram no limite, sob pressão real,
-        com exposição total e resultado imediato. O que eles trazem não é teoria — é repertório aplicável para quem
-        também precisa decidir todos os dias.</p>
-      <div class="spk-grid r d2">
-        <div class="spk-card">
-          <img src="Imagens/pilotos/Christian fittipaldi.png" alt="Christian Fittipaldi" loading="lazy">
-          <div class="spk-card-ov">
-            <div class="spk-card-name">Christian<br>Fittipaldi</div>
-            <div class="spk-card-topic">Liderança sob pressão, resiliência e construção de legado</div>
+    <section id="palestras" class="sec-deep">
+      <div class="pal-img">
+        <img src="Imagens/pilotos-premium/pilotosfinal.jpg" alt="Pilotos Scuderia Bandeiras" loading="lazy">
+      </div>
+      <div class="pal-panel">
+        <div class="red-line r"></div>
+        <div class="label r d1" style="margin-bottom:10px">Vivências</div>
+        <h2 class="hl hl-lg r d1" style="margin-top:0">Não é palestra.<br>É vivência<br>traduzida em decisão.</h2>
+        <p class="body-lg r d2" style="margin-top:14px">Pilotos que viveram o que ensinam e traduzem essa vivência em algo aplicável para quem também decide todos os dias.</p>
+        <p class="body-lg r d2" style="margin-top:10px">Repertório de quem operou no limite, sob pressão real, com exposição total e resultado imediato.</p>
+        <div class="spk-rows r d3">
+          <div class="spk-row">
+            <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Christian Fittipaldi</span><span class="spk-row-icon">+</span></button>
+            <div class="spk-row-body"><p class="spk-row-topic">Liderança sob pressão, resiliência e construção de legado</p></div>
           </div>
-        </div>
-        <div class="spk-card">
-          <img src="Imagens/pilotos/image 4.png" alt="Rubens Barrichello" loading="lazy">
-          <div class="spk-card-ov">
-            <div class="spk-card-name">Rubens<br>Barrichello</div>
-            <div class="spk-card-topic">Carreira, reinvenção e longevidade em alta performance</div>
+          <div class="spk-row">
+            <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Rubens Barrichello</span><span class="spk-row-icon">+</span></button>
+            <div class="spk-row-body"><p class="spk-row-topic">Carreira, reinvenção e longevidade em alta performance</p></div>
           </div>
-        </div>
-        <div class="spk-card">
-          <img src="Imagens/pilotos/atila abreu.png" alt="Átila Abreu" loading="lazy">
-          <div class="spk-card-ov">
-            <div class="spk-card-name">Átila<br>Abreu</div>
-            <div class="spk-card-topic">Mentalidade de performance, negócios e tomada de decisão</div>
+          <div class="spk-row">
+            <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Átila Abreu</span><span class="spk-row-icon">+</span></button>
+            <div class="spk-row-body"><p class="spk-row-topic">Mentalidade de performance, negócios e tomada de decisão</p></div>
           </div>
-        </div>
-        <div class="spk-card">
-          <img src="Imagens/pilotos/image 5.png" alt="Nelson Piquet Jr." loading="lazy">
-          <div class="spk-card-ov">
-            <div class="spk-card-name">Nelson<br>Piquet Jr.</div>
-            <div class="spk-card-topic">Trajetória, escolhas e vida no automobilismo mundial</div>
+          <div class="spk-row">
+            <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Nelson Piquet Jr.</span><span class="spk-row-icon">+</span></button>
+            <div class="spk-row-body"><p class="spk-row-topic">Trajetória, escolhas e vida no automobilismo mundial</p></div>
           </div>
-        </div>
-        <div class="spk-card">
-          <img src="Imagens/pilotos/image 6.png" alt="Ingo Hoffmann" loading="lazy">
-          <div class="spk-card-ov">
-            <div class="spk-card-name">Ingo<br>Hoffmann</div>
-            <div class="spk-card-topic">12 títulos, muitas histórias e muitos casos</div>
+          <div class="spk-row">
+            <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Rafael Suzuki</span><span class="spk-row-icon">+</span></button>
+            <div class="spk-row-body"><p class="spk-row-topic">Consistência, estratégia e performance em alta competitividade</p></div>
           </div>
-        </div>
-        <div class="spk-card">
-          <img src="Imagens/pilotos/RAFAEL SUZUKI.png" alt="Rafael Suzuki" loading="lazy">
-          <div class="spk-card-ov">
-            <div class="spk-card-name">Rafael<br>Suzuki</div>
-            <div class="spk-card-topic">Consistência, estratégia e performance em ambiente de alta competitividade</div>
+          <div class="spk-row">
+            <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Ingo Hoffmann</span><span class="spk-row-icon">+</span></button>
+            <div class="spk-row-body"><p class="spk-row-topic">12 títulos, décadas de história e casos que só quem esteve lá pode contar</p></div>
           </div>
         </div>
       </div>
@@ -2542,8 +3418,8 @@
       <div class="inc-panel">
         <div class="red-line r"></div>
         <div class="label r" style="margin-bottom:10px">Seu patrocínio pode custar zero</div>
-        <h2 class="hl hl-lg r d1">Sua marca na Stock Car<br>usando imposto que você<br>já pagaria de qualquer forma.</h2>
-        <p class="body-lg r d2" style="margin-top:18px">Muitas empresas deixam esse benefício passar por desconhecimento. Empresas que apuram IR pelo Lucro Real podem deduzir 100% do valor investido, dentro do teto permitido por lei.</p>
+        <h2 class="hl hl-sm r d1">Sua marca na Stock Car<br>usando imposto que você<br>já pagaria de qualquer forma.</h2>
+        <p class="body-lg r d2" style="margin-top:18px">Empresas que apuram IR pelo Lucro Real podem deduzir 100% do valor investido, dentro do teto permitido por lei. Muitas deixam esse benefício passar por desconhecimento.</p>
         <ul class="inc-list">
           <li class="inc-item r d1"><span class="chk">✓</span>100% dedutível do Imposto de Renda (Lucro Real)</li>
           <li class="inc-item r d2"><span class="chk">✓</span>Teto de 2% do IR devido no período</li>
@@ -2564,8 +3440,7 @@
     <section id="marcas" class="sec sec-dark">
       <div class="red-line red-line-c r"></div>
       <h2 class="hl hl-lg r d1">Quem já está aqui</h2>
-      <p class="body-lg r d2" style="max-width:420px;margin:0 auto">Algumas marcas já entendiam antes de todo o mundo.
-      </p>
+      <p class="body-lg r d2" style="max-width:420px;margin:0 auto">Algumas marcas entenderam antes.</p>
       <div class="marcas-wrap r d3">
         <img src="Imagens/marcas parceiras/MARCAS PARCEIRAS.png" alt="Marcas Parceiras" loading="lazy">
       </div>
@@ -2580,10 +3455,9 @@
       <div class="cta-body">
         <div class="label r">Faça parte do grid</div>
         <h2 class="hl hl-xl r d1" style="margin-top:10px">Sua marca<br>já deveria<br><em>estar aqui.</em></h2>
-        <p class="body-lg r d2" style="margin-top:18px">A Scuderia Bandeiras reúne esporte, estrutura, audiência e experiências num único ecossistema. Uma oportunidade de associar sua marca a pilotos lendários, uma audiência apaixonada e as experiências que nenhuma outra empresa oferece.<br><br>Enquanto você estiver aqui, outro concorrente já está no grid.</p>
+        <p class="body-lg r d2" style="margin-top:18px">A Scuderia Bandeiras reúne esporte, estrutura, audiência e experiências num único ecossistema.<br><br>Seu concorrente já está no grid.</p>
         <div class="cta-acts">
-          <button class="btn r d3" onclick="openModal()">Quero fazer parte da Scuderia <span
-              class="btn-arr">→</span></button>
+          <button class="btn r d3" onclick="openModal()">Quero fazer parte da Scuderia Bandeiras <span class="btn-arr">→</span></button>
           <p class="cta-wa r d4">Prefere WhatsApp? <a href="https://wa.me/5515998570854" target="_blank">Fale conosco
               agora</a></p>
         </div>
@@ -2722,6 +3596,14 @@
       }, { threshold: .12 });
       document.querySelectorAll('.r,.sb').forEach(el => ro.observe(el));
 
+      /* ── DIG-BLOCK in-view ── */
+      const digObs = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('in-view'); digObs.unobserve(en.target); }
+        });
+      }, { threshold: .15 });
+      document.querySelectorAll('.dig-block').forEach(el => digObs.observe(el));
+
       const co = new IntersectionObserver(entries => {
         entries.forEach(en => { if (en.isIntersecting) { runCounter(en.target); co.unobserve(en.target); } });
       }, { threshold: .5 });
@@ -2746,6 +3628,70 @@
         el.addEventListener('click', function () {
           el.parentElement.innerHTML = makeIframe(el.dataset.id);
         });
+      });
+
+      /* ── TEAM BUILDING ACCORDION ── */
+      document.querySelectorAll('.tb-trigger').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.tb-item');
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.tb-item.open').forEach(function(el) {
+            el.classList.remove('open');
+            el.querySelector('.tb-trigger').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      /* ── SPEAKERS ACCORDION ── */
+      document.querySelectorAll('.spk-row-trigger').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var row = btn.closest('.spk-row');
+          var isOpen = row.classList.contains('open');
+          document.querySelectorAll('.spk-row.open').forEach(function(el) {
+            el.classList.remove('open');
+            el.querySelector('.spk-row-trigger').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            row.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      /* ── IC + EC CARDS — toggle desc on mobile tap ── */
+      if (window.matchMedia('(max-width:768px)').matches) {
+        document.querySelectorAll('.ic, .ec').forEach(function(card) {
+          card.addEventListener('click', function() {
+            var isOpen = card.classList.contains('open');
+            document.querySelectorAll('.ic.open, .ec.open').forEach(function(el) { el.classList.remove('open'); });
+            if (!isOpen) card.classList.add('open');
+          });
+        });
+      }
+
+      /* ── EA ACCORDION — experiências no evento ── */
+      if (window.matchMedia('(max-width:768px)').matches) {
+        document.querySelectorAll('.ea-trigger').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var item = btn.closest('.ea');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.ea.open').forEach(function(el) { el.classList.remove('open'); });
+            if (!isOpen) item.classList.add('open');
+          });
+        });
+      }
+
+      /* ── PILOT CARDS — toggle on touch ── */
+      document.querySelectorAll('.pc').forEach(function(pc) {
+        pc.addEventListener('touchstart', function(e) {
+          var isActive = pc.classList.contains('active');
+          document.querySelectorAll('.pc.active').forEach(function(p) { p.classList.remove('active'); });
+          if (!isActive) { e.preventDefault(); pc.classList.add('active'); }
+        }, { passive: false });
       });
 
       /* Truck Lounge: substitui o conteúdo do .tl-video inteiro */
