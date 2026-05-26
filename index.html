@@ -785,6 +785,8 @@
         border: 1px solid var(--red-border);
         display: flex;
         align-items: center;
+        justify-content: center;
+        text-align: center;
         gap: 12px;
         flex-wrap: wrap
       }
@@ -1324,12 +1326,34 @@
         margin-top: 28px
       }
 
-      /* accordion desktop: hide controls, show full text */
+      /* ── accordion desktop: nome (esq) | descrição (dir) ── */
       .ea-trigger { display: contents; font: inherit; background: none; border: none; color: inherit; cursor: default }
       .ea-icon { display: none }
-      .ea-title::after { content: ' — ' }
-      .ea-body { display: inline }
-      .ea-desc { display: inline; font-size: inherit; color: inherit }
+      .ea-title {
+        font-family: var(--ff-d);
+        font-size: clamp(15px, 1.5vw, 19px);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: var(--white);
+        min-width: 200px;
+        flex-shrink: 0;
+        align-self: flex-start;
+        padding-top: 2px;
+        text-align: left;
+      }
+      .ea-title::after { content: none }
+      .ea-body { display: contents }
+      .ea-desc {
+        font-family: var(--ff-b);
+        font-size: 15px;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: 0;
+        color: rgba(255, 255, 255, .55);
+        line-height: 1.65;
+        flex: 1;
+      }
 
       @media(max-width:768px) {
         .exp-acc {
@@ -1424,8 +1448,8 @@
         padding: 16px 0;
         border-bottom: 1px solid rgba(255, 255, 255, .06);
         display: flex;
-        align-items: center;
-        gap: 14px;
+        align-items: flex-start;
+        gap: 24px;
         font-family: var(--ff-d);
         font-size: clamp(17px, 2vw, 21px);
         font-weight: 700;
@@ -1944,7 +1968,13 @@
       .cta-ov {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(8, 8, 8, 1) 0%, rgba(8, 8, 8, .72) 45%, rgba(8, 8, 8, .42) 100%)
+        background: linear-gradient(to bottom, rgba(8,8,8,.7) 0%, rgba(8,8,8,.1) 25%, rgba(8,8,8,.1) 55%, rgba(8,8,8,.97) 100%)
+      }
+
+      @media(max-width:768px) {
+        .cta-ov {
+          background: linear-gradient(to bottom, rgba(8,8,8,.82) 0%, rgba(8,8,8,.6) 35%, rgba(8,8,8,.72) 65%, rgba(8,8,8,.97) 100%)
+        }
       }
 
       .cta-body {
@@ -1986,24 +2016,90 @@
       /* ── FOOTER ── */
       footer {
         background: #040404;
-        padding: 32px var(--px);
-        border-top: 1px solid rgba(255, 255, 255, .04);
+        border-top: 1px solid rgba(255,255,255,.06);
+        padding: 60px var(--px) 40px;
+      }
+
+      .ft-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+        text-align: center;
+      }
+
+      .ft-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .ft-brand img {
+        height: 30px;
+        opacity: .65;
+      }
+
+      .ft-tagline {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.22);
+      }
+
+      .ft-divider {
+        width: 48px;
+        height: 1px;
+        background: rgba(248,1,0,.35);
+      }
+
+      .ft-social {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         gap: 16px;
-        flex-wrap: wrap
       }
 
-      footer img {
-        height: 26px;
-        opacity: .55
+      .ft-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(248,1,0,.28);
+        border-radius: 50%;
+        color: var(--red);
+        transition: background .25s, border-color .25s, transform .2s;
       }
 
-      footer p {
+      .ft-icon:hover {
+        background: rgba(248,1,0,.1);
+        border-color: var(--red);
+        transform: translateY(-3px);
+      }
+
+      .ft-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .ft-copy {
         font-size: 11px;
-        color: rgba(255, 255, 255, .18);
-        letter-spacing: .5px
+        color: rgba(255,255,255,.16);
+        letter-spacing: .5px;
+      }
+
+      @media(max-width:768px) {
+        footer { padding: 48px var(--px) 32px; }
+        .ft-inner { gap: 28px; }
       }
 
       /* ── MODAL ── */
@@ -2815,6 +2911,296 @@
         }
       }
 
+      .cta-wa-block {
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+      .cta-wa-label {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.35);
+      }
+      .btn-wa {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #25D366;
+        color: #fff;
+        font-family: var(--ff-d);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 16px 36px;
+        border-radius: 2px;
+        transition: background .25s, transform .2s;
+      }
+      .btn-wa:hover {
+        background: #1ebe5a;
+        transform: translateY(-2px);
+      }
+      .btn-wa svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+        flex-shrink: 0;
+      }
+
+      /* ── CALENDÁRIO 2026 ── */
+      .cal-2026 {
+        margin-top: 56px;
+      }
+
+      .cal-2026 > .label {
+        margin-bottom: 28px;
+        font-size: 15px;
+        letter-spacing: 5px;
+      }
+
+      .cal-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .cal-col {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .cal-row {
+        display: flex;
+        align-items: stretch;
+        height: 48px;
+        overflow: hidden;
+        border-radius: 3px;
+      }
+
+      .cal-num {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        flex-shrink: 0;
+        background: var(--red);
+        font-family: var(--ff-d);
+        font-size: 22px;
+        font-weight: 900;
+        font-style: italic;
+        color: #fff;
+        letter-spacing: -1px;
+      }
+
+      .cal-arrow {
+        width: 0;
+        height: 0;
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-left: 12px solid var(--red);
+        flex-shrink: 0;
+      }
+
+      .cal-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        flex-shrink: 0;
+        background: #e8e8e8;
+        font-family: var(--ff-d);
+        font-size: 14px;
+        font-weight: 700;
+        font-style: italic;
+        color: #111;
+        letter-spacing: .5px;
+      }
+
+      .cal-loc {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        padding: 0 12px;
+        background: #1c1c1c;
+        font-family: var(--ff-d);
+        font-size: 12px;
+        font-weight: 700;
+        font-style: italic;
+        color: rgba(255,255,255,.85);
+        letter-spacing: .3px;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      /* Badge especial — dourado dentro da linha */
+      .cal-badge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        margin-left: auto;
+        flex-shrink: 0;
+        background: #D4A017;
+        padding: 0 24px;
+        align-self: stretch;
+      }
+
+      .cal-badge-title {
+        font-family: var(--ff-d);
+        font-size: 11px;
+        font-weight: 900;
+        color: #111;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .cal-badge-sub {
+        font-family: var(--ff-d);
+        font-size: 9px;
+        font-weight: 700;
+        color: rgba(0,0,0,.6);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      /* Hover — destaque da etapa */
+      .cal-row {
+        transition: transform .18s ease, box-shadow .18s ease;
+        cursor: default;
+      }
+
+      .cal-row:hover {
+        transform: translateX(4px) scaleY(1.04);
+        box-shadow: -4px 0 0 var(--red), 0 4px 18px rgba(248,1,0,.18);
+        z-index: 1;
+        position: relative;
+      }
+
+      .cal-row:hover .cal-loc {
+        color: #fff;
+        background: #242424;
+      }
+
+      @media(max-width:1024px) {
+        .cal-list { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media(max-width:600px) {
+        .cal-list { grid-template-columns: 1fr; }
+        .cal-row { height: 44px; }
+        .cal-num { width: 40px; font-size: 18px; }
+        .cal-date { width: 58px; font-size: 13px; }
+        .cal-loc { font-size: 12px; }
+      }
+
+      /* ── TEAM BANNER ── */
+      #autoridade {
+        padding-bottom: 0;
+      }
+
+      .team-banner {
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        margin-top: 0;
+      }
+
+      /* Desktop: imagem estática, largura total */
+      .team-banner__img--desk {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      /* Mobile: oculta imagem estática, exibe carrossel */
+      .team-banner__marquee {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .team-banner__img--desk {
+          display: none;
+        }
+
+        .team-banner__marquee {
+          display: block;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        .team-banner__track {
+          display: flex;
+          width: max-content;
+          animation: team-scroll 20s linear infinite;
+        }
+
+        .team-banner__track img {
+          height: 260px;
+          width: auto;
+          display: block;
+          flex-shrink: 0;
+        }
+
+        @keyframes team-scroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+      }
+
+.ec-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+@media(max-width:768px) {
+  .ec-grid--3 { grid-template-columns: 1fr; }
+}
+
+/* ── CARROSSEL COMPLEXO ── */
+.complexo-marquee {
+  margin-top: 24px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.complexo-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: complexo-scroll 70s linear infinite;
+}
+
+.complexo-track img {
+  height: 220px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+  display: block;
+}
+
+@keyframes complexo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media(max-width:768px) {
+  .complexo-track img { height: 160px; }
+}
+
     </style>
   </head>
 
@@ -2884,7 +3270,7 @@
           <div class="ic-ov">
             <div class="ic-num">02</div>
             <div class="ic-title">Estrutura</div>
-            <p class="ic-desc">Coworking, auditório, gastronomia, um dos complexos mais completos do automobilismo
+            <p class="ic-desc">Coworking, auditório, gastronomia e um dos complexos mais completos do automobilismo
               nacional.</p>
           </div>
         </div>
@@ -2956,50 +3342,75 @@
       </div>
     </section>
 
+    <!-- Imagem do time — fora a fora -->
+    <div class="team-banner">
+      <!-- Desktop: imagem estática fora a fora -->
+      <img
+        class="team-banner__img team-banner__img--desk"
+        src="Imagens/nosso time/imagem time bandeiras desk.jpg"
+        alt="Somos todos Scuderia Bandeiras"
+      >
+      <!-- Mobile: carrossel infinito -->
+      <div class="team-banner__marquee" aria-hidden="true">
+        <div class="team-banner__track">
+          <img src="Imagens/nosso time/imagem time bandeiras desk.jpg" alt="">
+          <img src="Imagens/nosso time/imagem time bandeiras desk.jpg" alt="">
+          <img src="Imagens/nosso time/imagem time bandeiras desk.jpg" alt="">
+        </div>
+      </div>
+    </div>
+
     <!-- ═══════════════════ ESTRUTURA ═══════════════════ -->
     <section id="estrutura" class="sec sec-dark">
       <div style="margin-bottom:56px" class="r">
         <div class="red-line"></div>
         <div class="label" style="margin-bottom:10px">Nosso Complexo</div>
-        <h2 class="hl hl-lg">Tudo no mesmo lugar<br>onde a corrida acontece</h2>
-        <p class="body-lg" style="margin-top:18px;max-width:640px">Um hub pensado para receber empresas que entendem o valor do ambiente, da experiência e do posicionamento. Aqui a operação acontece e sua marca ganha velocidade.</p>
+<p class="body-lg" style="margin-top:18px;max-width:640px">Um hub pensado para receber empresas que entendem o valor do ambiente, da experiência e do posicionamento. Aqui a operação acontece e sua marca ganha velocidade.</p>
       </div>
-      <div class="g6 r d1">
-        <div class="ec"><img src="Imagens/estrutura/garage by vonder.png" alt="Garagem by Vonder" loading="lazy">
-          <div class="ec-ov">
-            <div class="ec-name">Garagem by Vonder</div>
-            <p class="ec-desc">O escritório mais instagramável do grid</p>
-          </div>
-        </div>
-        <div class="ec"><img src="Imagens/estrutura/auditorio.png" alt="Auditório" loading="lazy">
+      <div class="ec-grid ec-grid--3">
+
+        <div class="ec">
+          <img src="Imagens/local/auditorio.jpg" alt="Auditório" loading="lazy">
           <div class="ec-ov">
             <div class="ec-name">Auditório</div>
             <p class="ec-desc">Até 300 pessoas. Telão de 6m, lounge e camarim</p>
           </div>
         </div>
-        <div class="ec"><img src="Imagens/estrutura/coworking.png" alt="Coworking" loading="lazy">
-          <div class="ec-ov">
-            <div class="ec-name">Coworking</div>
-            <p class="ec-desc">350m², salas temáticas, cabines e café networking</p>
-          </div>
-        </div>
-        <div class="ec"><img src="Imagens/estrutura/area multiuso.png" alt="Arena Multiuso" loading="lazy">
-          <div class="ec-ov">
-            <div class="ec-name">Arena Multiuso</div>
-            <p class="ec-desc">310m² com iluminação personalizada</p>
-          </div>
-        </div>
-        <div class="ec"><img src="Imagens/estrutura/gastronom,ia.png" alt="Gastronomia" loading="lazy">
+
+        <div class="ec">
+          <img src="Imagens/local/gastronomia.jpg" alt="Gastronomia" loading="lazy">
           <div class="ec-ov">
             <div class="ec-name">Gastronomia</div>
-            <p class="ec-desc">Panapaná, Casa Bauducco e Oakberry</p>
           </div>
         </div>
-        <div class="ec"><img src="Imagens/estrutura/acesso aereo.png" alt="Acesso Aéreo" loading="lazy">
+
+        <div class="ec">
+          <img src="Imagens/estrutura/acesso aereo.png" alt="Acesso Aéreo" loading="lazy">
           <div class="ec-ov">
             <div class="ec-name">Acesso Aéreo</div>
             <p class="ec-desc">Helicóptero próprio e heliponto ICAO para associados</p>
           </div>
+        </div>
+
+      </div>
+
+      <div class="complexo-marquee">
+        <div class="complexo-track">
+          <img src="Imagens/complexo/1.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/2.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/3.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/4.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/5.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/6.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/7.png" alt="" loading="lazy">
+          <!-- duplicado para loop infinito -->
+          <img src="Imagens/complexo/1.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/2.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/3.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/4.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/5.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/6.png" alt="" loading="lazy">
+          <img src="Imagens/complexo/7.png" alt="" loading="lazy">
         </div>
       </div>
     </section>
@@ -3028,6 +3439,107 @@
           </div>
           <div class="sb r d4"><span class="sn" style="font-size:clamp(28px,3.5vw,48px)">Desde 1979</span>
             <div class="sl-t">os melhores pilotos do Brasil<br>numa só categoria</div>
+          </div>
+        </div>
+        <div class="cal-2026 r">
+          <p class="label">Calendário 2026 — 12 Etapas</p>
+          <div class="cal-list">
+
+            <!-- Coluna 1: Etapas 1–3 -->
+            <div class="cal-col">
+              <div class="cal-row">
+                <div class="cal-num">1</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">08/03</div>
+                <div class="cal-loc">Curvelo — MG</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">2</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">29/03</div>
+                <div class="cal-loc">Cascavel — PR</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">3</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">26/04</div>
+                <div class="cal-loc">Interlagos — SP</div>
+              </div>
+            </div>
+
+            <!-- Coluna 2: Etapas 4–6 -->
+            <div class="cal-col">
+              <div class="cal-row">
+                <div class="cal-num">4</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">17/05</div>
+                <div class="cal-loc">Goiânia — GO</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">5</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">20/06</div>
+                <div class="cal-loc">Cuiabá — MT</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">6</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">26/07</div>
+                <div class="cal-loc">Velocitta — SP</div>
+              </div>
+            </div>
+
+            <!-- Coluna 3: Etapas 7–9 + Corrida do Milhão -->
+            <div class="cal-col">
+              <div class="cal-row">
+                <div class="cal-num">7</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">09/08</div>
+                <div class="cal-loc">Cascavel — PR ou BH — MG</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">8</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">06/09</div>
+                <div class="cal-loc">Chapecó — SC</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">9</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">27/09</div>
+                <div class="cal-loc">Brasília — DF</div>
+                <div class="cal-badge">
+                  <span class="cal-badge-title">Corrida do Milhão</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coluna 4: Etapas 10–12 + Corrida Endurance -->
+            <div class="cal-col">
+              <div class="cal-row">
+                <div class="cal-num">10</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">18/10</div>
+                <div class="cal-loc">Goiânia — GO</div>
+                <div class="cal-badge">
+                  <span class="cal-badge-title">Corrida Endurance</span>
+                  <span class="cal-badge-sub">Prova de Duplas</span>
+                </div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">11</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">15/11</div>
+                <div class="cal-loc">Velopark — RS</div>
+              </div>
+              <div class="cal-row">
+                <div class="cal-num">12</div>
+                <div class="cal-arrow"></div>
+                <div class="cal-date">13/12</div>
+                <div class="cal-loc">Interlagos — SP</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -3065,7 +3577,6 @@
       <div class="dig-block">
         <div class="dig-header">
           <p class="label">No digital dos pilotos</p>
-          <h3 class="dig-title">Audiência real, além da pista</h3>
           <div class="dig-macro">
             <div class="dig-stat">
               <span class="dig-stat-num">2,1 MI</span>
@@ -3092,30 +3603,6 @@
             </a>
           </div>
 
-          <!-- Rubens Barrichello -->
-          <div class="dig-card">
-            <div class="dig-avatar">
-              <img src="assets/imagem-perfil-pilotos/rubens-barrichelo.jpg" alt="Rubens Barrichello">
-            </div>
-            <span class="dig-name">Rubens<br>Barrichello</span>
-            <a href="https://www.instagram.com/rubarrichello/" target="_blank" rel="noopener" class="dig-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              Instagram
-            </a>
-          </div>
-
-          <!-- Ingo Hoffmann -->
-          <div class="dig-card">
-            <div class="dig-avatar">
-              <img src="assets/imagem-perfil-pilotos/Ingo-Hoffmann.jpg" alt="Ingo Hoffmann">
-            </div>
-            <span class="dig-name">Ingo<br>Hoffmann</span>
-            <a href="https://www.instagram.com/ingohoffmann/" target="_blank" rel="noopener" class="dig-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              Instagram
-            </a>
-          </div>
-
           <!-- Átila Abreu -->
           <div class="dig-card">
             <div class="dig-avatar">
@@ -3133,8 +3620,20 @@
             <div class="dig-avatar">
               <img src="assets/imagem-perfil-pilotos/nelson-piquet.jpg" alt="Nelson Piquet Jr.">
             </div>
-            <span class="dig-name">Nelsinho<br>Piquet</span>
+            <span class="dig-name">Piquet<br>Jr.</span>
             <a href="https://www.instagram.com/piquetjr/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- Rubens Barrichello -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/rubens-barrichelo.jpg" alt="Rubens Barrichello">
+            </div>
+            <span class="dig-name">Rubens<br>Barrichello</span>
+            <a href="https://www.instagram.com/rubarrichello/" target="_blank" rel="noopener" class="dig-btn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
               Instagram
             </a>
@@ -3152,11 +3651,68 @@
             </a>
           </div>
 
+          <!-- Ingo Hoffmann -->
+          <div class="dig-card">
+            <div class="dig-avatar">
+              <img src="assets/imagem-perfil-pilotos/Ingo-Hoffmann.jpg" alt="Ingo Hoffmann">
+            </div>
+            <span class="dig-name">Ingo<br>Hoffmann</span>
+            <a href="https://www.instagram.com/ingohoffmann/" target="_blank" rel="noopener" class="dig-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+
         </div><!-- /dig-pilots -->
 
         <p class="dig-footnote">Dados de março/2026.</p>
       </div><!-- /dig-block -->
 
+    </section>
+
+    <!-- ═══════════════════ SHOWROOM 360 ═══════════════════ -->
+    <section id="showroom">
+      <canvas class="sr-canvas" id="srCanvas"></canvas>
+      <div class="sr-content">
+        <p class="sr-micro">PATROCÍNIO</p>
+        <div class="sr-headlines">
+          <h2 class="sr-title">Seu logo. <em>Seu piloto.</em> Sua corrida.</h2>
+          <p class="sr-sub">A cada etapa, seu logo passa a 300km/h nas câmeras da Band. No macacão, no carro, nos boxes ao longo das 12 etapas da temporada.</p>
+          <a href="#contato" class="btn-primary" style="display:inline-block;margin-top:28px;background:var(--red);color:var(--white);font-family:var(--ff-d);font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:16px 40px;transition:background .25s,transform .25s" onmouseover="this.style.background='var(--red-dark)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--red)';this.style.transform='none'">Simule aqui sua marca</a>
+        </div>
+        <div class="sr-stage" id="srStage">
+          <div class="sr-glow"></div>
+          <div class="sr-car-wrap" id="srCarWrap">
+            <div class="sr-car-row">
+              <button class="sr-arrow" id="srPrev" aria-label="Ângulo anterior">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M11 3L5 9L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="sr-float-inner">
+                <div class="sr-viewport" id="srViewport">
+                  <img class="sr-img sr-img-a" id="srImgA" alt="Scuderia Bandeiras Stock Car" draggable="false">
+                  <img class="sr-img sr-img-b" id="srImgB" alt="" draggable="false" aria-hidden="true">
+                </div>
+              </div>
+              <button class="sr-arrow" id="srNext" aria-label="Próximo ângulo">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M7 3L13 9L7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="sr-dots" id="srDots">
+            <span class="sr-dot active" data-frame="0"></span>
+            <span class="sr-dot" data-frame="1"></span>
+            <span class="sr-dot" data-frame="2"></span>
+            <span class="sr-dot" data-frame="3"></span>
+            <span class="sr-dot" data-frame="4"></span>
+            <span class="sr-dot" data-frame="5"></span>
+          </div>
+          <div class="sr-floor-shadow"></div>
+        </div>
+      </div>
     </section>
 
     <!-- ═══════════════════ TRUCK LOUNGE ═══════════════════ -->
@@ -3221,53 +3777,13 @@
             <div class="ea-body"><p class="ea-desc">A energia da pista do jeito mais real que existe.</p></div>
           </li>
           <li class="ei ea r d5">
-            <button class="ea-trigger"><span class="ea-title">Paddock Collection ou Race Collection</span><span class="ea-icon">+</span></button>
-            <div class="ea-body"><p class="ea-desc">Miniaturas numeradas do carro, bonés, polos e camisetas oficiais da equipe. Itens que carregam a história da temporada e chegam no escritório, na casa e no dia a dia de quem recebe. Quem tem um item oficial da Scuderia Bandeiras não esquece de onde veio.</p></div>
+            <button class="ea-trigger"><span class="ea-title">Volta Rápida</span><span class="ea-icon">+</span></button>
+            <div class="ea-body"><p class="ea-desc">Ingo Hoffmann conduz uma volta no autódromo. Velocidade e confiança.</p></div>
           </li>
         </ul>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ SHOWROOM 360 ═══════════════════ -->
-    <section id="showroom">
-      <canvas class="sr-canvas" id="srCanvas"></canvas>
-      <div class="sr-content">
-        <p class="sr-micro">UMA EXPERIÊNCIA QUE CONTINUA EM MOVIMENTO</p>
-        <div class="sr-headlines">
-          <h2 class="sr-title">Seu logo. <em>Seu piloto.</em> Sua corrida.</h2>
-          <p class="sr-sub">A cada etapa, seu logo passa a 300km/h nas câmeras da Band. No macacão, no carro, nos boxes — ao longo das 12 etapas da temporada.</p>
-        </div>
-        <div class="sr-stage" id="srStage">
-          <div class="sr-glow"></div>
-          <div class="sr-car-wrap" id="srCarWrap">
-            <div class="sr-car-row">
-              <button class="sr-arrow" id="srPrev" aria-label="Ângulo anterior">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                  <path d="M11 3L5 9L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <div class="sr-float-inner">
-                <div class="sr-viewport" id="srViewport">
-                  <img class="sr-img sr-img-a" id="srImgA" alt="Scuderia Bandeiras Stock Car" draggable="false">
-                  <img class="sr-img sr-img-b" id="srImgB" alt="" draggable="false" aria-hidden="true">
-                </div>
-              </div>
-              <button class="sr-arrow" id="srNext" aria-label="Próximo ângulo">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                  <path d="M7 3L13 9L7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="sr-dots" id="srDots">
-            <span class="sr-dot active" data-frame="0"></span>
-            <span class="sr-dot" data-frame="1"></span>
-            <span class="sr-dot" data-frame="2"></span>
-            <span class="sr-dot" data-frame="3"></span>
-            <span class="sr-dot" data-frame="4"></span>
-            <span class="sr-dot" data-frame="5"></span>
-          </div>
-          <div class="sr-floor-shadow"></div>
+        <div class="r d5" style="margin-top:28px;padding:24px 28px;background:var(--red-faint);border:1px solid var(--red-border)">
+          <div style="font-family:var(--ff-d);font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Paddock Collection ou Race Collection</div>
+          <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.65">Miniaturas numeradas do carro, bonés, polos e camisetas oficiais da equipe. Itens que carregam a história da temporada e chegam no escritório, na casa e no dia a dia de quem recebe. Quem tem um item oficial da Scuderia Bandeiras não esquece de onde veio.</p>
         </div>
       </div>
     </section>
@@ -3284,7 +3800,7 @@
           <div class="re-card"><span class="re-num">03</span><div class="re-title">Times comerciais</div><p class="re-desc">Adrenalina, decisão rápida e competitividade real. O que performa na pista também performa nas vendas.</p></div>
           <div class="re-card"><span class="re-num">04</span><div class="re-title">Alta performance</div><p class="re-desc">Experiências marcantes criam times mais fortes. O próximo passo é a pista.</p></div>
         </div>
-        <p class="r d4" style="margin-top:28px;font-family:var(--ff-d);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">28 de maio · Vagas limitadas · Para empresas e equipes corporativas</p>
+        <p class="r d4" style="margin-top:28px;font-family:var(--ff-d);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">28 de maio | Vagas limitadas | Para empresas e equipes corporativas</p>
         <button class="btn btn-tl r d5" style="margin-top:20px;align-self:flex-start" onclick="openModal()">Quero participar <span class="btn-arr">→</span></button>
       </div>
       <div class="team-img">
@@ -3298,7 +3814,6 @@
       <div class="activexp-intro">
         <div class="red-line red-line-c r"></div>
         <div class="label r" style="margin-bottom:10px">Team Building</div>
-        <h2 class="hl hl-md r d1" style="margin-top:0">Aqui não é integração.<br>É performance<br>sob pressão.</h2>
         <p class="body-lg r d2" style="margin-top:16px">Adrenalina de verdade, pilotos profissionais ao lado e pressão que revela quem é cada pessoa. Uma vivência que fortalece times, gera memória e muda a forma como as pessoas trabalham juntas.</p>
       </div>
 
@@ -3307,16 +3822,6 @@
         <div class="tb-item">
           <button class="tb-trigger" aria-expanded="false">
             <span class="tb-num">01</span>
-            <span class="tb-label">Volta Rápida</span>
-            <span class="tb-icon">+</span>
-          </button>
-          <div class="tb-body">
-            <p class="tb-desc">Ingo Hoffmann conduz uma volta no autódromo. Velocidade e confiança ao lado de quem já operou no limite.</p>
-          </div>
-        </div>
-        <div class="tb-item">
-          <button class="tb-trigger" aria-expanded="false">
-            <span class="tb-num">02</span>
             <span class="tb-label">Pit-Stop Challenge</span>
             <span class="tb-icon">+</span>
           </button>
@@ -3326,8 +3831,8 @@
         </div>
         <div class="tb-item">
           <button class="tb-trigger" aria-expanded="false">
-            <span class="tb-num">03</span>
-            <span class="tb-label">Kart Challenge</span>
+            <span class="tb-num">02</span>
+            <span class="tb-label">Race Experience</span>
             <span class="tb-icon">+</span>
           </button>
           <div class="tb-body">
@@ -3336,7 +3841,7 @@
         </div>
         <div class="tb-item">
           <button class="tb-trigger" aria-expanded="false">
-            <span class="tb-num">04</span>
+            <span class="tb-num">03</span>
             <span class="tb-label">Crazy Cart</span>
             <span class="tb-icon">+</span>
           </button>
@@ -3346,7 +3851,7 @@
         </div>
         <div class="tb-item">
           <button class="tb-trigger" aria-expanded="false">
-            <span class="tb-num">05</span>
+            <span class="tb-num">04</span>
             <span class="tb-label">Drift Arena</span>
             <span class="tb-icon">+</span>
           </button>
@@ -3356,12 +3861,12 @@
         </div>
         <div class="tb-item">
           <button class="tb-trigger" aria-expanded="false">
-            <span class="tb-num">06</span>
+            <span class="tb-num">05</span>
             <span class="tb-label">Show Car</span>
             <span class="tb-icon">+</span>
           </button>
           <div class="tb-body">
-            <p class="tb-desc">Exposição itinerante que encanta onde passa.</p>
+            <p class="tb-desc">Carro de exposição com simulador de corrida que encanta onde passa.</p>
           </div>
         </div>
       </div>
@@ -3381,8 +3886,7 @@
       <div class="pal-panel">
         <div class="red-line r"></div>
         <div class="label r d1" style="margin-bottom:10px">Vivências</div>
-        <h2 class="hl hl-lg r d1" style="margin-top:0">Não é palestra.<br>É vivência<br>traduzida em decisão.</h2>
-        <p class="body-lg r d2" style="margin-top:14px">Pilotos que viveram o que ensinam e traduzem essa vivência em algo aplicável para quem também decide todos os dias.</p>
+        <h2 class="hl hl-lg r d1" style="margin-top:0">Pilotos que viveram o que ensinam e traduzem essa vivência em algo aplicável para quem também decide todos os dias.</h2>
         <p class="body-lg r d2" style="margin-top:10px">Repertório de quem operou no limite, sob pressão real, com exposição total e resultado imediato.</p>
         <div class="spk-rows r d3">
           <div class="spk-row">
@@ -3403,7 +3907,7 @@
           </div>
           <div class="spk-row">
             <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Rafael Suzuki</span><span class="spk-row-icon">+</span></button>
-            <div class="spk-row-body"><p class="spk-row-topic">Consistência, estratégia e performance em alta competitividade</p></div>
+            <div class="spk-row-body"><p class="spk-row-topic">Consistência, estratégia e performance em ambiente de alta competitividade</p></div>
           </div>
           <div class="spk-row">
             <button class="spk-row-trigger" aria-expanded="false"><span class="spk-row-name">Ingo Hoffmann</span><span class="spk-row-icon">+</span></button>
@@ -3421,7 +3925,7 @@
         <h2 class="hl hl-sm r d1">Sua marca na Stock Car<br>usando imposto que você<br>já pagaria de qualquer forma.</h2>
         <p class="body-lg r d2" style="margin-top:18px">Empresas que apuram IR pelo Lucro Real podem deduzir 100% do valor investido, dentro do teto permitido por lei. Muitas deixam esse benefício passar por desconhecimento.</p>
         <ul class="inc-list">
-          <li class="inc-item r d1"><span class="chk">✓</span>100% dedutível do Imposto de Renda (Lucro Real)</li>
+          <li class="inc-item r d1"><span class="chk">✓</span>100% dedutível do Imposto de Renda — Lucro Real</li>
           <li class="inc-item r d2"><span class="chk">✓</span>Teto de 2% do IR devido no período</li>
           <li class="inc-item r d3"><span class="chk">✓</span>Projeto aprovado — Ministério do Esporte | DOU 17/04/2025
           </li>
@@ -3439,6 +3943,7 @@
     <!-- ═══════════════════ MARCAS ═══════════════════ -->
     <section id="marcas" class="sec sec-dark">
       <div class="red-line red-line-c r"></div>
+      <p class="label">Quem já está aqui</p>
       <h2 class="hl hl-lg r d1">Quem já está aqui</h2>
       <p class="body-lg r d2" style="max-width:420px;margin:0 auto">Algumas marcas entenderam antes.</p>
       <div class="marcas-wrap r d3">
@@ -3449,25 +3954,68 @@
     <!-- ═══════════════════ CTA FINAL ═══════════════════ -->
     <section id="cta">
       <div class="cta-bg">
-        <img src="Imagens/final/imagem final.png" alt="" loading="lazy">
+        <img src="Imagens/complexo/bg.jpg" alt="" loading="lazy" style="object-position: center 30%;">
         <div class="cta-ov"></div>
       </div>
       <div class="cta-body">
-        <div class="label r">Faça parte do grid</div>
-        <h2 class="hl hl-xl r d1" style="margin-top:10px">Sua marca<br>já deveria<br><em>estar aqui.</em></h2>
         <p class="body-lg r d2" style="margin-top:18px">A Scuderia Bandeiras reúne esporte, estrutura, audiência e experiências num único ecossistema.<br><br>Seu concorrente já está no grid.</p>
         <div class="cta-acts">
           <button class="btn r d3" onclick="openModal()">Quero fazer parte da Scuderia Bandeiras <span class="btn-arr">→</span></button>
-          <p class="cta-wa r d4">Prefere WhatsApp? <a href="https://wa.me/5515998570854" target="_blank">Fale conosco
-              agora</a></p>
+          <div class="cta-wa-block r d4">
+            <p class="cta-wa-label">Prefere WhatsApp?</p>
+            <a class="btn-wa" href="https://wa.me/5515998570854" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+              </svg>
+              Fale conosco agora
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <img src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
-      <p>© 2026 Scuderia Bandeiras. Todos os direitos reservados.</p>
+      <div class="ft-inner">
+
+        <div class="ft-brand">
+          <img src="Brand/1124_Bandeiras_RGB_L-RW.png" alt="Scuderia Bandeiras">
+          <p class="ft-tagline">Onde os negócios aceleram.</p>
+        </div>
+
+        <div class="ft-divider"></div>
+
+        <nav class="ft-social" aria-label="Redes sociais">
+
+          <!-- WhatsApp -->
+          <a class="ft-icon" href="https://wa.me/5515981282808" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a class="ft-icon" href="https://www.instagram.com/scuderiabandeiras/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+
+          <!-- Site -->
+          <a class="ft-icon" href="https://scuderiabandeiras.com.br" target="_blank" rel="noopener" aria-label="Site oficial">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </a>
+
+        </nav>
+
+        <p class="ft-copy">© 2026 Scuderia Bandeiras. Todos os direitos reservados.</p>
+
+      </div>
     </footer>
 
     <!-- ═══════════════════ MODAL ═══════════════════ -->
