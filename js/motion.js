@@ -151,9 +151,9 @@ export function animateCount(el, target, { duration = 1100, delay = 0, ease = ea
   function tick(now) {
     start ??= now + delay;
     const p = Math.max(0, Math.min((now - start) / duration, 1));
-    el.textContent = Math.round(target * ease(p)).toString();
+    el.textContent = Math.round(target * ease(p)).toLocaleString("pt-BR");
     if (p < 1) requestAnimationFrame(tick);
-    else el.textContent = target.toString(); // garante o valor exato ao final
+    else el.textContent = target.toLocaleString("pt-BR"); // garante o valor exato ao final
   }
   requestAnimationFrame(tick);
 }
@@ -180,13 +180,15 @@ export function initStatCounters() {
         if (!entry.isIntersecting) continue;
         const el = entry.target;
         const target = Number(el.dataset.countUp);
+        io.unobserve(el);
         if (Number.isFinite(target)) {
-          animateCount(el, target, {
+          // mede a largura final só com a fonte carregada (fallback é mais larga)
+          const start = () => animateCount(el, target, {
             duration: 1300,
             delay: Number(el.dataset.countDelay) || 0,
           });
+          (document.fonts?.ready ?? Promise.resolve()).then(start);
         }
-        io.unobserve(el);
       }
     },
     { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }

@@ -1155,10 +1155,10 @@
        escala pela largura do próprio trio (não da viewport) — "350m²"
        sempre cabe na terceira coluna. */
     container-type: inline-size;
-    --stat-size: min(clamp(2.75rem, 1.6rem + 4.6vw, 6.25rem), 14.5cqi);
+    --stat-size: min(clamp(3.75rem, 1.8rem + 8vw, 10rem), 21cqi);
     --stat-col-pad: clamp(12px, 2.2vw, 28px);
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .bandeiras__stats li {
     position: relative;
@@ -1203,7 +1203,7 @@
     font-size: var(--t-small);
     line-height: 1.45;
     color: var(--luz-2);
-    max-width: 16ch;
+    max-width: 22ch;
   }
 
   @media (min-width: 1024px) {
