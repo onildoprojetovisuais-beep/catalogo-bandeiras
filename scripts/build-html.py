@@ -30,8 +30,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = ROOT / "assets-build" / "manifest.json"
-TEMPLATE_PATH = ROOT / "index.template.html"
-OUTPUT_PATH = ROOT / "index.html"
+# (template, saída, prefixo dos caminhos de assets-build). Páginas em subpasta usam
+# prefixo "/" porque os caminhos do manifesto são relativos à raiz do site.
+PAGES = [
+    (ROOT / "index.template.html", ROOT / "index.html", ""),
+    (ROOT / "campeonato-simulador" / "index.template.html", ROOT / "campeonato-simulador" / "index.html", "/"),
+]
 
 TAG_RE = re.compile(r"<x-img\s+([^>]*?)/?>\s*(?:</x-img>)?", re.IGNORECASE)
 ATTR_RE = re.compile(r'([a-zA-Z_-]+)\s*=\s*"([^"]*)"')
@@ -41,15 +45,15 @@ def parse_attrs(attr_str: str) -> dict:
     return {m.group(1): m.group(2) for m in ATTR_RE.finditer(attr_str)}
 
 
-def build_picture(attrs: dict, manifest: dict) -> str:
+def build_picture(attrs: dict, manifest: dict, prefix: str = "") -> str:
     slug = attrs.get("slug")
     if not slug or slug not in manifest:
         raise ValueError(f"<x-img> com slug desconhecido ou ausente: {attrs}")
 
     entry = manifest[slug]
     fallback_ext = entry["fallback_ext"]
-    avif = entry["avif"]
-    fallback = entry[fallback_ext]
+    avif = {w: prefix + u for w, u in entry["avif"].items()}
+    fallback = {w: prefix + u for w, u in entry[fallback_ext].items()}
     widths = sorted(int(w) for w in avif.keys())
     sizes = attrs.get("sizes", "100vw")
 
@@ -81,16 +85,8 @@ def build_picture(attrs: dict, manifest: dict) -> str:
     )
 
 
-def main() -> None:
-    if not MANIFEST_PATH.exists():
-        print("assets-build/manifest.json não existe — rode scripts/build-media.py primeiro.", file=sys.stderr)
-        sys.exit(1)
-    if not TEMPLATE_PATH.exists():
-        print(f"{TEMPLATE_PATH.name} não encontrado.", file=sys.stderr)
-        sys.exit(1)
-
-    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-    template = TEMPLATE_PATH.read_text(encoding="utf-8")
+def build_page(template_path: Path, output_path: Path, prefix: str, manifest: dict) -> None:
+    template = template_path.read_text(encoding="utf-8")
 
     count = 0
     errors = []
@@ -99,7 +95,7 @@ def main() -> None:
         nonlocal count
         attrs = parse_attrs(match.group(1))
         try:
-            result = build_picture(attrs, manifest)
+            result = build_picture(attrs, manifest, prefix)
             count += 1
             return result
         except ValueError as e:
@@ -113,13 +109,26 @@ def main() -> None:
     output = re.sub(r"\n[ \t]*(?:\n[ \t]*)+\n", "\n\n", output)
 
     if errors:
-        print("ERROS ao expandir <x-img>:", file=sys.stderr)
+        print(f"ERROS ao expandir <x-img> em {template_path.name}:", file=sys.stderr)
         for e in errors:
             print(f"  - {e}", file=sys.stderr)
         sys.exit(1)
 
-    OUTPUT_PATH.write_text(output, encoding="utf-8")
-    print(f"{count} <x-img> expandidas -> {OUTPUT_PATH.name}")
+    output_path.write_text(output, encoding="utf-8")
+    print(f"{count} <x-img> expandidas -> {output_path.relative_to(ROOT)}")
+
+
+def main() -> None:
+    if not MANIFEST_PATH.exists():
+        print("assets-build/manifest.json não existe — rode scripts/build-media.py primeiro.", file=sys.stderr)
+        sys.exit(1)
+
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    for template_path, output_path, prefix in PAGES:
+        if not template_path.exists():
+            print(f"{template_path.relative_to(ROOT)} não encontrado.", file=sys.stderr)
+            sys.exit(1)
+        build_page(template_path, output_path, prefix, manifest)
 
 
 if __name__ == "__main__":

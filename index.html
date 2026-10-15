@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets-build/favicon/favicon-180.png">
   <link rel="preload" href="assets-build/fonts/special-gothic-condensed-one-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.min.css?v=20261005b">
+  <link rel="stylesheet" href="css/site.min.css?v=20261015a">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -409,6 +409,41 @@
           </div>
         </div>
       </div>
+
+      <section id="campeonato-simulador" class="sim" aria-labelledby="sim-titulo">
+        <div class="sim__palco">
+          <div class="sim__media" data-reveal>
+            <video class="sim__video" muted loop playsinline preload="none" poster="assets-build/video/caterham-esports-loop-4x5-poster.jpg" aria-label="Do simulador para a pista: piloto no cockpit virtual e Caterhams reais correndo">
+              <source src="assets-build/video/caterham-esports-loop-4x5-720w.mp4" media="(max-width: 639px)" type="video/mp4">
+              <source src="assets-build/video/caterham-esports-loop-1280w.mp4" type="video/mp4">
+            </video>
+            <div class="video-controls">
+              <button type="button" class="video-pause-toggle" aria-label="Pausar vídeo">
+              <svg class="video-pause-toggle__icon video-pause-toggle__icon--pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              <svg class="video-pause-toggle__icon video-pause-toggle__icon--play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>
+            </button>
+            </div>
+            <div class="sim__scrim" aria-hidden="true"></div>
+            <p class="sim__placa">Scuderia Bandeiras Esports Cup · iRacing</p>
+          </div>
+
+          <div class="sim__texto">
+            <p class="eyebrow" data-reveal>CAMPEONATO DE SIMULADOR · TEMPORADA 2026</p>
+            <h2 id="sim-titulo" class="sim__titulo" data-reveal>Do virtual <span class="sim__quebra">para o <mark class="grifo">real.</mark></span></h2>
+            <p class="sim__lead" data-reveal>O campeonato oficial de Caterham no iRacing. Duas categorias, cinco etapas e 30 vagas por grid. Campeão e vice de cada categoria saem do simulador e vão para a pista, numa clínica de pilotagem com um Caterham de competição.</p>
+            <ul class="sim__ficha" data-reveal>
+              <li><span class="sim__ficha-n">02</span> categorias</li>
+              <li><span class="sim__ficha-n">05</span> etapas</li>
+              <li><span class="sim__ficha-n">30</span> vagas por grid</li>
+            </ul>
+            <p class="sim__assinatura" data-reveal>Caterham <span class="sim__x" aria-hidden="true">×</span><span class="visually-hidden">e</span> Scuderia Bandeiras</p>
+            <div class="sim__ctas" data-reveal>
+              <a class="btn btn--xl sim__cta sim__cta--primario" href="campeonato-simulador/">Quero me inscrever</a>
+              <a class="btn btn--ghost sim__cta" href="campeonato-simulador/regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Ver regulamento<span class="visually-hidden"> (PDF, abre em nova aba)</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div class="container">
         <p class="statement statement--wide" data-reveal>Viver o automobilismo por um dia é uma experiência. Fazer essa experiência continuar dentro da empresa é outro trabalho.</p>
@@ -797,7 +832,7 @@
     </div>
   </footer>
 
-  <script type="module" src="js/main.js?v=ritmo4"></script>
+  <script type="module" src="js/main.js?v=20261014a"></script>
 
   <canvas id="trailCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
   <script src="js/cursor-trail.js"></script>

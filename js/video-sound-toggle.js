@@ -1,5 +1,5 @@
 /*
-  Vídeos com autoplay (LEGADO, EXPERIÊNCIAS/Team Building, BANDEIRAS EMPRESARIAL)
+  Vídeos com autoplay (LEGADO, EXPERIÊNCIAS/Team Building, CATERHAM ESPORTS, BANDEIRAS EMPRESARIAL)
   — pedido do usuário: já rodar sozinho, sem precisar dar play. Nenhum navegador
   libera autoplay com áudio, então o <video> entra mudo/loop e este módulo cuida de:
 
@@ -14,7 +14,7 @@
 */
 export function initVideoSoundToggle() {
   const frames = document.querySelectorAll(
-    ".bandeiras__video-frame, .legado__frame, .experiencias__momento"
+    ".bandeiras__video-frame, .legado__frame, .experiencias__momento, .sim__media"
   );
   if (!frames.length) return;
 

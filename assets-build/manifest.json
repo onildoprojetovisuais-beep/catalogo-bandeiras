@@ -823,6 +823,94 @@
       "1920": "assets-build/img/caterham-fecho-photo-1920w-e23169ea04.jpg"
     }
   },
+  "esports-cockpit": {
+    "slug": "esports-cockpit",
+    "source": "assets/Imagens/caterham/simulador/esports/simulador-1365.jpg",
+    "original_size_bytes": 9075139,
+    "width": 5000,
+    "height": 3333,
+    "aspect_ratio": 1.5002,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/esports-cockpit-480w-5731cc9860.avif",
+      "800": "assets-build/img/esports-cockpit-800w-5731cc9860.avif",
+      "1280": "assets-build/img/esports-cockpit-1280w-5731cc9860.avif",
+      "1920": "assets-build/img/esports-cockpit-1920w-5731cc9860.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/esports-cockpit-480w-5731cc9860.jpg",
+      "800": "assets-build/img/esports-cockpit-800w-5731cc9860.jpg",
+      "1280": "assets-build/img/esports-cockpit-1280w-5731cc9860.jpg",
+      "1920": "assets-build/img/esports-cockpit-1920w-5731cc9860.jpg"
+    }
+  },
+  "esports-lado": {
+    "slug": "esports-lado",
+    "source": "assets/Imagens/caterham/simulador/esports/simulador-4026.jpg",
+    "original_size_bytes": 8183377,
+    "width": 5000,
+    "height": 3333,
+    "aspect_ratio": 1.5002,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/esports-lado-480w-1389984273.avif",
+      "800": "assets-build/img/esports-lado-800w-1389984273.avif",
+      "1280": "assets-build/img/esports-lado-1280w-1389984273.avif",
+      "1920": "assets-build/img/esports-lado-1920w-1389984273.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/esports-lado-480w-1389984273.jpg",
+      "800": "assets-build/img/esports-lado-800w-1389984273.jpg",
+      "1280": "assets-build/img/esports-lado-1280w-1389984273.jpg",
+      "1920": "assets-build/img/esports-lado-1920w-1389984273.jpg"
+    }
+  },
+  "esports-aberto": {
+    "slug": "esports-aberto",
+    "source": "assets/Imagens/caterham/simulador/esports/simulador-1273.jpg",
+    "original_size_bytes": 16921110,
+    "width": 5000,
+    "height": 3333,
+    "aspect_ratio": 1.5002,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/esports-aberto-480w-89d572e166.avif",
+      "800": "assets-build/img/esports-aberto-800w-89d572e166.avif",
+      "1280": "assets-build/img/esports-aberto-1280w-89d572e166.avif",
+      "1920": "assets-build/img/esports-aberto-1920w-89d572e166.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/esports-aberto-480w-89d572e166.jpg",
+      "800": "assets-build/img/esports-aberto-800w-89d572e166.jpg",
+      "1280": "assets-build/img/esports-aberto-1280w-89d572e166.jpg",
+      "1920": "assets-build/img/esports-aberto-1920w-89d572e166.jpg"
+    }
+  },
+  "esports-piloto": {
+    "slug": "esports-piloto",
+    "source": "assets/Imagens/caterham/simulador/esports/simulador-3920.jpg",
+    "original_size_bytes": 8704860,
+    "width": 5000,
+    "height": 3333,
+    "aspect_ratio": 1.5002,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/esports-piloto-480w-fe331033f5.avif",
+      "800": "assets-build/img/esports-piloto-800w-fe331033f5.avif",
+      "1280": "assets-build/img/esports-piloto-1280w-fe331033f5.avif",
+      "1920": "assets-build/img/esports-piloto-1920w-fe331033f5.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/esports-piloto-480w-fe331033f5.jpg",
+      "800": "assets-build/img/esports-piloto-800w-fe331033f5.jpg",
+      "1280": "assets-build/img/esports-piloto-1280w-fe331033f5.jpg",
+      "1920": "assets-build/img/esports-piloto-1920w-fe331033f5.jpg"
+    }
+  },
   "time-mosaico": {
     "slug": "time-mosaico",
     "source": "assets/Imagens/nosso time/Mosaico.png",

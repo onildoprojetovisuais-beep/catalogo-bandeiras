@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inscrição | Caterham Esports Brasil 2026</title>
+<style>
+:root{--bg:#0b0b0b;--panel:#151515;--text:#f3f1eb;--muted:#aaa8a1;--line:#363632;--accent:#ff5a1f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+#cesb{line-height:1.45}.wrap{width:min(1080px,calc(100% - 32px));margin:auto}.hero{padding:90px 0 60px;border-bottom:1px solid var(--line)}
+.kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em}.hero h1,.head h2{text-transform:uppercase;line-height:.9;letter-spacing:-.04em}
+.hero h1{font-size:clamp(48px,8vw,100px);margin:16px 0 26px}.hero p{max-width:700px;font-size:20px;color:#d2d0ca}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-block;padding:15px 20px;border:1px solid var(--accent);font-weight:800;font-size:12px;letter-spacing:.08em;text-decoration:none;cursor:pointer}
+.primary{background:var(--accent);color:#080808}.secondary{color:var(--text);background:transparent}
+.form-section{padding:70px 0 110px}.head{margin-bottom:38px}.head h2{font-size:clamp(38px,5vw,62px);margin:10px 0}.head p{color:var(--muted)}
+fieldset{margin:0 0 24px;padding:30px;border:1px solid var(--line);background:var(--panel)}legend{font-weight:800;text-transform:uppercase;padding-right:12px}
+legend b{color:var(--accent);margin-right:10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.field{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700}
+.field.full{grid-column:1/-1}.field small,.help{color:var(--muted);font-weight:400}.field input,.field select,.field textarea{width:100%;padding:13px;border:1px solid #454540;background:#0f0f0f;color:var(--text);font:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid rgba(255,90,31,.25);border-color:var(--accent)}
+.question{font-weight:800}.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}.option{display:flex;gap:10px;padding:17px;border:1px solid #454540;background:#0f0f0f}
+.option span{display:flex;flex-direction:column}.option small{color:var(--muted)}input[type=radio],input[type=checkbox]{accent-color:var(--accent)}
+.inline{display:flex;gap:24px;flex-wrap:wrap}.conditional{margin-top:20px;padding:20px;border-left:3px solid var(--accent);background:#1b1b1b}
+.checks{display:grid;gap:15px}.checks label{display:flex;gap:10px;align-items:flex-start;color:#d8d6d0}.checks a{color:var(--text);text-decoration-color:var(--accent)}
+.note{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted)}.submit{display:flex;justify-content:flex-end;padding-top:10px}
+.alert{padding:15px;border:1px solid #ff7777;background:#281313;color:#ffd1d1;margin-bottom:20px}.success{padding:40px;border-top:3px solid var(--accent);background:var(--panel)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media(max-width:700px){.grid,.options{grid-template-columns:1fr}.field.full{grid-column:auto}fieldset{padding:22px 17px}.hero{padding-top:65px}}
+</style>
+</head>
+<body>
+<main id="cesb">
+<section class="hero"><div class="wrap">
+<p class="kicker">CATERHAM ESPORTS BRASIL · 2026</p>
+<h1>DO VIRTUAL<br>PARA O REAL.</h1>
+<p>Uma competição oficial da Scuderia Bandeiras no iRacing. Duas categorias, cinco etapas e até 30 vagas por grid.</p>
+<div class="actions"><a class="btn primary" href="#inscricao">FAÇA SUA INSCRIÇÃO</a><a id="regTop" class="btn secondary" href="#" target="_blank">VER REGULAMENTO</a></div>
+</div></section>
+
+<section id="inscricao" class="form-section"><div class="wrap">
+<header class="head"><p class="kicker">INSCRIÇÕES</p><h2>FAÇA SUA INSCRIÇÃO.</h2><p>Campos marcados com * são obrigatórios.</p></header>
+<div id="alert" class="alert" hidden></div>
+
+<form id="form" novalidate>
+<div class="hp"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+<fieldset><legend><b>01</b>DADOS DO PILOTO</legend><div class="grid">
+<label class="field full"><span>Nome completo *</span><input name="full_name" required maxlength="120" autocomplete="name"></label>
+<label class="field"><span>Data de nascimento *</span><input name="birth_date" type="date" required></label>
+<label class="field"><span>E-mail *</span><input name="email" type="email" required autocomplete="email"></label>
+<label class="field"><span>WhatsApp *</span><input name="whatsapp" type="tel" required autocomplete="tel" placeholder="(15) 99999-9999"></label>
+<label class="field"><span>Cidade *</span><input name="city" required></label>
+<label class="field"><span>Estado *</span><select name="state" required><option value="">Selecione</option>
+<option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+</select></label>
+<label class="field"><span>Nome no iRacing *</span><input name="iracing_name" required></label>
+<label class="field"><span>iRacing Customer ID *</span><input name="iracing_customer_id" type="number" min="1" step="1" required></label>
+<label class="field"><span>iRating *</span><input name="irating_declared" type="number" min="0" step="1" required><small>Informe seu iRating no momento da inscrição. Para a Caterham Academy, valerá o momento de referência definido no Regulamento.</small></label>
+<label class="field"><span>Discord *</span><input name="discord" required></label>
+<label class="field"><span>Equipe de Sim Racing</span><input name="sim_team"></label>
+<label class="field"><span>Instagram</span><input name="instagram" placeholder="@usuario"></label>
+</div></fieldset>
+
+<fieldset><legend><b>02</b>CATEGORIA</legend>
+<p class="question">Em qual categoria deseja competir? *</p>
+<div class="options">
+<label class="option"><input type="radio" name="category" value="Academy" required><span><strong>Caterham Academy</strong><small>iRating de referência máximo de 2.000, sujeito aos critérios do Regulamento.</small></span></label>
+<label class="option"><input type="radio" name="category" value="420R" required><span><strong>Caterham 420R</strong><small>Categoria principal do Caterham Esports Brasil.</small></span></label>
+</div>
+<div id="academyExtra" class="conditional" hidden>
+<p class="help">A elegibilidade final para a Caterham Academy está sujeita aos critérios do Regulamento e à avaliação da Comissão Organizadora.</p>
+<p class="question">Caso não seja elegível para a Caterham Academy, deseja ser considerado para uma vaga na Caterham 420R? *</p>
+<div class="inline"><label><input type="radio" name="academy_fallback_420r" value="Sim"> Sim</label><label><input type="radio" name="academy_fallback_420r" value="Não"> Não</label></div>
+</div></fieldset>
+
+<fieldset><legend><b>03</b>EXPERIÊNCIA NO AUTOMOBILISMO</legend>
+<p class="question">Você já teve alguma experiência como piloto no automobilismo real? *</p>
+<div class="inline"><label><input type="radio" name="real_motorsport_experience" value="Não" required> Não</label><label><input type="radio" name="real_motorsport_experience" value="Sim" required> Sim</label></div>
+<p class="help">Considere qualquer experiência conduzindo um veículo de competição em pista, incluindo corridas, testes, clínicas de pilotagem ou atividades similares.</p>
+<div id="experienceExtra" class="conditional" hidden><label class="field"><span>Conte brevemente qual foi sua experiência. *</span><textarea name="experience_description" rows="5" maxlength="1200" placeholder="Se possível, informe veículo ou categoria, tipo de atividade e ano."></textarea></label></div>
+<p class="note"><strong>Ter experiência prévia no automobilismo real não impede sua participação no campeonato.</strong> Esta informação será utilizada para determinar a elegibilidade à premiação de clínica de pilotagem, conforme o Regulamento.</p>
+</fieldset>
+
+<fieldset><legend><b>04</b>DECLARAÇÕES</legend><div class="checks">
+<label><input type="checkbox" name="accept_regulation" value="Sim" required><span>Li e aceito integralmente o <a id="regInline" href="#" target="_blank">Regulamento Específico do Caterham Esports Brasil 2026</a>. *</span></label>
+<label><input type="checkbox" name="truth_declaration" value="Sim" required><span>Declaro que todas as informações fornecidas nesta inscrição são verdadeiras. *</span></label>
+<label><input type="checkbox" name="qualifying_ack" value="Sim" required><span>Estou ciente de que a participação na Fase Classificatória é obrigatória e que a inscrição não garante uma vaga no grid. *</span></label>
+<label><input type="checkbox" name="grid_ack" value="Sim" required><span>Estou ciente de que cada categoria possui um grid máximo de 30 pilotos e que a definição dos classificados seguirá os critérios estabelecidos no Regulamento. *</span></label>
+<label><input type="checkbox" name="privacy_consent" value="Sim" required><span>Autorizo o tratamento dos dados fornecidos para fins de inscrição, organização, administração e comunicação relacionadas ao Caterham Esports Brasil. *</span></label>
+<label><input type="checkbox" name="marketing_consent" value="Sim"><span>Quero receber novidades sobre competições, eventos e ações da Scuderia Bandeiras.</span></label>
+</div></fieldset>
+
+<div class="submit"><button id="submitBtn" class="btn primary" type="submit">ENVIAR INSCRIÇÃO</button></div>
+</form>
+
+<section id="success" class="success" hidden tabindex="-1"><p class="kicker">INSCRIÇÃO RECEBIDA</p><h2>VOCÊ ESTÁ INSCRITO.</h2><p>Recebemos sua inscrição para o Caterham Esports Brasil 2026. As próximas informações serão enviadas pelos canais informados no cadastro.</p><p id="registrationLine" hidden>Número de inscrição: <strong id="registrationId"></strong></p><p><strong>A inscrição não representa confirmação de vaga no grid.</strong></p></section>
+</div></section>
+</main>
+
+<script>
+(()=>{"use strict";
+const CONFIG={
+  regulationUrl:"/regulamento-caterham-esports-brasil-2026.pdf",
+  submitEndpoint:"" // inserir endpoint POST real antes de publicar
+};
+const form=document.getElementById("form"),academy=document.getElementById("academyExtra"),experience=document.getElementById("experienceExtra"),alertBox=document.getElementById("alert"),success=document.getElementById("success"),btn=document.getElementById("submitBtn");
+document.getElementById("regTop").href=CONFIG.regulationUrl;document.getElementById("regInline").href=CONFIG.regulationUrl;
+const checked=n=>form.querySelector('input[name="'+n+'"]:checked');
+function updateCategory(){const show=checked("category")?.value==="Academy";academy.hidden=!show;academy.querySelectorAll('input[name="academy_fallback_420r"]').forEach(e=>{e.required=show;if(!show)e.checked=false})}
+function updateExperience(){const show=checked("real_motorsport_experience")?.value==="Sim";experience.hidden=!show;form.elements.experience_description.required=show;if(!show)form.elements.experience_description.value=""}
+form.querySelectorAll('input[name="category"]').forEach(e=>e.addEventListener("change",updateCategory));
+form.querySelectorAll('input[name="real_motorsport_experience"]').forEach(e=>e.addEventListener("change",updateExperience));
+function payload(fd){const p=Object.fromEntries(fd.entries());["accept_regulation","truth_declaration","qualifying_ack","grid_ack","privacy_consent","marketing_consent"].forEach(k=>{if(!(k in p))p[k]="Não"});p.iracing_customer_id=Number(p.iracing_customer_id);p.irating_declared=Number(p.irating_declared);p.source="site_scuderia_bandeiras";p.championship="Caterham Esports Brasil 2026";p.submitted_at=new Date().toISOString();return p}
+async function send(p){if(!CONFIG.submitEndpoint){await new Promise(r=>setTimeout(r,350));return{ok:true,demo:true}}const r=await fetch(CONFIG.submitEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p)});if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}
+form.addEventListener("submit",async e=>{e.preventDefault();alertBox.hidden=true;updateCategory();updateExperience();if(!form.checkValidity()){alertBox.textContent="Revise os campos obrigatórios antes de enviar sua inscrição.";alertBox.hidden=false;form.reportValidity();return}const fd=new FormData(form);if(fd.get("website"))return;btn.disabled=true;btn.textContent="ENVIANDO...";try{const result=await send(payload(fd));form.hidden=true;success.hidden=false;if(result.registration_id){document.getElementById("registrationId").textContent=result.registration_id;document.getElementById("registrationLine").hidden=false}success.focus();success.scrollIntoView({behavior:"smooth"})}catch(err){alertBox.textContent="Não foi possível enviar sua inscrição. Tente novamente em alguns instantes.";alertBox.hidden=false;btn.disabled=false;btn.textContent="ENVIAR INSCRIÇÃO"}});
+updateCategory();updateExperience();
+})();
+</script>
+</body></html>

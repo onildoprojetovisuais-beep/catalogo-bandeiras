@@ -2901,3 +2901,263 @@
   .js-motion .piloto-card:nth-child(3).is-in { transition-delay: 160ms; }
   .js-motion .piloto-card:nth-child(4).is-in { transition-delay: 240ms; }
 }
+
+/* ============================================================ CAMPEONATO DE SIMULADOR CATERHAM
+   Caterham Esports Brasil. Desde 2026-10-14 é um bloco full-bleed DENTRO de
+   Experiências, logo depois do card "Caterham para Empresas" (antes era seção
+   própria entre Experiências e Bandeiras Empresarial). Mídia agora é o loop
+   de vídeo do Remotion (.sim__video), não mais a foto do 420R de estúdio.
+   Hierarquia: imagem → título → contexto → CTA. Acento lima local, mesma
+   técnica de .card--caterham: sobrepõe --vermelho/--vermelho-escuro só
+   neste escopo (eyebrow, grifo, filete e anel de foco herdam sozinhos).
+   Mobile: foto primeiro, com o título subindo sobre o pé escuro da foto.
+   Desktop (>=1024): texto à esquerda no eixo do container, foto sangrando
+   até a borda direita, com o título avançando sobre a fusão da foto.
+   O HUD de cronometragem aparece só dentro do vídeo, nas cenas do simulador
+   (é o que diferencia virtual de real); a página continua sem HUD de UI. */
+@layer components {
+  .sim {
+    --vermelho: #cad302;
+    --vermelho-escuro: #a8b002;
+    position: relative;
+    margin-block: var(--space-2xl) 0;
+    padding-block: 0 var(--space-xl);
+    overflow: clip;
+  }
+  .sim__palco {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* ---- Mídia */
+  .sim__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 78svh;
+    overflow: hidden;
+    background: var(--asfalto-2);
+  }
+  .sim__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .sim__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(15, 15, 15, 0.55) 0%,
+      rgba(15, 15, 15, 0) 20%,
+      rgba(15, 15, 15, 0) 48%,
+      rgba(15, 15, 15, 0.72) 76%,
+      var(--asfalto) 100%);
+  }
+  .sim__placa {
+    position: absolute;
+    z-index: 1;
+    top: var(--space-s);
+    left: var(--gutter);
+    /* 44px do botão de pausa (.video-controls, canto superior direito) + folga */
+    max-width: calc(100% - 2 * var(--gutter) - 56px);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    margin: 0;
+    padding: 0;
+    color: var(--luz);
+    font-family: var(--ff-text);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  }
+  .sim__placa::before {
+    content: "";
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--vermelho);
+  }
+
+  /* ---- Texto */
+  .sim__texto {
+    position: relative;
+    z-index: 1;
+    padding-inline: var(--gutter);
+    margin-block-start: clamp(-136px, -22vw, -72px);
+  }
+  .sim__titulo {
+    font-size: clamp(3rem, 0.5rem + 12.5vw, 6.5rem);
+    line-height: 0.96;
+    max-width: none;
+    margin-block: var(--space-xs) var(--space-m);
+    text-wrap: initial;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  }
+  .sim__quebra { display: block; white-space: nowrap; }
+  .sim__titulo .grifo { text-shadow: none; }
+  .sim__lead {
+    color: var(--luz-2);
+    font-size: var(--t-body);
+    line-height: 1.55;
+    max-width: 44ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .sim__assinatura {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.4em;
+    margin: var(--space-m) 0 0;
+    max-width: 44ch;
+    font-family: var(--ff-display);
+    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .sim__x { color: var(--vermelho); font-size: 1.15em; line-height: 1; }
+  /* Ficha curta em linha (02 categorias · 05 etapas · 30 vagas) */
+  .sim__ficha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs) var(--space-m);
+    margin: var(--space-m) 0 0;
+    padding: var(--space-s) 0 0;
+    list-style: none;
+    border-top: 1px solid var(--divisor);
+    max-width: 44ch;
+    color: var(--luz-2);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .sim__ficha-n {
+    color: var(--luz);
+    font-family: var(--ff-display);
+    font-size: 1.75rem;
+    line-height: 1;
+    margin-inline-end: 0.15em;
+  }
+
+  /* ---- CTAs */
+  .sim__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-block-start: var(--space-xs);
+  }
+  .sim__cta.btn {
+    flex: 1 1 100%;
+    min-height: 56px;
+  }
+  .sim__cta--primario.btn,
+  .sim__cta--primario.btn:visited {
+    background: var(--vermelho); /* aqui = lima local, não o vermelho de botão */
+    color: var(--asfalto);
+  }
+  .sim__cta--primario.btn:hover,
+  .sim__cta--primario.btn:active {
+    background: var(--luz);
+    color: var(--asfalto);
+  }
+
+  /* Celular: ganha ~40px para o CTA primário chegar perto da 1ª tela. */
+  @media (max-width: 639px) {
+    .sim { padding-block-end: var(--space-l); }
+    .sim__titulo { margin-block-end: var(--space-s); }
+    .sim__assinatura { margin-block-start: var(--space-s); }
+  }
+  @media (max-width: 359px) {
+    .sim__placa { font-size: 0.75rem; letter-spacing: 0.04em; }
+  }
+  /* Celular deitado: o título dimensionado pela largura não cabe na altura. */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .sim__titulo { font-size: clamp(2.75rem, 17svh, 4.5rem); }
+    .sim__media { max-height: 64svh; }
+    .sim__texto { margin-block-start: -56px; }
+  }
+
+  @media (min-width: 640px) {
+    .sim__media {
+      aspect-ratio: 16 / 11;
+      max-height: 72svh;
+    }
+    .sim__cta.btn { flex: 0 0 auto; }
+  }
+
+  @media (min-width: 1024px) {
+    /* Foto sangra também na vertical: sem padding na seção, o fade de
+       topo/base do scrim faz a costura com as vizinhas. */
+    .sim {
+      padding-block: 0;
+    }
+    .sim__ctas { margin-block-start: var(--space-m); }
+    .sim__palco {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 7fr);
+      align-items: center;
+      min-height: clamp(640px, 92svh, 960px);
+    }
+    .sim__media {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: stretch;
+      aspect-ratio: auto;
+      max-height: none;
+    }
+    .sim__scrim {
+      background:
+        linear-gradient(90deg, var(--asfalto) 0%, rgba(15, 15, 15, 0.7) 8%, rgba(15, 15, 15, 0) 28%),
+        linear-gradient(180deg, var(--asfalto) 0%, rgba(15, 15, 15, 0) 16%, rgba(15, 15, 15, 0) 70%, var(--asfalto) 100%);
+    }
+    .sim__placa {
+      top: auto;
+      left: auto;
+      right: var(--container-margin);
+      bottom: var(--space-l);
+    }
+    .sim__texto {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0;
+      padding-block: var(--space-2xl);
+      padding-inline: var(--content-inset) var(--space-l);
+    }
+    .sim__titulo {
+      font-size: clamp(4rem, 5.6vw, 6.25rem);
+      margin-block-start: var(--space-s);
+      text-shadow: none; /* aqui o título fica sobre o asfalto, não sobre a foto */
+    }
+    /* Coluna de texto estreita demais para os 2 CTAs lado a lado em parte das
+       larguras: empilhados sempre, cada um na largura natural. */
+    .sim__ctas {
+      display: grid;
+      justify-items: start;
+    }
+  }
+}
+
+@layer motion-base {
+  /* Foto: só fade (sem subir) + leve escala assentando, como .frentes__media.
+     Texto em cascata curta. Tudo condicionado a .js-motion (sem JS ou com
+     prefers-reduced-motion o estado final já é o visível). */
+  .js-motion .sim__media[data-reveal] { transform: none; }
+  .js-motion .sim__media[data-reveal].is-in {
+    transition: opacity var(--dur-slow) var(--ease-brake);
+  }
+  .js-motion .sim__video { transform: scale(1.06); }
+  .js-motion .sim__media.is-in .sim__video {
+    transform: scale(1);
+    transition: transform var(--dur-settle) var(--ease-brake);
+  }
+  .js-motion .sim .sim__titulo.is-in { transition-delay: 80ms; }
+  .js-motion .sim .sim__lead.is-in { transition-delay: 150ms; }
+  .js-motion .sim .sim__ficha.is-in { transition-delay: 190ms; }
+  .js-motion .sim .sim__assinatura.is-in { transition-delay: 230ms; }
+  .js-motion .sim .sim__ctas.is-in { transition-delay: 290ms; }
+}

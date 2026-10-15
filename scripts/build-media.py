@@ -103,6 +103,15 @@ MANIFEST: dict[str, str] = {
     # Fundo do fecho ("O piloto conduz. Você sente.") — foto real do evento
     # (Fazenda Capuava), fornecida pelo cliente.
     "caterham-fecho-photo": "assets/Imagens/caterham/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-1000.jpg",
+    # Caterham Esports Brasil (campeonato de simulador, 2026-10-14) — fotos reais
+    # dos simuladores na Race Experience da Fazenda Capuava (Duda Bairros,
+    # 26/07/2026), fornecidas pelo usuário. Substituem o 420R de estúdio que
+    # ocupava a seção antes. Usadas na home (#campeonato-simulador) e na página
+    # de inscrição (campeonato-simulador/).
+    "esports-cockpit": "assets/Imagens/caterham/simulador/esports/simulador-1365.jpg",
+    "esports-lado": "assets/Imagens/caterham/simulador/esports/simulador-4026.jpg",
+    "esports-aberto": "assets/Imagens/caterham/simulador/esports/simulador-1273.jpg",
+    "esports-piloto": "assets/Imagens/caterham/simulador/esports/simulador-3920.jpg",
     # Dobra 08 — mosaico "Somos todos Scuderia Bandeiras" (prova dos 50+ profissionais).
     # Arte atualizada pelo usuário (2026-09-25), substitui a versão anterior
     # ("imagem time bandeiras desk.jpg", removida). Item 7 continua aberto:
