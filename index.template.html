@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets-build/favicon/favicon-180.png">
   <link rel="preload" href="assets-build/fonts/special-gothic-condensed-one-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.min.css?v=20261015a">
+  <link rel="stylesheet" href="css/site.min.css?v=20261015b">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,7 +70,6 @@
       <nav class="nav__links" aria-label="Navegação principal">
         <div class="nav__group">
           <a data-nav-link href="#ecossistema">Ecossistema</a>
-          <a data-nav-link href="#pilotos">Pilotos &amp; Time</a>
         </div>
         <div class="nav__group">
           <a data-nav-link href="#experiencias">Experiências</a>
@@ -97,7 +96,6 @@
       </div>
       <nav aria-label="Navegação (menu mobile)">
         <a href="#ecossistema">Ecossistema</a>
-        <a href="#pilotos">Pilotos &amp; Time</a>
         <a href="#experiencias">Experiências</a>
         <a href="#bandeiras-empresarial">Bandeiras Empresarial</a>
         <a href="#conteudo">Conteúdo</a>
@@ -199,6 +197,9 @@
     </section>
 
     <!-- ============================================================ 03 · PILOTOS & TIME
+         OCULTA 2026-10-15 a pedido do usuário (atributo hidden; o HTML fica
+         para reativar). Links do menu/rodapé removidos e seções seguintes
+         renumeradas: Experiências 03, Bandeiras 04, Conteúdo 05, Marcas 06.
          Seção única e definitiva para os 4 nomes. Absorve a função da
          extinta FAIXA DE AUTORIDADE e da extinta seção PALESTRAS (agora
          módulo compacto no fecho, sem repetir bios/fotos).
@@ -214,7 +215,7 @@
          aqui de propósito — cabe no .pilotos-time__bastidor/memória de
          sessão, não no card). Hover (só pointer:fine): imagem ganha escala
          mínima, scrim intensifica, credenciais reforçam (opacity). -->
-    <section id="pilotos" class="section pilotos-time">
+    <section id="pilotos" class="section pilotos-time" hidden>
       <div class="container">
         <div class="section-head">
           <span class="section-head__index" aria-hidden="true">03</span>
@@ -327,6 +328,7 @@
     </section>
 
     <!-- ============================================================ LEGADO · INGO HOFFMANN
+         OCULTA 2026-10-15 a pedido do usuário (atributo hidden).
          Nova dobra 2026-09-25, pedido explícito do usuário: pausa emocional/
          cinematográfica logo após Pilotos & Time — não é uma seção numerada
          (sem .section-head, sem numeral, fora do sistema .section para não
@@ -359,7 +361,7 @@
          deixando a faixa central do rosto limpa; no desktop (≥1024px) o
          topo some e cabeçalho+texto se juntam embaixo, mesmo eixo de
          --content-inset usado em .media-split. -->
-    <section id="legado" class="legado">
+    <section id="legado" class="legado" hidden>
       <div class="legado__frame">
         <video class="legado__video" muted loop playsinline preload="none" poster="assets-build/img/legado-ingo-poster-1440w.jpg" aria-label="Ingo Hoffmann, embaixador da Scuderia Bandeiras: do retrato de arquivo ao piloto de hoje, chegando à Scuderia">
           <source src="assets-build/video/legado-ingo-mobile-720w.mp4" media="(max-width: 1023px)" type="video/mp4">
@@ -414,7 +416,7 @@
     <section id="experiencias" class="section experiencias">
       <div class="container intro-split">
         <div class="section-head">
-          <span class="section-head__index" aria-hidden="true">04</span>
+          <span class="section-head__index" aria-hidden="true">03</span>
           <div>
             <p class="eyebrow" data-reveal>EXPERIÊNCIAS &amp; PROJETOS</p>
             <h2 data-reveal>Sua empresa pode <mark class="grifo">viver o automobilismo</mark> de dentro.</h2>
@@ -762,7 +764,7 @@
     <section id="conteudo" class="section conteudo">
       <div class="container">
         <div class="section-head">
-          <span class="section-head__index" aria-hidden="true">06</span>
+          <span class="section-head__index" aria-hidden="true">05</span>
           <div>
             <p class="eyebrow" data-reveal>CONTEÚDO &amp; BASTIDORES</p>
             <h2 data-reveal>O automobilismo também pode contar a <mark class="grifo">história da sua marca</mark>.</h2>
@@ -959,7 +961,7 @@
     <section id="marcas" class="section marcas" aria-label="Marcas e parceiros">
       <div class="container">
         <div class="section-head">
-          <span class="section-head__index" aria-hidden="true">07</span>
+          <span class="section-head__index" aria-hidden="true">06</span>
           <div>
             <p class="eyebrow" data-reveal>MARCAS &amp; PARCEIROS</p>
             <h2 data-reveal>Marcas que já andam ao lado da <mark class="grifo">Scuderia Bandeiras</mark>.</h2>
@@ -1021,7 +1023,6 @@
 
       <nav class="footer__links" aria-label="Navegação (rodapé)">
         <a href="#ecossistema">Ecossistema</a>
-        <a href="#pilotos">Pilotos &amp; Time</a>
         <a href="#experiencias">Experiências</a>
         <a href="#bandeiras-empresarial">Bandeiras Empresarial</a>
         <a href="#conteudo">Conteúdo</a>

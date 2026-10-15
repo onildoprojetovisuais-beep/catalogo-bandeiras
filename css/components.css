@@ -3161,3 +3161,9 @@
   .js-motion .sim .sim__assinatura.is-in { transition-delay: 230ms; }
   .js-motion .sim .sim__ctas.is-in { transition-delay: 290ms; }
 }
+
+/* Seções ocultas na home (atributo hidden): garante que nenhum display de componente as reexiba. */
+@layer components {
+  .pilotos-time[hidden],
+  .legado[hidden] { display: none !important; }
+}

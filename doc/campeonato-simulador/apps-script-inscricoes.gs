@@ -2,7 +2,8 @@
  * Caterham Esports Brasil 2026 — recebe as inscrições do site e grava numa planilha.
  *
  * COMO ATIVAR (uma vez):
- *  1. Crie uma Planilha Google (ex.: "Caterham Esports Brasil 2026 — Inscrições").
+ *  1. Suba doc/campeonato-simulador/Inscricoes-Esports-Cup-2026.xlsx no Google Drive e
+ *     salve como Planilha Google (já vem com a aba "Inscrições", cabeçalhos e resumo).
  *  2. Extensões → Apps Script. Apague o conteúdo e cole este arquivo inteiro.
  *  3. Troque SECRET abaixo por um texto aleatório longo (ex.: 32 letras/números).
  *  4. Implantar → Nova implantação → tipo "App da Web".
