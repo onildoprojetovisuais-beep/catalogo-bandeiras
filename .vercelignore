@@ -21,3 +21,4 @@ css/tokens.css
 # brutos do topo ainda sem uso no site
 assets/videos/topo.mp4
 assets/videos/topo-mobile.mp4
+.env*

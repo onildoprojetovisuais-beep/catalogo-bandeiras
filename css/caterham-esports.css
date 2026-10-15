@@ -155,8 +155,9 @@ a { color: inherit; }
 .topo__status {
   justify-self: end; display: inline-flex; align-items: center; gap: 8px; margin: 0;
   font-family: var(--ff-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--paper);
+  color: var(--paper); text-decoration: none;
 }
+a.topo__status:hover { color: var(--lime); }
 .pulso { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 0 rgba(202, 211, 2, 0.6); }
 .js-motion .pulso { animation: pulso 1.8s var(--ease) infinite; }
 @keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(202, 211, 2, 0.55); } 80%, 100% { box-shadow: 0 0 0 10px rgba(202, 211, 2, 0); } }

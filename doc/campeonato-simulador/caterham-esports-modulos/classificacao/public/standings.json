@@ -1,0 +1,98 @@
+{
+  "generated_at": null,
+  "competition": "Caterham Esports Brasil",
+  "categories": {
+    "Academy": {
+      "completed_heats": 0,
+      "total_heats": 10,
+      "championship_complete": false,
+      "drops_applied": false,
+      "drop_count": 2,
+      "stages": [
+        {
+          "stage": 1,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 2,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 3,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 4,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 5,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        }
+      ],
+      "entries": [],
+      "count": 0
+    },
+    "420R": {
+      "completed_heats": 0,
+      "total_heats": 10,
+      "championship_complete": false,
+      "drops_applied": false,
+      "drop_count": 2,
+      "stages": [
+        {
+          "stage": 1,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 2,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 3,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 4,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        },
+        {
+          "stage": 5,
+          "imported": false,
+          "track_name": null,
+          "track_config": null,
+          "subsession_id": null
+        }
+      ],
+      "entries": [],
+      "count": 0
+    }
+  }
+}

@@ -35,6 +35,7 @@ MANIFEST_PATH = ROOT / "assets-build" / "manifest.json"
 PAGES = [
     (ROOT / "index.template.html", ROOT / "index.html", ""),
     (ROOT / "campeonato-simulador" / "index.template.html", ROOT / "campeonato-simulador" / "index.html", "/"),
+    (ROOT / "campeonato-simulador" / "seletiva" / "index.template.html", ROOT / "campeonato-simulador" / "seletiva" / "index.html", "/"),
 ]
 
 TAG_RE = re.compile(r"<x-img\s+([^>]*?)/?>\s*(?:</x-img>)?", re.IGNORECASE)

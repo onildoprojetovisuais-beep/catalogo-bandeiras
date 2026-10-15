@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Painel da seletiva | Esports Cup 2026</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261015c">
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261015b">
+  <script src="/js/seletiva-admin.js?v=20261015a" defer></script>
+</head>
+<!-- Painel da seletiva: fora do menu e do sitemap, noindex. Fala com
+     /api/seletiva-admin usando a senha do painel (CATERHAM_ADMIN_TOKEN). -->
+<body>
+  <main class="adm">
+    <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Esports Cup 2026 · uso interno</p>
+    <h1>Painel da seletiva</h1>
+    <p>Suba aqui o <code>eventresult.json</code> exportado do iRacing. O ranking público em <a href="/campeonato-simulador/seletiva/" target="_blank" rel="noopener">/campeonato-simulador/seletiva/</a> atualiza em até 1 minuto. Reenviar o mesmo evento substitui o envio anterior dele.</p>
+
+    <form class="adm__bloco" data-login>
+      <label>Senha do painel
+        <input type="password" name="token" autocomplete="current-password" required>
+      </label>
+      <button class="btn btn--lima" type="submit">Entrar</button>
+      <p class="adm__msg is-erro" data-login-msg hidden></p>
+    </form>
+
+    <div data-painel hidden>
+      <h2>Enviar resultado</h2>
+      <form class="adm__bloco" data-envio>
+        <div class="adm__linha">
+          <label>Categoria
+            <select name="category" required>
+              <option value="">Escolha…</option>
+              <option value="Academy">Caterham Academy</option>
+              <option value="420R">Caterham 420R</option>
+            </select>
+          </label>
+          <label>Sessão que vale
+            <select name="mode">
+              <option value="auto">Automático (classificação; se vazia, treino)</option>
+              <option value="qualify">Só classificação</option>
+              <option value="practice">Só treino</option>
+              <option value="all">Todas as sessões</option>
+            </select>
+          </label>
+        </div>
+        <label>Arquivo eventresult.json
+          <input type="file" name="arquivo" accept=".json,application/json" required>
+        </label>
+        <button class="btn btn--lima" type="submit">Enviar e atualizar ranking</button>
+        <p class="adm__msg" data-envio-msg hidden></p>
+      </form>
+
+      <h2>Arquivos enviados</h2>
+      <div class="adm__tabela-wrap"><table data-imports></table></div>
+
+      <h2>Excluir piloto do ranking</h2>
+      <p>Para desclassificação (ex.: Regulamento 2.2.12). O piloto some do ranking público até ser reincluído.</p>
+      <form class="adm__bloco" data-exclusao>
+        <div class="adm__linha">
+          <label>Categoria
+            <select name="category" required>
+              <option value="Academy">Caterham Academy</option>
+              <option value="420R">Caterham 420R</option>
+            </select>
+          </label>
+          <label>Customer ID do iRacing
+            <input type="number" name="cust_id" min="1" required>
+          </label>
+        </div>
+        <label>Motivo (uso interno)
+          <input type="text" name="reason" maxlength="200">
+        </label>
+        <button class="btn btn--linha" type="submit">Excluir do ranking</button>
+        <p class="adm__msg" data-exclusao-msg hidden></p>
+      </form>
+      <div class="adm__tabela-wrap"><table data-exclusoes></table></div>
+
+      <h2>Ranking atual (com Customer ID)</h2>
+      <div class="adm__linha" data-ranking></div>
+    </div>
+  </main>
+</body>
+</html>

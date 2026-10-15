@@ -1,0 +1,14 @@
+PACOTE CONSOLIDADO
+
+Este arquivo foi montado para ser enviado diretamente ao desenvolvedor.
+
+INCLUI:
+- Protestos V2
+- Classificação V4
+
+NÃO INCLUI:
+- inscrição, pois já foi enviada anteriormente;
+- regulamento PDF, pois será enviado separadamente pelo organizador.
+
+Leia primeiro:
+README_IMPLEMENTACAO.md

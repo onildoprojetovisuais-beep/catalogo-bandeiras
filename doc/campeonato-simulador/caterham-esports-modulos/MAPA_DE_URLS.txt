@@ -1,0 +1,35 @@
+CATERHAM ESPORTS BRASIL — MAPA DE URLs SUGERIDO
+
+PÚBLICO
+-------
+
+Inscrição / seletiva:
+já implementado anteriormente
+
+Protestos:
+https://SEU-DOMINIO/caterham-esports/protestos/
+
+Classificação Academy:
+https://SEU-DOMINIO/caterham-esports/classificacao/academy/
+
+Classificação 420R:
+https://SEU-DOMINIO/caterham-esports/classificacao/420r/
+
+Seletor de classificação (opcional):
+https://SEU-DOMINIO/caterham-esports/classificacao/
+
+Regulamento:
+https://SEU-DOMINIO/caterham-esports/regulamento.pdf
+
+
+ADMIN — NÃO COLOCAR NO MENU PÚBLICO
+-----------------------------------
+
+Protestos:
+https://SEU-DOMINIO/caterham-esports/protestos/admin/
+
+Classificação:
+https://SEU-DOMINIO/caterham-esports/classificacao/admin/
+
+Preferência:
+mover/expor esses caminhos via host administrativo separado.

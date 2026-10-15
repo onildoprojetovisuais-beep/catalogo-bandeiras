@@ -1,0 +1,37 @@
+
+:root{
+ --bg:#0b0b0b;--card:#151515;--line:#2b2b2b;--text:#f3f3f3;
+ --muted:#999;--accent:#f47b20;--ok:#80d68c;--warn:#efc36a;--bad:#ee7777;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+main{max-width:1480px;margin:38px auto;padding:0 18px}
+h1{margin:0 0 5px;font-size:38px}h2{margin:0 0 12px}
+.sub{color:var(--muted);margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:20px 0}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:1150px}
+th,td{padding:9px;border-bottom:1px solid #282828;text-align:center;white-space:nowrap}
+th{font-size:12px;text-transform:uppercase;color:var(--accent);background:#101010;position:sticky;top:0}
+th.driver,td.driver{text-align:left;position:sticky;left:0;background:#151515;z-index:1}
+td.pos{font-weight:800}
+.cell-pos{display:block;font-weight:700}.cell-pts{font-size:11px;color:var(--muted)}
+td.drop{text-decoration:line-through;opacity:.58}td.dq{color:var(--bad)}td.nc{color:var(--warn)}
+.summary{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.pill{padding:8px 12px;border-radius:8px;background:#111;border:1px solid #2b2b2b;color:#bbb}
+.pill b{color:#fff}.note{font-size:12px;color:var(--muted)}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-weight:700;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:10px;background:#0c0c0c;color:#fff;border:1px solid #444;border-radius:7px}
+input[type=checkbox]{width:auto}
+.btn{border:0;border-radius:8px;padding:11px 15px;font-weight:800;cursor:pointer}
+.btn.primary{background:var(--accent);color:#111}.btn.secondary{background:#303030;color:#fff}
+pre{white-space:pre-wrap;background:#090909;border:1px solid #222;border-radius:8px;padding:12px;color:#bbb}
+.adjust-row{display:grid;grid-template-columns:90px 70px 60px 100px 1fr 80px 80px 55px 1.1fr 80px;gap:6px;align-items:center;border-bottom:1px solid #292929;padding:6px 0;font-size:12px}
+.adjust-row input{padding:7px}
+@media(max-width:800px){h1{font-size:30px}.admin-grid{grid-template-columns:1fr}.adjust-row{grid-template-columns:1fr 1fr}}
+
+.standings-modes{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 8px}
+.mode-button{border:1px solid #3a3a3a;background:#242424;color:#eee;border-radius:8px;
+padding:10px 14px;font-weight:800;cursor:pointer}
+.mode-button.active{background:var(--accent);border-color:var(--accent);color:#111}
