@@ -12,3 +12,5 @@ assets/Imagens/novos-assets/*.jpeg
 # vídeo bruto de origem do Legado Ingo (454MB, acima do limite de 100MB do GitHub;
 # o site usa os MP4 comprimidos em assets-build/video)
 assets/videos/pilotos/*.mp4
+# arquivos temporarios do Office (planilha aberta no Excel)
+~$*
