@@ -18,8 +18,12 @@
  *  recebendo envios" (nada é perdido em silêncio).
  *
  * E-MAIL DE CONFIRMAÇÃO
- *  - Sai da conta Google que fez a implantação ("Executar como: Eu"). Para sair do
- *    e-mail do Workspace, a implantação precisa ser feita logado nessa conta.
+ *  - Sai da conta Google que fez a implantação ("Executar como: Eu"). Conta definida
+ *    em 16/10/2026: ativacoes@scuderiabandeiras.com — implantar logado nela.
+ *  - Ao colar uma versão nova deste arquivo, MANTENHA a linha SECRET do script atual.
+ *  - Quem se inscreveu antes do e-mail estar ligado: rode listarPendentes (confere) e
+ *    depois enviarParaJaInscritos (envia). A coluna 29 "E-mail de confirmação" marca
+ *    quem já recebeu; rodar de novo não duplica.
  *  - Texto, assunto e senha ficam no bloco EMAIL abaixo. Depois de editar:
  *    Implantar → Gerir implementações → lápis → Versão: Nova versão → Implementar
  *    (a URL /exec continua a mesma).
@@ -76,6 +80,9 @@ const COLUNAS = [
 ];
 // Status (27) e Observações internas (28) vêm logo depois das colunas acima.
 const COL_OBSERVACOES = COLUNAS.length + 2;
+// Coluna 29: data/hora em que o e-mail de confirmação saiu (vazia = ainda não recebeu).
+const COL_EMAIL_ENVIADO = COLUNAS.length + 3;
+const TITULO_EMAIL_ENVIADO = "E-mail de confirmação";
 
 function doPost(e) {
   try {
@@ -106,6 +113,7 @@ function doPost(e) {
     if (EMAIL.ENVIAR) {
       try {
         enviarConfirmacao_(dados);
+        marcarEnviado_(aba, linha);
       } catch (errEmail) {
         aba.getRange(linha, COL_OBSERVACOES).setValue("Falha ao enviar e-mail: " + String(errEmail));
       }
@@ -155,6 +163,70 @@ function testarEmail() {
     registration_id: "CEB26-TESTE",
     email: Session.getActiveUser().getEmail(),
   });
+}
+
+function marcarEnviado_(aba, linha) {
+  if (!aba.getRange(1, COL_EMAIL_ENVIADO).getValue()) {
+    aba.getRange(1, COL_EMAIL_ENVIADO).setValue(TITULO_EMAIL_ENVIADO);
+  }
+  const quando = Utilities.formatDate(new Date(), "America/Sao_Paulo", "dd/MM/yyyy HH:mm");
+  aba.getRange(linha, COL_EMAIL_ENVIADO).setValue("Enviado em " + quando);
+}
+
+// Inscritos que ainda não receberam o e-mail: linha com e-mail, sem marca na coluna 29,
+// fora a linha de teste. Um envio por endereço (inscrição repetida não recebe duas vezes).
+function pendentes_() {
+  const aba = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA);
+  const valores = aba.getDataRange().getValues();
+  const iEmail = COLUNAS.indexOf("email");
+  const iNome = COLUNAS.indexOf("full_name");
+  const vistos = {};
+  const lista = [];
+  for (let r = 1; r < valores.length; r++) {
+    const linha = valores[r];
+    const email = String(linha[iEmail] || "").trim().toLowerCase();
+    const nome = String(linha[iNome] || "");
+    const jaEnviado = String(linha[COL_EMAIL_ENVIADO - 1] || "") !== "";
+    if (!email || /TESTE - APAGAR/i.test(nome)) continue;
+    if (jaEnviado) { vistos[email] = true; continue; }
+    lista.push({ linha: r + 1, email: email, nome: nome, duplicado: !!vistos[email], dados: linha });
+    vistos[email] = true;
+  }
+  return { aba: aba, lista: lista };
+}
+
+// PASSO 1 — confira antes: Executar → listarPendentes e veja o "Registro de execução".
+function listarPendentes() {
+  const p = pendentes_().lista;
+  Logger.log(p.length + " inscrição(ões) sem e-mail de confirmação:");
+  p.forEach(function (x) {
+    Logger.log("linha " + x.linha + " · " + x.nome + " · " + x.email + (x.duplicado ? " (endereço repetido, não recebe de novo)" : ""));
+  });
+}
+
+// PASSO 2 — envia para quem se inscreveu antes do e-mail estar ligado. Pode rodar de novo
+// sem risco: quem já tem a marca na coluna 29 é pulado.
+function enviarParaJaInscritos() {
+  const p = pendentes_();
+  let enviados = 0, falhas = 0;
+  p.lista.forEach(function (x) {
+    if (x.duplicado) {
+      p.aba.getRange(x.linha, COL_EMAIL_ENVIADO).setValue("Não reenviado (e-mail repetido)");
+      return;
+    }
+    const dados = {};
+    COLUNAS.forEach(function (c, i) { dados[c] = x.dados[i]; });
+    dados.email = x.email;
+    try {
+      enviarConfirmacao_(dados);
+      marcarEnviado_(p.aba, x.linha);
+      enviados++;
+    } catch (err) {
+      p.aba.getRange(x.linha, COL_OBSERVACOES).setValue("Falha ao enviar e-mail: " + String(err));
+      falhas++;
+    }
+  });
+  Logger.log("Enviados: " + enviados + " · Falhas: " + falhas + " (motivo na coluna Observações internas)");
 }
 
 function json_(obj) {
