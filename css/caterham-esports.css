@@ -151,7 +151,7 @@ a { color: inherit; }
   color: var(--paper-2); text-decoration: none;
 }
 .topo__voltar:hover { color: var(--lime); }
-.topo__logo img { width: clamp(150px, 18vw, 220px); height: auto; }
+.topo__logo img { width: clamp(120px, 12vw, 160px); height: auto; }
 .topo__status {
   justify-self: end; display: inline-flex; align-items: center; gap: 8px; margin: 0;
   font-family: var(--ff-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase;

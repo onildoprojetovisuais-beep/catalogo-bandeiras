@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classificação | Scuderia Bandeiras Esports Cup 2026</title>
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261015d">
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261015b">
+  <style>
+    .cls { max-width: 1320px; }
+    .cls__etapas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; margin-top: clamp(28px, 4vw, 40px); background: var(--linha); border: 1px solid var(--linha); }
+    .cls__etapa { padding: 14px 16px; background: var(--ink); }
+    .cls__etapa b { display: block; font-family: var(--ff-display); font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; }
+    .cls__etapa span { font-family: var(--ff-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-3); }
+    .cls__etapa.is-feita span { color: var(--lime); }
+    .cls__etapa.is-proxima { background: var(--ink-1); }
+    .cls__barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 20px 0 8px; }
+    .cls__modo { display: inline-flex; border: 1px solid var(--linha-forte); }
+    .cls__modo button { padding: 10px 16px; border: 0; background: none; color: var(--paper-2); font-family: var(--ff-display); font-weight: 700; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+    .cls__modo button[aria-pressed="true"] { background: var(--lime); color: var(--ink); }
+    .cls__nota { margin: 0; font-size: .8125rem; color: var(--paper-3); }
+    .cls__wrap { overflow-x: auto; border-top: 1px solid var(--linha); }
+    .cls__tabela { width: 100%; min-width: 1080px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    .cls__tabela th { padding: 10px 8px; font-family: var(--ff-mono); font-size: .625rem; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-3); text-align: center; white-space: nowrap; }
+    .cls__tabela thead tr:first-child th { padding-bottom: 2px; color: var(--paper-2); }
+    .cls__tabela th.e { border-left: 1px solid var(--linha); }
+    .cls__tabela td { padding: 10px 8px; border-top: 1px solid var(--linha); text-align: center; vertical-align: middle; white-space: nowrap; }
+    .cls__tabela .c-pos { width: 3rem; font-family: var(--ff-display); font-weight: 700; font-size: 1.25rem; color: var(--paper-2); text-align: left; }
+    .cls__tabela tbody tr:nth-child(-n + 3) .c-pos { color: var(--lime); }
+    .cls__tabela .c-nome { text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--ink); z-index: 1; min-width: 190px; }
+    .cls__tabela th.c-nome { background: var(--ink); }
+    .cls__tabela td.r { font-family: var(--ff-mono); font-size: .8125rem; line-height: 1.25; }
+    .cls__tabela td.r.e { border-left: 1px solid var(--linha); }
+    .cls__tabela td.r small { display: block; font-size: .6875rem; color: var(--paper-3); }
+    .cls__tabela td.r.pend { color: var(--paper-3); opacity: .5; }
+    .cls__tabela td.r.dq { color: var(--erro); }
+    .cls__tabela td.r.nc, .cls__tabela td.r.abs { color: var(--paper-3); }
+    .cls__tabela td.r.drop > * { text-decoration: line-through; opacity: .45; }
+    .cls__tabela td.r.p1 { color: var(--lime); }
+    .cls__tabela .c-pts { font-family: var(--ff-display); font-weight: 700; font-size: 1.25rem; text-align: right; padding-right: 4px; border-left: 1px solid var(--linha-forte); }
+    .cls__tabela th.c-pts { font-family: var(--ff-mono); font-size: .625rem; font-weight: 400; }
+    .cls__tabela .c-gap { font-family: var(--ff-mono); font-size: .8125rem; color: var(--paper-3); text-align: right; width: 4.5rem; }
+    .cls__legenda { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--linha); font-size: .8125rem; color: var(--paper-3); }
+    .cls__legenda b { font-family: var(--ff-mono); font-weight: 400; color: var(--paper-2); margin-right: 6px; }
+    .cls__legenda b.dq { color: var(--erro); }
+    .cls__legenda s { opacity: .6; margin-right: 6px; }
+    .mock-aviso { position: fixed; right: 12px; bottom: 12px; z-index: 9; padding: 6px 10px; background: var(--lime); color: var(--ink); font: 700 11px/1 var(--ff-mono); letter-spacing: .1em; text-transform: uppercase; }
+    @media (max-width: 719px) {
+      .cls__etapas { grid-template-columns: repeat(5, minmax(96px, 1fr)); overflow-x: auto; }
+      .cls__tabela .c-nome { min-width: 140px; max-width: 150px; white-space: normal; font-size: .875rem; }
+      .cls__tabela .c-pos { width: 2.25rem; font-size: 1.0625rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topo topo--fixo">
+    <a class="topo__voltar" href="/campeonato-simulador/">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>Campeonato</span>
+    </a>
+    <picture class="topo__logo"><source type="image/webp" srcset="/assets-build/img/caterham-logo-480w-f4c8182e0a.webp 480w, /assets-build/img/caterham-logo-800w-f4c8182e0a.webp 800w, /assets-build/img/caterham-logo-1280w-f4c8182e0a.webp 1280w" sizes="220px"><img src="/assets-build/img/caterham-logo-1920w-f4c8182e0a.webp" width="6339" height="990" alt="Scuderia Bandeiras e Caterham Motorsport Brasil"></picture>
+    <p class="topo__status"><span class="pulso" aria-hidden="true"></span>Classificação</p>
+  </header>
+
+  <main class="sel cls">
+    <header class="sel__cabeca">
+      <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Temporada 2026 · 5 etapas · 10 baterias</p>
+      <h1 class="titulo">Classificação do <em>campeonato</em></h1>
+      <p class="corpo">P1 soma 31 pontos e P30 soma 1. Só pontua quem completar 75% da distância. Ao final das 10 baterias, os 2 piores resultados de cada piloto são descartados (desclassificação não pode ser descartada).</p>
+      <p class="sel__atualizado">Atualizado em 27/10, 23:40 (horário de Brasília)</p>
+    </header>
+
+    <div class="sel__abas" role="tablist">
+      <button type="button" role="tab" aria-selected="true">Caterham Academy</button>
+      <button type="button" role="tab" aria-selected="false">Caterham 420R</button>
+    </div>
+
+    <div class="cls__etapas" id="etapas"></div>
+
+    <div class="cls__barra">
+      <div class="cls__modo" role="group" aria-label="Modo da classificação">
+        <button type="button" data-modo="bruto">Sem descartes</button>
+        <button type="button" data-modo="desc">Com 2 descartes</button>
+      </div>
+      <p class="cls__nota" id="nota"></p>
+    </div>
+
+    <div class="cls__wrap"><table class="cls__tabela" id="tabela"></table></div>
+
+    <div class="cls__legenda">
+      <span><b>P4</b>posição na bateria e pontos</span>
+      <span><b class="dq">DQ</b>desclassificado (0 pts, não descartável)</span>
+      <span><b>NC</b>não completou 75% (0 pts)</span>
+      <span><b>ABS</b>ausente (0 pts)</span>
+      <span><b>*</b>resultado ajustado após a prova</span>
+      <span><s>P18</s>resultado descartado</span>
+    </div>
+  </main>
+
+  <p class="mock-aviso">Mockup · dados fictícios</p>
+
+<script>
+(() => {
+  const P = new URLSearchParams(location.search);
+  const modo = P.get("modo") === "desc" ? "desc" : "bruto";
+  const FEITAS = 4; // 2 etapas disputadas = 4 baterias
+  const etapas = [["Etapa 1", "20/10 · disputada"], ["Etapa 2", "27/10 · disputada"], ["Etapa 3", "03/11 · próxima"], ["Etapa 4", "10/11"], ["Etapa 5", "17/11"]];
+  document.getElementById("etapas").innerHTML = etapas.map(([n, d], i) =>
+    `<div class="cls__etapa ${i < 2 ? "is-feita" : i === 2 ? "is-proxima" : ""}"><b>${n}</b><span>${d}</span></div>`).join("");
+
+  const nomes = ["Rafael Monteiro","Lucas Bernardi","Gabriel Tavares","Thiago Albuquerque","Pedro Henrique Lima","Matheus Carvalho","Bruno Siqueira","Felipe Andrade","Gustavo Ribeiro","Caio Fernandes","Leonardo Prado","Vinícius Moraes","Rodrigo Nogueira","André Queiroz","Daniel Rezende","Eduardo Pacheco","Henrique Duarte","João Vitor Sales","Marcelo Brandão","Otávio Pires","Renan Coutinho","Samuel Barreto","Tiago Medeiros","Victor Lacerda","Wagner Fontes","Arthur Campos","Diego Valença","Fábio Teixeira","Igor Cardoso","Murilo Azevedo"];
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const pilotos = nomes.map((n, i) => ({ n, skill: i + rnd() * 6, res: [] }));
+  for (let b = 0; b < FEITAS; b++) {
+    const ordem = pilotos.map(p => ({ p, v: p.skill + rnd() * 9 })).sort((a, z) => a.v - z.v);
+    let pos = 0;
+    ordem.forEach(({ p }) => {
+      const x = rnd();
+      if (x < 0.025) p.res[b] = { st: "DQ" };
+      else if (x < 0.06) p.res[b] = { st: "NC" };
+      else if (x < 0.09) p.res[b] = { st: "ABS" };
+      else { pos++; p.res[b] = { st: "OK", pos, pts: 32 - pos, adj: rnd() < 0.03 }; }
+    });
+  }
+  pilotos.forEach(p => {
+    const pts = r => (r.st === "OK" ? r.pts : 0);
+    p.bruto = p.res.reduce((s, r) => s + pts(r), 0);
+    const elegiveis = p.res.map((r, i) => ({ i, v: pts(r), dq: r.st === "DQ" })).filter(o => !o.dq).sort((a, z) => a.v - z.v).slice(0, 2);
+    elegiveis.forEach(o => (p.res[o.i].drop = true));
+    p.desc = p.bruto - elegiveis.reduce((s, o) => s + o.v, 0);
+  });
+  const chave = modo === "desc" ? "desc" : "bruto";
+  pilotos.sort((a, z) => z[chave] - a[chave]);
+
+  document.querySelectorAll("[data-modo]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.modo === modo)));
+  document.getElementById("nota").textContent = modo === "desc"
+    ? "Projeção com 2 descartes sobre as 4 baterias já disputadas."
+    : "Pontos somados, sem descarte. Os descartes entram ao final da temporada.";
+
+  let h = `<thead><tr><th></th><th class="c-nome"></th>`;
+  for (let e = 1; e <= 5; e++) h += `<th colspan="2" class="e">Etapa ${e}</th>`;
+  h += `<th></th><th></th></tr><tr><th class="c-pos" style="font-size:.625rem;font-family:var(--ff-mono);font-weight:400;color:var(--paper-3)">Pos.</th><th class="c-nome">Piloto</th>`;
+  for (let e = 1; e <= 5; e++) h += `<th class="e">Heat 1</th><th>Feature</th>`;
+  h += `<th class="c-pts">Pontos</th><th class="c-gap">Dif.</th></tr></thead><tbody>`;
+  const lider = pilotos[0][chave];
+  pilotos.forEach((p, i) => {
+    h += `<tr><td class="c-pos">${i + 1}</td><td class="c-nome">${p.n}</td>`;
+    for (let b = 0; b < 10; b++) {
+      const r = p.res[b], e = b % 2 === 0 ? " e" : "";
+      if (!r) { h += `<td class="r pend${e}">—</td>`; continue; }
+      const d = modo === "desc" && r.drop ? " drop" : "";
+      if (r.st === "OK") h += `<td class="r${e}${d}${r.pos === 1 ? " p1" : ""}"><span>P${r.pos}${r.adj ? "*" : ""}</span><small>${r.pts} pts</small></td>`;
+      else h += `<td class="r ${r.st.toLowerCase()}${e}${r.st === "DQ" ? "" : d}"><span>${r.st}</span><small>0 pts</small></td>`;
+    }
+    h += `<td class="c-pts">${p[chave]}</td><td class="c-gap">${i ? "−" + (lider - p[chave]) : "—"}</td></tr>`;
+  });
+  document.getElementById("tabela").innerHTML = h + "</tbody>";
+})();
+</script>
+</body>
+</html>
