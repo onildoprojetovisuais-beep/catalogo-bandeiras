@@ -22,7 +22,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets-build/favicon/favicon-180.png">
   <link rel="preload" href="/assets-build/fonts/ibm-plex-sans-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261015d">
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
   <script src="/js/caterham-esports.js?v=20261015a" defer></script>
 </head>
 <!-- ============================================================ SCUDERIA BANDEIRAS ESPORTS CUP — INSCRIÇÃO
@@ -55,7 +55,7 @@
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
       <span>Scuderia Bandeiras</span>
     </a>
-    <x-img slug="logo-raster" alt="Scuderia Bandeiras" sizes="160px" loading="eager" class="topo__logo"></x-img>
+    <div class="topo__logo marca"><x-img slug="logo-raster" alt="Scuderia Bandeiras" sizes="160px" loading="eager" class="marca__logo"></x-img><span class="marca__tag">E-sports Cup</span></div>
     <a class="topo__status" href="seletiva/"><span class="pulso" aria-hidden="true"></span>Ranking da seletiva</a>
   </header>
 
@@ -292,7 +292,9 @@
          Acordeon nativo (<details name="faq">: abrir um fecha os outros nos
          navegadores que suportam; nos demais, abrem independentes). Respostas
          tiradas do Regulamento Específico v1.0 — sem datas, que ainda estão
-         [A DEFINIR] no regulamento. Suporte = WhatsApp oficial da Scuderia. -->
+         [A DEFINIR] no regulamento. Suporte = Discord do campeonato.
+         2026-10-16: pergunta da taxa de inscrição vive AQUI no template (antes
+         só existia no index.html gerado e sumiu num rebuild). -->
     <section id="duvidas" class="faq" aria-labelledby="faq-titulo">
       <header class="cabeca">
         <p class="kicker" data-revela>Dúvidas frequentes</p>
@@ -300,6 +302,13 @@
       </header>
 
       <div class="faq__lista">
+        <details class="faq__item" name="faq" data-revela>
+          <summary>Preciso pagar alguma taxa para me inscrever no campeonato?</summary>
+          <div class="faq__resposta">
+            <p>Não! A inscrição é totalmente gratuita. Para participar, você só precisa ter uma conta ativa no iRacing, com os carros e as pistas do campeonato, e fazer a fase classificatória dentro do prazo.</p>
+          </div>
+        </details>
+
         <details class="faq__item" name="faq" data-revela>
           <summary>O que eu preciso para participar?</summary>
           <div class="faq__resposta">
@@ -385,15 +394,15 @@
         <div>
           <p class="kicker">Suporte</p>
           <h3 id="suporte-titulo" class="faq__suporte-titulo">Ainda ficou com dúvida?</h3>
-          <p class="faq__suporte-texto">Fale com a equipe do campeonato pelo WhatsApp <a class="faq__numero" href="tel:+5515998570854">(15) 99857-0854</a></p>
+          <p class="faq__suporte-texto">Nosso Discord é o ponto de encontro dos pilotos: orientações, comunicados e suporte da equipe do campeonato.</p>
         </div>
-        <a class="btn btn--lima" href="https://wa.me/5515998570854?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Scuderia%20Bandeiras%20Esports%20Cup%202026." target="_blank" rel="noopener">Chamar no WhatsApp<span class="sr"> (abre em nova aba)</span></a>
+        <a class="btn btn--lima" href="https://discord.gg/KfryC8GQF" target="_blank" rel="noopener">Entrar no Discord<span class="sr"> (abre em nova aba)</span></a>
       </aside>
     </section>
   </main>
 
   <footer class="rodape">
-    <x-img slug="caterham-logo" alt="Scuderia Bandeiras e Caterham Motorsport Brasil" sizes="200px" class="rodape__logo"></x-img>
+    <div class="rodape__logo marca marca--rodape"><x-img slug="logo-raster" alt="Scuderia Bandeiras" sizes="200px" class="marca__logo"></x-img><span class="marca__tag">E-sports Cup</span></div>
     <p>Scuderia Bandeiras Esports Cup é organizado pela Scuderia Bandeiras. Etapas transmitidas ao vivo no <a href="https://www.youtube.com/@ScuderiaBandeiras" target="_blank" rel="noopener">YouTube da Scuderia Bandeiras<span class="sr"> (abre em nova aba)</span></a>.</p>
     <p><a href="/">scuderiabandeiras.com.br</a></p>
   </footer>

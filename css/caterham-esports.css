@@ -488,6 +488,21 @@ input[type="radio"], input[type="checkbox"] { accent-color: var(--lime); width: 
 /* ------------------------------------------------------------ rodapé */
 .rodape { display: grid; gap: 12px; justify-items: center; padding: 56px var(--gutter) 64px; border-top: 1px solid var(--linha); text-align: center; color: var(--paper-3); font-size: 0.875rem; }
 .rodape__logo img { width: 200px; height: auto; }
+
+/* Selo do campeonato: logo da Scuderia + "E-sports Cup" (sem marca Caterham). */
+.marca { display: inline-flex; align-items: center; gap: 12px; }
+.marca picture { display: block; }
+.marca__tag {
+  padding-left: 12px; border-left: 1px solid var(--linha-forte);
+  font-family: var(--ff-display); font-weight: 700; font-size: 1rem; line-height: 1;
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; color: var(--lime);
+}
+.marca--rodape .marca__tag { font-size: 1.125rem; }
+@media (max-width: 639px) {
+  .marca { gap: 8px; }
+  .marca__tag { padding-left: 8px; font-size: 0.75rem; }
+  .topo .marca__logo img { width: 104px; }
+}
 .rodape p { margin: 0; max-width: 60ch; }
 .rodape a { color: var(--paper-2); text-underline-offset: 3px; }
 

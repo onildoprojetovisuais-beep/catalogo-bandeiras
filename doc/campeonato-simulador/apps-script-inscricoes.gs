@@ -31,25 +31,39 @@ const ABA = "Inscrições";
 
 const EMAIL = {
   ENVIAR: true,
-  REMETENTE: "Scuderia Bandeiras Esports Cup",
+  REMETENTE: "Scuderia Bandeiras E-sports Cup",
   RESPONDER_PARA: "", // vazio = responde para a própria conta que envia
-  ASSUNTO: "Inscrição confirmada · Scuderia Bandeiras Esports Cup 2026",
-  SENHA_IRACING: "TROQUE-PELA-SENHA-DO-SERVIDOR",
-  // {nome}, {categoria}, {id} e {senha} são trocados pelos dados do piloto.
-  // Uma linha em branco separa parágrafos.
+  ASSUNTO: "Inscrição confirmada · Scuderia Bandeiras E-sports Cup",
+  SENHA_IRACING: "bandeiras",
+  DISCORD: "https://discord.gg/KfryC8GQF",
+  // {nome}, {categoria}, {id}, {senha} e {discord} são trocados pelos dados do piloto.
+  // Uma linha em branco separa parágrafos. Linha que começa com "## " vira título em negrito.
+  // Texto aprovado em 16/10/2026.
   TEXTO: [
-    "Olá, {nome}!",
+    "Olá, piloto!",
     "",
-    "Sua inscrição na Scuderia Bandeiras Esports Cup 2026 está confirmada.",
+    "A contagem regressiva começou!",
     "",
-    "Categoria: {categoria}",
-    "Número da inscrição: {id}",
+    "Você está inscrito na Scuderia Bandeiras E-sports Cup e queremos que esteja pronto para acelerar e fazer parte dessa experiência com a gente!",
     "",
-    "Senha de acesso ao servidor no iRacing: {senha}",
+    "Para se preparar, confira abaixo as informações importantes para sua participação:",
     "",
-    "Guarde este e-mail. Nos vemos na pista!",
+    "## Acesso à competição",
     "",
-    "Equipe Scuderia Bandeiras",
+    "O acesso será realizado pela plataforma iRacing, utilizando a senha de acesso: {senha}",
+    "",
+    "## Dúvidas e suporte",
+    "",
+    "Tem alguma dúvida sobre a competição? Nosso Discord será o ponto de encontro para orientações, informações e suporte aos participantes.",
+    "",
+    "Acesse aqui: {discord}",
+    "",
+    "Fique atento aos nossos comunicados para não perder nenhuma informação importante sobre a competição.",
+    "",
+    "Prepare seu equipamento, ajuste seu setup e esteja pronto para acelerar. Nos vemos na pista (:",
+    "",
+    "Scuderia Bandeiras E-sports Cup",
+    "Sua próxima disputa começa aqui!",
   ].join("\n"),
 };
 
@@ -108,16 +122,19 @@ function enviarConfirmacao_(dados) {
     .replace(/\{nome\}/g, primeiroNome)
     .replace(/\{categoria\}/g, dados.category || "")
     .replace(/\{id\}/g, dados.registration_id || "")
-    .replace(/\{senha\}/g, EMAIL.SENHA_IRACING);
+    .replace(/\{senha\}/g, EMAIL.SENHA_IRACING)
+    .replace(/\{discord\}/g, EMAIL.DISCORD);
 
   const html = texto.split(/\n\s*\n/).map(function (p) {
-    return "<p>" + escapar_(p).replace(/\n/g, "<br>") + "</p>";
+    if (p.indexOf("## ") === 0) return "<p><strong>" + escapar_(p.slice(3)) + "</strong></p>";
+    const seguro = escapar_(p).replace(/(https:\/\/[^\s<]+)/g, '<a href="$1">$1</a>');
+    return "<p>" + seguro.replace(/\n/g, "<br>") + "</p>";
   }).join("");
 
   const opcoes = {
     to: dados.email,
     subject: EMAIL.ASSUNTO,
-    body: texto,
+    body: texto.replace(/^## /gm, ""),
     htmlBody: '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">' + html + "</div>",
     name: EMAIL.REMETENTE,
   };

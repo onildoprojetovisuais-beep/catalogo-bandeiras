@@ -3165,5 +3165,6 @@
 /* Seções ocultas na home (atributo hidden): garante que nenhum display de componente as reexiba. */
 @layer components {
   .pilotos-time[hidden],
-  .legado[hidden] { display: none !important; }
+  .legado[hidden],
+  .card--caterham[hidden] { display: none !important; }
 }

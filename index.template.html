@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets-build/favicon/favicon-180.png">
   <link rel="preload" href="assets-build/fonts/special-gothic-condensed-one-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.min.css?v=20261015b">
+  <link rel="stylesheet" href="css/site.min.css?v=20261016a">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -76,9 +76,6 @@
           <a data-nav-link href="#bandeiras-empresarial">Bandeiras Empresarial</a>
           <a data-nav-link href="#conteudo">Conteúdo</a>
         </div>
-        <div class="nav__group">
-          <a href="https://caterham.scuderiabandeiras.com/" target="_blank" rel="noopener">Caterham<span class="visually-hidden"> (abre em nova aba)</span></a>
-        </div>
       </nav>
 
       <a class="nav__cta" data-cta="whatsapp" data-origin="navbar" href="https://wa.me/5515998570854?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Scuderia%20Bandeiras%20e%20tenho%20interesse%20em%3A%20Ainda%20n%C3%A3o%20sei." target="_blank" rel="noopener">Fale com o time</a>
@@ -99,7 +96,6 @@
         <a href="#experiencias">Experiências</a>
         <a href="#bandeiras-empresarial">Bandeiras Empresarial</a>
         <a href="#conteudo">Conteúdo</a>
-        <a href="https://caterham.scuderiabandeiras.com/" target="_blank" rel="noopener">Caterham<span class="visually-hidden"> (abre em nova aba)</span></a>
       </nav>
       <a class="nav__dialog-whatsapp" data-cta="whatsapp" data-origin="menu-mobile" href="https://wa.me/5515998570854?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Scuderia%20Bandeiras%20e%20tenho%20interesse%20em%3A%20Ainda%20n%C3%A3o%20sei." target="_blank" rel="noopener">Fale com o time</a>
     </dialog>
@@ -124,7 +120,6 @@
         </div>
         <div class="hero__ctas">
           <a class="btn btn--primary" href="#ecossistema" data-reveal>Conheça o Ecossistema</a>
-          <a class="btn btn--ghost btn--ghost-lime" href="https://caterham.scuderiabandeiras.com/" target="_blank" rel="noopener" data-reveal>Conheça a Caterham<span class="visually-hidden"> (abre em nova aba)</span></a>
           <a class="btn btn--tertiary" data-cta="project" data-origin="hero" href="https://wa.me/5515998570854?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Scuderia%20Bandeiras%20e%20tenho%20interesse%20em%3A%20Ainda%20n%C3%A3o%20sei." target="_blank" rel="noopener" data-reveal>Crie seu projeto →</a>
         </div>
       </div>
@@ -506,8 +501,11 @@
            eixo do numeral de seção, deixava esse bloco visivelmente mais
            estreito que as galerias vizinhas em telas largas). -->
       <div class="card-grid-bleed">
-        <div class="card-grid card-grid--4">
-          <div id="caterham" class="card card--caterham" data-reveal>
+        <!-- 2026-10-16: Caterham fora do site por ora (o site caterham.scuderiabandeiras.com
+             não existe). Card "Caterham para Empresas" fica com hidden (HTML preservado),
+             links de menu/rodapé/hero removidos; grade passa a 3 cards (02-04 -> 01-03). -->
+        <div class="card-grid card-grid--3">
+          <div id="caterham" class="card card--caterham" data-reveal hidden>
             <span class="card__index">01</span>
             <x-img slug="escopo-caterham" alt="Caterham da Scuderia Bandeiras em evento corporativo" sizes="(min-width: 1200px) 21vw, (min-width: 1024px) 44vw, (min-width: 640px) 38vw, 79vw" class="card__media"></x-img>
             <h3>Caterham para Empresas</h3>
@@ -515,20 +513,20 @@
             <a class="card--caterham__cta btn btn--primary" href="https://caterham.scuderiabandeiras.com/" target="_blank" rel="noopener">Conheça o Caterham →<span class="visually-hidden"> (abre em nova aba)</span></a>
           </div>
           <div class="card" data-reveal>
-            <span class="card__index">02</span>
+            <span class="card__index">01</span>
             <x-img slug="escopo-ativacoes" alt="Ativação de marca da Scuderia Bandeiras" sizes="(min-width: 1200px) 21vw, (min-width: 1024px) 44vw, (min-width: 640px) 38vw, 79vw" class="card__media"></x-img>
             <h3>Ativações de Marca</h3>
             <p>Carros, pilotos, estrutura, conteúdo e experiências, conforme o formato criado com a marca.</p>
             <p class="experiencias__nota"><em>Inventário aprovado caso a caso.</em></p>
           </div>
           <div class="card" data-reveal>
-            <span class="card__index">03</span>
+            <span class="card__index">02</span>
             <x-img slug="escopo-experiencias" alt="Experiência corporativa da Scuderia Bandeiras" sizes="(min-width: 1200px) 21vw, (min-width: 1024px) 44vw, (min-width: 640px) 38vw, 79vw" class="card__media"></x-img>
             <h3>Experiências Corporativas</h3>
             <p>Dias construídos para relacionamento com clientes e parceiros.</p>
           </div>
           <div class="card" data-reveal>
-            <span class="card__index">04</span>
+            <span class="card__index">03</span>
             <x-img slug="escopo-projetos" alt="Projeto personalizado da Scuderia Bandeiras" sizes="(min-width: 1200px) 21vw, (min-width: 1024px) 44vw, (min-width: 640px) 38vw, 79vw" class="card__media"></x-img>
             <h3>Projetos Personalizados</h3>
             <p>Quando o objetivo não cabe nos formatos acima, a Scuderia combina as frentes e desenha um.</p>
@@ -575,7 +573,7 @@
               <li><span class="sim__ficha-n">05</span> etapas</li>
               <li><span class="sim__ficha-n">30</span> vagas por grid</li>
             </ul>
-            <p class="sim__assinatura" data-reveal>Caterham <span class="sim__x" aria-hidden="true">×</span><span class="visually-hidden">e</span> Scuderia Bandeiras</p>
+            <p class="sim__assinatura" data-reveal>Scuderia Bandeiras <span class="sim__x" aria-hidden="true">·</span> E-sports Cup</p>
             <div class="sim__ctas" data-reveal>
               <a class="btn btn--xl sim__cta sim__cta--primario" href="campeonato-simulador/">Quero me inscrever</a>
               <a class="btn btn--ghost sim__cta" href="campeonato-simulador/regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Ver regulamento<span class="visually-hidden"> (PDF, abre em nova aba)</span></a>
@@ -1026,7 +1024,6 @@
         <a href="#experiencias">Experiências</a>
         <a href="#bandeiras-empresarial">Bandeiras Empresarial</a>
         <a href="#conteudo">Conteúdo</a>
-        <a href="https://caterham.scuderiabandeiras.com/" target="_blank" rel="noopener">Caterham<span class="visually-hidden"> (abre em nova aba)</span></a>
         <a data-cta="whatsapp" data-origin="footer" href="https://wa.me/5515998570854?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Scuderia%20Bandeiras%20e%20tenho%20interesse%20em%3A%20Ainda%20n%C3%A3o%20sei." target="_blank" rel="noopener">Contato</a>
       </nav>
 
