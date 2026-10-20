@@ -67,6 +67,52 @@
 .res__fases + .sel__atualizado { margin-top: 14px; }
 .res__fases ~ .sel__abas { margin-top: 20px; }
 
+/* ------------------------------------------------------------ resultados: classificação do campeonato
+   Visual do mockup aprovado (doc/campeonato-simulador/mockup-classificacao/). */
+.sel.is-largo { max-width: 1320px; }
+.cls__intro { margin: 20px 0 0; max-width: 70ch; color: var(--paper-2); font-size: 0.9375rem; }
+.cls__etapas { display: grid; grid-template-columns: repeat(5, minmax(96px, 1fr)); gap: 1px; margin-top: 24px; overflow-x: auto; background: var(--linha); border: 1px solid var(--linha); }
+.cls__etapa { padding: 14px 16px; background: var(--ink); }
+.cls__etapa b { display: block; font-family: var(--ff-display); font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; }
+.cls__etapa span { font-family: var(--ff-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-3); }
+.cls__etapa.is-feita span { color: var(--lime); }
+.cls__etapa.is-proxima { background: var(--ink-1); }
+.cls__barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 20px 0 8px; }
+.cls__modo { display: inline-flex; border: 1px solid var(--linha-forte); }
+.cls__modo button { padding: 10px 16px; border: 0; background: none; color: var(--paper-2); font-family: var(--ff-display); font-weight: 700; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+.cls__modo button[aria-pressed="true"] { background: var(--lime); color: var(--ink); }
+.cls__nota { margin: 0; font-size: .8125rem; color: var(--paper-3); }
+.cls__wrap { overflow-x: auto; border-top: 1px solid var(--linha); }
+.cls__tabela { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.cls__tabela th { padding: 10px 8px; font-family: var(--ff-mono); font-size: .625rem; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-3); text-align: center; white-space: nowrap; }
+.cls__tabela thead tr:first-child th { padding-bottom: 2px; color: var(--paper-2); }
+.cls__tabela th.e { border-left: 1px solid var(--linha); }
+.cls__tabela td { padding: 10px 8px; border-top: 1px solid var(--linha); text-align: center; vertical-align: middle; white-space: nowrap; }
+.cls__tabela th.c-pos { width: 3rem; text-align: left; }
+.cls__tabela td.c-pos { width: 3rem; font-family: var(--ff-display); font-weight: 700; font-size: 1.25rem; color: var(--paper-2); text-align: left; }
+.cls__tabela tbody tr:nth-child(-n + 3) .c-pos { color: var(--lime); }
+.cls__tabela .c-nome { text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--ink); z-index: 1; min-width: 190px; }
+.cls__tabela th.c-nome { background: var(--ink); }
+.cls__tabela td.r { font-family: var(--ff-mono); font-size: .8125rem; line-height: 1.25; }
+.cls__tabela td.r.e { border-left: 1px solid var(--linha); }
+.cls__tabela td.r small { display: block; font-size: .6875rem; color: var(--paper-3); }
+.cls__tabela td.r.pend { color: var(--paper-3); opacity: .5; }
+.cls__tabela td.r.dq { color: var(--erro); }
+.cls__tabela td.r.nc, .cls__tabela td.r.abs { color: var(--paper-3); }
+.cls__tabela td.r.drop > * { text-decoration: line-through; opacity: .45; }
+.cls__tabela td.r.p1 { color: var(--lime); }
+.cls__tabela .c-pts { font-family: var(--ff-display); font-weight: 700; font-size: 1.25rem; text-align: right; padding-right: 4px; border-left: 1px solid var(--linha-forte); }
+.cls__tabela th.c-pts { font-family: var(--ff-mono); font-size: .625rem; font-weight: 400; }
+.cls__tabela .c-gap { font-family: var(--ff-mono); font-size: .8125rem; color: var(--paper-3); text-align: right; width: 4.5rem; }
+.cls__legenda { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--linha); font-size: .8125rem; color: var(--paper-3); }
+.cls__legenda b { font-family: var(--ff-mono); font-weight: 400; color: var(--paper-2); margin-right: 6px; }
+.cls__legenda b.dq { color: var(--erro); }
+.cls__legenda s { opacity: .6; margin-right: 6px; }
+@media (max-width: 719px) {
+  .cls__tabela .c-nome { min-width: 140px; max-width: 150px; white-space: normal; font-size: .875rem; }
+  .cls__tabela td.c-pos { width: 2.25rem; font-size: 1.0625rem; }
+}
+
 /* ------------------------------------------------------------ protestos */
 .pro__prazo { margin: 20px 0 clamp(32px, 5vw, 48px); padding: 14px 16px; border-left: 3px solid var(--lime); background: var(--ink-2); color: var(--paper-2); max-width: 70ch; }
 .pro__prazo strong { color: var(--paper); }
@@ -89,6 +135,8 @@
 .adm h1 { margin: 0; font-family: var(--ff-display); font-size: 2.25rem; text-transform: uppercase; }
 .adm h2 { margin: 48px 0 12px; font-family: var(--ff-display); font-size: 1.375rem; text-transform: uppercase; }
 .adm p { color: var(--paper-2); }
+.adm__lista { display: grid; gap: 8px; padding-left: 20px; color: var(--paper-2); }
+.adm__lista code, .adm p code { color: var(--lime); }
 .adm h3 { margin: 8px 0; font-family: var(--ff-display); font-size: 1rem; text-transform: uppercase; }
 .adm__bloco { display: grid; gap: 14px; padding: 22px; border: 1px solid var(--linha); background: var(--ink-1); }
 .adm label { display: grid; gap: 6px; font-size: 0.875rem; font-weight: 600; }

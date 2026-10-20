@@ -1,17 +1,22 @@
 // /api/resultados — rankings publicados em campeonato-simulador/resultados/.
 //
-//   GET                                     público: rankings da seletiva e do campeonato
-//   POST {fase, file_name, categorias}      painel (Authorization: Bearer <CATERHAM_ADMIN_TOKEN>):
-//                                           publica o ranking de uma fase, substituindo o anterior.
+//   GET                                     público: ranking da seletiva e classificação do campeonato
+//   Painel (Authorization: Bearer <CATERHAM_ADMIN_TOKEN>):
+//   POST {fase:"seletiva", file_name, categorias}
+//                                           ranking por tempo, substitui o anterior.
 //                                           categorias = { Academy: [{name, ms}], "420R": [...] }
-//   POST {fase, action:"delete"}            painel: tira a fase do ar
+//   POST {fase:"campeonato", file_name, baterias:[{categoria, etapa, bateria, resultados:[{pos, name, status}]}]}
+//                                           cada bateria enviada substitui só ela mesma (api/_campeonato.js)
+//   POST {fase:"campeonato", action:"delete_bateria", categoria, etapa, bateria}
+//   POST {fase, action:"delete"}            tira a fase inteira do ar
 //
-// O CSV é lido no navegador (js/resultados-admin.js) e só nome do piloto e tempo
-// chegam aqui. E-mail, Customer ID e demais colunas nunca saem do computador.
+// O CSV é lido no navegador (js/resultados-admin.js) e só nome, tempo/posição e
+// status chegam aqui. E-mail, Customer ID e demais colunas nunca saem do computador.
 // Armazenamento: Vercel Blob privado, resultados/state.json.
 
 const { get, put } = require("@vercel/blob");
 const { CATEGORIAS, autorizado } = require("./_seletiva");
+const { visaoPublica, limparBateria } = require("./_campeonato");
 
 const FASES = ["seletiva", "campeonato"];
 const VAGAS = { seletiva: 30 };
@@ -49,12 +54,19 @@ function limparCategoria(lista) {
     .map((p, i, todos) => ({ pos: i + 1, name: p.name, ms: p.ms, gap: p.ms - todos[0].ms }));
 }
 
+function publico(estado) {
+  const fases = {};
+  if (estado.seletiva) fases.seletiva = estado.seletiva;
+  if (estado.campeonato && estado.campeonato.baterias) fases.campeonato = visaoPublica(estado.campeonato);
+  return fases;
+}
+
 module.exports = async (req, res) => {
   try {
     if (req.method === "GET") {
       const estado = await lerEstado();
       res.setHeader("Cache-Control", "public, max-age=0, s-maxage=60, stale-while-revalidate=300");
-      res.status(200).json({ ok: true, fases: estado });
+      res.status(200).json({ ok: true, fases: publico(estado) });
       return;
     }
 
@@ -76,7 +88,25 @@ module.exports = async (req, res) => {
     if (b.action === "delete") {
       delete estado[b.fase];
       await salvarEstado(estado);
-      res.status(200).json({ ok: true, fases: estado });
+      res.status(200).json({ ok: true, fases: publico(estado) });
+      return;
+    }
+
+    if (b.fase === "campeonato") {
+      const camp = estado.campeonato && estado.campeonato.baterias ? estado.campeonato : { baterias: {} };
+      if (b.action === "delete_bateria") {
+        delete camp.baterias[`${b.categoria}|${Number(b.etapa)}|${Number(b.bateria)}`];
+      } else {
+        const novas = (Array.isArray(b.baterias) ? b.baterias.slice(0, 20) : []).map(limparBateria).filter(Boolean);
+        if (!novas.length) return erro(res, "Nenhuma bateria válida encontrada no arquivo.");
+        const agora = new Date().toISOString();
+        novas.forEach(({ chave, ...bat }) => { camp.baterias[chave] = { ...bat, enviado_em: agora }; });
+        camp.arquivo = String(b.file_name || "").slice(0, 120);
+      }
+      camp.atualizado_em = new Date().toISOString();
+      estado.campeonato = camp;
+      await salvarEstado(estado);
+      res.status(200).json({ ok: true, fases: publico(estado) });
       return;
     }
 
@@ -95,7 +125,7 @@ module.exports = async (req, res) => {
       categorias,
     };
     await salvarEstado(estado);
-    res.status(200).json({ ok: true, fases: estado });
+    res.status(200).json({ ok: true, fases: publico(estado) });
   } catch (err) {
     console.error("[resultados]", err && err.message);
     res.setHeader("Cache-Control", "no-store");

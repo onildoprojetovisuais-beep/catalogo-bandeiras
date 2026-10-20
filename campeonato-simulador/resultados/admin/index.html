@@ -7,17 +7,21 @@
   <title>Painel de resultados | Esports Cup 2026</title>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
-  <link rel="stylesheet" href="/css/seletiva.css?v=20261020a">
-  <script src="/js/resultados-admin.js?v=20261020a" defer></script>
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261020c">
+  <script src="/js/resultados-admin.js?v=20261020b" defer></script>
 </head>
-<!-- Painel de resultados: fora do menu e do sitemap, noindex. Lê o CSV de ranking
-     no navegador e envia só nome do piloto e tempo para /api/resultados, com a
-     mesma senha do painel da seletiva (CATERHAM_ADMIN_TOKEN). -->
+<!-- Painel de resultados: fora do menu e do sitemap, noindex. Lê o CSV no navegador
+     e envia só nome, tempo/posição e status para /api/resultados, com a mesma
+     senha do painel da seletiva (CATERHAM_ADMIN_TOKEN). -->
 <body>
   <main class="adm">
     <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Esports Cup 2026 · uso interno</p>
     <h1>Painel de resultados</h1>
-    <p>Suba o CSV de ranking (colunas <code>categoria</code>, <code>piloto</code> e <code>tempo_ms</code> ou <code>melhor_volta</code>; separador <code>;</code> ou <code>,</code>). O arquivo é lido aqui no seu navegador: só o nome do piloto e o tempo são publicados. A página pública <a href="/campeonato-simulador/resultados/" target="_blank" rel="noopener">/campeonato-simulador/resultados/</a> atualiza em até 1 minuto. Enviar de novo a mesma fase substitui o ranking anterior.</p>
+    <p>Suba um CSV (separador <code>;</code> ou <code>,</code>; dá para salvar assim no Excel ou no Google Sheets). O arquivo é lido aqui no seu navegador e só nome, tempo ou posição e status são publicados. A página pública <a href="/campeonato-simulador/resultados/" target="_blank" rel="noopener">/campeonato-simulador/resultados/</a> atualiza em até 1 minuto.</p>
+    <ul class="adm__lista">
+      <li><strong>Seletiva:</strong> colunas <code>categoria</code>, <code>piloto</code> e <code>melhor_volta</code> (ex.: 1:13.827) ou <code>tempo_ms</code>. Enviar de novo substitui o ranking inteiro.</li>
+      <li><strong>Campeonato:</strong> colunas <code>categoria</code>, <code>etapa</code>, <code>bateria</code> (Heat 1 ou Feature), <code>posicao</code>, <code>piloto</code> e <code>status</code> (em branco, ou DQ, NC, ABS). Uma linha por piloto em cada bateria. Cada bateria enviada substitui só ela mesma: pode mandar só a etapa da noite ou o arquivo acumulado. Os pontos, descartes e desempates são calculados pelo site.</li>
+    </ul>
 
     <form class="adm__bloco" data-login>
       <label>Senha do painel
@@ -32,8 +36,8 @@
       <form class="adm__bloco" data-envio>
         <label>Fase
           <select name="fase" required>
-            <option value="seletiva">Seletiva</option>
-            <option value="campeonato">Campeonato</option>
+            <option value="campeonato">Campeonato (por bateria)</option>
+            <option value="seletiva">Seletiva (por tempo)</option>
           </select>
         </label>
         <label>Arquivo CSV
@@ -46,7 +50,7 @@
       </form>
 
       <h2>Publicado agora</h2>
-      <div class="adm__tabela-wrap"><table data-publicado></table></div>
+      <div data-publicado></div>
     </div>
   </main>
 </body>
