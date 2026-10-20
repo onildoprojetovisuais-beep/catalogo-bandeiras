@@ -37,6 +37,7 @@ PAGES = [
     (ROOT / "campeonato-simulador" / "index.template.html", ROOT / "campeonato-simulador" / "index.html", "/"),
     (ROOT / "campeonato-simulador" / "seletiva" / "index.template.html", ROOT / "campeonato-simulador" / "seletiva" / "index.html", "/"),
     (ROOT / "campeonato-simulador" / "resultados" / "index.template.html", ROOT / "campeonato-simulador" / "resultados" / "index.html", "/"),
+    (ROOT / "campeonato-simulador" / "protestos" / "index.template.html", ROOT / "campeonato-simulador" / "protestos" / "index.html", "/"),
 ]
 
 TAG_RE = re.compile(r"<x-img\s+([^>]*?)/?>\s*(?:</x-img>)?", re.IGNORECASE)

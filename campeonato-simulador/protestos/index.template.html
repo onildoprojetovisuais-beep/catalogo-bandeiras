@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protestos | Scuderia Bandeiras Esports Cup 2026</title>
+  <meta name="description" content="Envie aos Comissários Desportivos o protesto de um incidente da Scuderia Bandeiras Esports Cup 2026, com o replay .rpy do iRacing e o comprovante da taxa via Pix.">
+  <meta name="theme-color" content="#010C0E">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://www.scuderiabandeiras.com.br/campeonato-simulador/protestos/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets-build/favicon/favicon-180.png">
+  <link rel="preload" href="/assets-build/fonts/ibm-plex-sans-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261020b">
+  <script src="/js/vendor/vercel-blob-upload-2.8.0.js" defer></script>
+  <script src="/js/protestos.js?v=20261020a" defer></script>
+</head>
+<!-- ============================================================ PROTESTOS
+     Regulamento 4.3: replay .rpy obrigatório, taxa de R$ 50 via Pix, prazo de 24 h.
+     Os arquivos vão do navegador direto para o Blob privado (token de /api/protestos);
+     depois o formulário é gravado em POST /api/protestos. Painel: protestos/admin/.
+     Fonte: este template → scripts/build-html.py gera index.html. -->
+<body>
+  <a class="skip" href="#protesto">Ir para o formulário</a>
+
+  <header class="topo topo--fixo">
+    <a class="topo__voltar" href="/campeonato-simulador/">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>Campeonato</span>
+    </a>
+    <div class="topo__logo marca"><x-img slug="logo-raster" alt="Scuderia Bandeiras" sizes="160px" loading="eager" class="marca__logo"></x-img><span class="marca__tag">E-sports Cup</span></div>
+    <p class="topo__status"><span class="pulso" aria-hidden="true"></span>Protestos</p>
+  </header>
+
+  <main id="protesto" class="sel pro">
+    <header class="sel__cabeca">
+      <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Comissários Desportivos · Regulamento 4.3</p>
+      <h1 class="titulo">Protestos <em>e recursos</em></h1>
+      <p class="corpo">Envie o protesto com o replay do iRacing, os dados do incidente e o comprovante da taxa de R$ 50,00. Se o protesto for considerado procedente, a taxa é devolvida integralmente.</p>
+      <p class="pro__prazo"><strong>Prazo:</strong> até 24 horas após o encerramento da etapa. Protestos sem o arquivo <code>.rpy</code>, fora do prazo ou sem as informações obrigatórias não são admitidos.</p>
+    </header>
+
+    <div id="alerta" class="alerta" role="alert" hidden></div>
+
+    <form id="form-protesto" novalidate>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <fieldset>
+        <legend><span class="legend__n">01</span>Identificação</legend>
+        <div class="grade">
+          <label class="campo campo--cheio"><span>Nome completo *</span><input name="full_name" required maxlength="150" autocomplete="name"></label>
+          <label class="campo"><span>E-mail da inscrição *</span><input name="email" type="email" required autocomplete="email"></label>
+          <label class="campo"><span>iRacing Customer ID *</span><input name="iracing_customer_id" type="number" inputmode="numeric" min="1" step="1" required></label>
+          <label class="campo"><span>Categoria *</span><select name="category" required><option value="">Selecione</option><option value="Academy">Caterham Academy</option><option value="420R">Caterham 420R</option></select></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="legend__n">02</span>Incidente</legend>
+        <div class="grade">
+          <label class="campo"><span>Etapa *</span><select name="stage" required><option value="">Selecione</option><option value="1">Etapa 1</option><option value="2">Etapa 2</option><option value="3">Etapa 3</option><option value="4">Etapa 4</option><option value="5">Etapa 5</option></select></label>
+          <label class="campo"><span>Bateria *</span><select name="heat" required><option value="">Selecione</option><option value="1">Bateria 1 (Heat)</option><option value="2">Bateria 2 (Feature)</option></select></label>
+          <label class="campo"><span>Volta do incidente *</span><input name="lap" type="number" inputmode="numeric" min="1" step="1" required></label>
+          <label class="campo campo--cheio"><span>Pilotos envolvidos *</span><textarea name="cars_involved" rows="2" required minlength="2" maxlength="1000" placeholder="Nome e número do carro de cada piloto envolvido."></textarea></label>
+          <label class="campo campo--cheio"><span>Descrição objetiva do incidente ou da decisão contestada *</span><textarea name="incident_description" rows="5" required minlength="10" maxlength="5000" placeholder="O que aconteceu, em que ponto da pista."></textarea></label>
+          <label class="campo campo--cheio"><span>Fundamento do protesto *</span><textarea name="protest_basis" rows="4" required minlength="5" maxlength="5000" placeholder="Por que a situação deve ser analisada pelos Comissários Desportivos."></textarea></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="legend__n">03</span>Replay</legend>
+        <label class="campo"><span>Arquivo de replay do iRacing (.rpy) *</span><input name="replay" type="file" accept=".rpy" required><small>O replay da sessão, com o momento do incidente. Até 250 MB. No iRacing, os replays salvos ficam em Documentos\iRacing\replay.</small></label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="legend__n">04</span>Taxa de protesto</legend>
+        <div class="pix" data-pix hidden>
+          <img class="pix__qr" data-pix-qr width="220" height="220" alt="QR Code do Pix da taxa de protesto">
+          <div class="pix__dados">
+            <p class="pix__valor">R$ 50,00</p>
+            <p class="ajuda">Recebedor: <span data-pix-recebedor></span><br>Protocolo: <strong data-pix-id></strong></p>
+            <label class="campo"><span>Pix Copia e Cola</span><textarea data-pix-codigo rows="4" readonly></textarea></label>
+            <button class="btn btn--linha" type="button" data-pix-copiar>Copiar código Pix</button>
+          </div>
+        </div>
+        <p class="ajuda" data-pix-carregando>Gerando o Pix…</p>
+        <label class="campo pix__comprovante"><span>Comprovante de pagamento *</span><input name="receipt" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp" required><small>PDF, PNG, JPG ou WEBP, até 15 MB. O pagamento é conferido pela Organização.</small></label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="legend__n">05</span>Declaração</legend>
+        <div class="checks">
+          <label><input type="checkbox" name="deadline_ack" required><span>Estou ciente de que o protesto deve ser apresentado em até 24 horas após o encerramento da etapa e de que a taxa só é devolvida se o protesto for procedente. *</span></label>
+        </div>
+      </fieldset>
+
+      <div class="pro__progresso" data-progresso hidden>
+        <p data-progresso-texto>Enviando…</p>
+        <div class="pro__barra"><span data-progresso-barra></span></div>
+      </div>
+
+      <div class="enviar">
+        <button class="btn btn--lima btn--grande" type="submit" data-enviar disabled>Enviar protesto</button>
+      </div>
+    </form>
+
+    <section class="sucesso" data-sucesso hidden tabindex="-1">
+      <h2 class="titulo">Protesto <em>recebido.</em></h2>
+      <p class="corpo">Os Comissários Desportivos vão analisar o caso. Guarde o número do protocolo para acompanhar o protesto com a Organização.</p>
+      <p class="sucesso__numero">Protocolo <strong data-sucesso-id></strong></p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__logo marca marca--rodape"><x-img slug="logo-raster" alt="Scuderia Bandeiras" sizes="200px" class="marca__logo"></x-img><span class="marca__tag">E-sports Cup</span></div>
+    <p>Scuderia Bandeiras Esports Cup é organizado pela Scuderia Bandeiras. <a href="/campeonato-simulador/regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Regulamento<span class="sr"> (PDF, abre em nova aba)</span></a></p>
+    <p><a href="/">scuderiabandeiras.com.br</a></p>
+  </footer>
+</body>
+</html>

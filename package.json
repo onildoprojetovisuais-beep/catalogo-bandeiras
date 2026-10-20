@@ -3,6 +3,7 @@
   "private": true,
   "description": "Site estático da Scuderia Bandeiras. Dependências só das Vercel Functions em api/.",
   "dependencies": {
-    "@vercel/blob": "2.8.0"
+    "@vercel/blob": "2.8.0",
+    "qrcode": "1.5.4"
   }
 }

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Painel de protestos | Esports Cup 2026</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261020b">
+  <script src="/js/protestos-admin.js?v=20261020a" defer></script>
+</head>
+<!-- Painel de protestos: fora do menu e do sitemap, noindex. Fala com
+     /api/protestos-admin usando a senha dos painéis (CATERHAM_ADMIN_TOKEN). -->
+<body>
+  <main class="adm">
+    <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Esports Cup 2026 · Comissários Desportivos</p>
+    <h1>Painel de protestos</h1>
+    <p>Protestos enviados pelo formulário <a href="/campeonato-simulador/protestos/" target="_blank" rel="noopener">/campeonato-simulador/protestos/</a>, do mais recente para o mais antigo. Os links de download valem 15 minutos. Confira o comprovante no extrato pelo protocolo, que vai como identificador do Pix.</p>
+
+    <form class="adm__bloco" data-login>
+      <label>Senha do painel
+        <input type="password" name="token" autocomplete="current-password" required>
+      </label>
+      <button class="btn btn--lima" type="submit">Entrar</button>
+      <p class="adm__msg is-erro" data-login-msg hidden></p>
+    </form>
+
+    <div data-painel hidden>
+      <div class="adm__acoes"><button class="btn btn--linha" type="button" data-atualizar>Atualizar lista</button></div>
+      <h2 data-contagem>Protestos</h2>
+      <div data-lista></div>
+    </div>
+  </main>
+</body>
+</html>

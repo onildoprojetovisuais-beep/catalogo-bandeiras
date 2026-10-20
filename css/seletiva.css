@@ -67,6 +67,23 @@
 .res__fases + .sel__atualizado { margin-top: 14px; }
 .res__fases ~ .sel__abas { margin-top: 20px; }
 
+/* ------------------------------------------------------------ protestos */
+.pro__prazo { margin: 20px 0 clamp(32px, 5vw, 48px); padding: 14px 16px; border-left: 3px solid var(--lime); background: var(--ink-2); color: var(--paper-2); max-width: 70ch; }
+.pro__prazo strong { color: var(--paper); }
+.pix { display: grid; gap: 24px; align-items: start; margin-bottom: 24px; }
+@media (min-width: 700px) { .pix { grid-template-columns: 220px 1fr; } }
+.pix__qr { display: block; width: 220px; height: 220px; padding: 10px; background: #fff; }
+.pix__dados { display: grid; gap: 14px; min-width: 0; }
+.pix__dados .ajuda { margin: 0; }
+.pix__valor { margin: 0; font-family: var(--ff-display); font-weight: 700; font-size: 2.5rem; line-height: 1; color: var(--lime); }
+.pix__dados textarea { font-family: var(--ff-mono); font-size: 0.75rem; word-break: break-all; }
+.pix__dados .btn { justify-self: start; }
+.pro__progresso { margin: 0 0 18px; }
+.pro__progresso p { margin: 0 0 8px; font-family: var(--ff-mono); font-size: 0.8125rem; color: var(--paper-2); }
+.pro__barra { height: 4px; background: var(--linha); overflow: hidden; }
+.pro__barra span { display: block; height: 100%; background: var(--lime); transform-origin: left; transform: scaleX(0); transition: transform 0.2s; }
+.pro .sucesso .titulo { font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem); }
+
 /* ------------------------------------------------------------ painel admin */
 .adm { max-width: 980px; margin: 0 auto; padding: 40px var(--gutter) 80px; }
 .adm h1 { margin: 0; font-family: var(--ff-display); font-size: 2.25rem; text-transform: uppercase; }
@@ -90,3 +107,11 @@
 .adm__mini { min-height: 34px; padding: 0 12px; border: 1px solid var(--linha-forte); background: none; color: var(--paper); cursor: pointer; font: inherit; font-size: 0.8125rem; }
 .adm__mini:hover { border-color: var(--erro); color: var(--erro); }
 .adm__tabela-wrap { overflow-x: auto; }
+.adm__card { display: grid; gap: 12px; margin-bottom: 18px; padding: 20px; border: 1px solid var(--linha); background: var(--ink-1); }
+.adm__card h3 { margin: 0; font-family: var(--ff-mono); font-size: 0.875rem; font-weight: 400; letter-spacing: 0.06em; color: var(--lime); }
+.adm__card dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; font-size: 0.875rem; }
+.adm__card dt { color: var(--paper-3); }
+.adm__card dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+@media (max-width: 559px) { .adm__card dl { grid-template-columns: 1fr; } .adm__card dd { margin-bottom: 8px; } }
+.adm__acoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.adm textarea { min-height: 70px; padding: 10px 12px; border: 1px solid var(--linha-forte); background: var(--ink); color: var(--paper); font: inherit; }
