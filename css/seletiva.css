@@ -56,11 +56,23 @@
 }
 .sel__cta p { margin: 0; color: var(--paper-2); }
 
+/* ------------------------------------------------------------ resultados: abas de fase */
+.res__fases { display: inline-flex; gap: 4px; margin-top: clamp(32px, 5vw, 48px); padding: 4px; border: 1px solid var(--linha); background: var(--ink-1); }
+.res__fases button {
+  min-height: 44px; padding: 0 20px; border: 0; background: none; color: var(--paper-2); cursor: pointer;
+  font-family: var(--ff-display); font-weight: 700; font-size: 0.9375rem; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.res__fases button:hover { color: var(--paper); }
+.res__fases button[aria-selected="true"] { background: var(--lime); color: var(--ink); }
+.res__fases + .sel__atualizado { margin-top: 14px; }
+.res__fases ~ .sel__abas { margin-top: 20px; }
+
 /* ------------------------------------------------------------ painel admin */
 .adm { max-width: 980px; margin: 0 auto; padding: 40px var(--gutter) 80px; }
 .adm h1 { margin: 0; font-family: var(--ff-display); font-size: 2.25rem; text-transform: uppercase; }
 .adm h2 { margin: 48px 0 12px; font-family: var(--ff-display); font-size: 1.375rem; text-transform: uppercase; }
 .adm p { color: var(--paper-2); }
+.adm h3 { margin: 8px 0; font-family: var(--ff-display); font-size: 1rem; text-transform: uppercase; }
 .adm__bloco { display: grid; gap: 14px; padding: 22px; border: 1px solid var(--linha); background: var(--ink-1); }
 .adm label { display: grid; gap: 6px; font-size: 0.875rem; font-weight: 600; }
 .adm input, .adm select {

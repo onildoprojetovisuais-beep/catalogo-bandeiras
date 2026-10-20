@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultados | Scuderia Bandeiras Esports Cup 2026</title>
+  <meta name="description" content="Resultados da Scuderia Bandeiras Esports Cup 2026 no iRacing: ranking da seletiva e do campeonato nas categorias Caterham 420R e Caterham Academy.">
+  <meta name="theme-color" content="#010C0E">
+  <meta property="og:title" content="Resultados · Scuderia Bandeiras Esports Cup 2026">
+  <meta property="og:description" content="Ranking da seletiva e do campeonato nas categorias Caterham 420R e Caterham Academy.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://www.scuderiabandeiras.com.br/campeonato-simulador/resultados/">
+  <meta property="og:site_name" content="Scuderia Bandeiras">
+  <meta property="og:image" content="https://www.scuderiabandeiras.com/assets-build/img/caterham-esports-og-1200x630.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.scuderiabandeiras.com.br/campeonato-simulador/resultados/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets-build/favicon/favicon-180.png">
+  <link rel="preload" href="/assets-build/fonts/ibm-plex-sans-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261020a">
+  <script src="/js/resultados.js?v=20261020a" defer></script>
+</head>
+
+<body>
+  <a class="skip" href="#resultados">Ir para os resultados</a>
+
+  <header class="topo topo--fixo">
+    <a class="topo__voltar" href="/campeonato-simulador/">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>Campeonato</span>
+    </a>
+    <div class="topo__logo marca"><picture class="marca__logo"><source type="image/avif" srcset="/assets-build/img/logo-raster-480w-f9c0803034.avif 480w, /assets-build/img/logo-raster-800w-f9c0803034.avif 800w, /assets-build/img/logo-raster-1280w-f9c0803034.avif 1280w, /assets-build/img/logo-raster-1920w-f9c0803034.avif 1920w" sizes="160px"><source type="image/webp" srcset="/assets-build/img/logo-raster-480w-f9c0803034.webp 480w, /assets-build/img/logo-raster-800w-f9c0803034.webp 800w, /assets-build/img/logo-raster-1280w-f9c0803034.webp 1280w, /assets-build/img/logo-raster-1920w-f9c0803034.webp 1920w" sizes="160px"><img src="/assets-build/img/logo-raster-1920w-f9c0803034.webp" width="8000" height="2392" alt="Scuderia Bandeiras" loading="eager" decoding="sync"></picture><span class="marca__tag">E-sports Cup</span></div>
+    <p class="topo__status"><span class="pulso" aria-hidden="true"></span>Resultados</p>
+  </header>
+
+  <main id="resultados" class="sel">
+    <header class="sel__cabeca">
+      <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Temporada 2026 · iRacing</p>
+      <h1 class="titulo">Resultados <em>oficiais</em></h1>
+      <p class="corpo">Ranking de cada fase por categoria, com o melhor tempo de cada piloto. Na seletiva, os 30 mais rápidos de cada categoria garantem vaga no grid.</p>
+    </header>
+
+    <div class="res__fases" role="tablist" aria-label="Fase">
+      <button type="button" role="tab" aria-selected="true" data-fase="seletiva">Seletiva</button>
+      <button type="button" role="tab" aria-selected="false" tabindex="-1" data-fase="campeonato">Campeonato</button>
+    </div>
+    <p class="sel__atualizado" data-res-atualizado>Carregando…</p>
+
+    <div class="sel__abas" role="tablist" aria-label="Categoria">
+      <button type="button" role="tab" id="aba-420R" aria-controls="painel-420R" aria-selected="true" data-cat="420R">Caterham 420R</button>
+      <button type="button" role="tab" id="aba-Academy" aria-controls="painel-Academy" aria-selected="false" tabindex="-1" data-cat="Academy">Caterham Academy</button>
+    </div>
+
+    <section id="painel-420R" class="sel__painel" role="tabpanel" aria-labelledby="aba-420R" data-painel="420R"></section>
+    <section id="painel-Academy" class="sel__painel" role="tabpanel" aria-labelledby="aba-Academy" data-painel="Academy" hidden></section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__logo marca marca--rodape"><picture class="marca__logo"><source type="image/avif" srcset="/assets-build/img/logo-raster-480w-f9c0803034.avif 480w, /assets-build/img/logo-raster-800w-f9c0803034.avif 800w, /assets-build/img/logo-raster-1280w-f9c0803034.avif 1280w, /assets-build/img/logo-raster-1920w-f9c0803034.avif 1920w" sizes="200px"><source type="image/webp" srcset="/assets-build/img/logo-raster-480w-f9c0803034.webp 480w, /assets-build/img/logo-raster-800w-f9c0803034.webp 800w, /assets-build/img/logo-raster-1280w-f9c0803034.webp 1280w, /assets-build/img/logo-raster-1920w-f9c0803034.webp 1920w" sizes="200px"><img src="/assets-build/img/logo-raster-1920w-f9c0803034.webp" width="8000" height="2392" alt="Scuderia Bandeiras" loading="lazy" decoding="async"></picture><span class="marca__tag">E-sports Cup</span></div>
+    <p>Scuderia Bandeiras Esports Cup é organizado pela Scuderia Bandeiras. <a href="/campeonato-simulador/regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Regulamento<span class="sr"> (PDF, abre em nova aba)</span></a></p>
+    <p><a href="/">scuderiabandeiras.com.br</a></p>
+  </footer>
+</body>
+</html>

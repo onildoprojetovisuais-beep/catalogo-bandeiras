@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Painel de resultados | Esports Cup 2026</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
+  <link rel="stylesheet" href="/css/seletiva.css?v=20261020a">
+  <script src="/js/resultados-admin.js?v=20261020a" defer></script>
+</head>
+<!-- Painel de resultados: fora do menu e do sitemap, noindex. Lê o CSV de ranking
+     no navegador e envia só nome do piloto e tempo para /api/resultados, com a
+     mesma senha do painel da seletiva (CATERHAM_ADMIN_TOKEN). -->
+<body>
+  <main class="adm">
+    <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Esports Cup 2026 · uso interno</p>
+    <h1>Painel de resultados</h1>
+    <p>Suba o CSV de ranking (colunas <code>categoria</code>, <code>piloto</code> e <code>tempo_ms</code> ou <code>melhor_volta</code>; separador <code>;</code> ou <code>,</code>). O arquivo é lido aqui no seu navegador: só o nome do piloto e o tempo são publicados. A página pública <a href="/campeonato-simulador/resultados/" target="_blank" rel="noopener">/campeonato-simulador/resultados/</a> atualiza em até 1 minuto. Enviar de novo a mesma fase substitui o ranking anterior.</p>
+
+    <form class="adm__bloco" data-login>
+      <label>Senha do painel
+        <input type="password" name="token" autocomplete="current-password" required>
+      </label>
+      <button class="btn btn--lima" type="submit">Entrar</button>
+      <p class="adm__msg is-erro" data-login-msg hidden></p>
+    </form>
+
+    <div data-painel hidden>
+      <h2>Publicar ranking</h2>
+      <form class="adm__bloco" data-envio>
+        <label>Fase
+          <select name="fase" required>
+            <option value="seletiva">Seletiva</option>
+            <option value="campeonato">Campeonato</option>
+          </select>
+        </label>
+        <label>Arquivo CSV
+          <input type="file" name="arquivo" accept=".csv,text/csv" required>
+        </label>
+        <p class="adm__msg" data-previa-msg hidden></p>
+        <div class="adm__linha" data-previa></div>
+        <button class="btn btn--lima" type="submit" data-publicar disabled>Publicar no site</button>
+        <p class="adm__msg" data-envio-msg hidden></p>
+      </form>
+
+      <h2>Publicado agora</h2>
+      <div class="adm__tabela-wrap"><table data-publicado></table></div>
+    </div>
+  </main>
+</body>
+</html>
