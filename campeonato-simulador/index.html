@@ -22,12 +22,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets-build/favicon/favicon-180.png">
   <link rel="preload" href="/assets-build/fonts/ibm-plex-sans-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261016a">
+  <link rel="stylesheet" href="/css/caterham-esports.css?v=20261021a">
   <script src="/js/caterham-esports.js?v=20261015a" defer></script>
 </head>
 
 <body>
-  <a class="skip" href="#inscricao">Ir para o formulário de inscrição</a>
+  <a class="skip" href="#acompanhe">Ir para resultados e protestos</a>
 
   <header class="topo">
     <a class="topo__voltar" href="/#campeonato-simulador">
@@ -62,8 +62,7 @@
         </h1>
         <p class="hero__lead" data-entra>O campeonato oficial de Caterham no iRacing, organizado pela Scuderia Bandeiras. Os dois melhores de cada categoria saem do simulador e vão para a pista, numa clínica de pilotagem com um Caterham de competição.</p>
         <div class="acoes" data-entra>
-          <a class="btn btn--lima" href="#inscricao">Fazer minha inscrição</a>
-          <a class="btn btn--linha" href="resultados/">Resultados</a>
+          <a class="btn btn--lima" href="resultados/">Resultados</a>
           <a class="btn btn--linha" href="protestos/">Protestos</a>
           <a class="btn btn--linha" href="regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Ver regulamento<span class="sr"> (PDF, abre em nova aba)</span></a>
         </div>
@@ -137,7 +136,7 @@
         <li data-revela>
           <span class="trajeto__n">01</span>
           <h3>Inscrição</h3>
-          <p>Preencha o formulário abaixo. Você precisa de conta ativa no iRacing e dos conteúdos usados nas etapas.</p>
+          <p>Feita pelo formulário do site, com conta ativa no iRacing e os conteúdos usados nas etapas. As inscrições já estão encerradas.</p>
         </li>
         <li data-revela>
           <span class="trajeto__n">02</span>
@@ -169,98 +168,24 @@
       </div>
     </section>
 
-    <section id="inscricao" class="inscricao" aria-labelledby="insc-titulo" tabindex="-1">
+    <section id="acompanhe" class="categorias acompanhe" aria-labelledby="acompanhe-titulo" tabindex="-1">
       <header class="cabeca">
-        <p class="kicker" data-revela>Inscrições</p>
-        <h2 id="insc-titulo" class="titulo" data-revela>Garanta seu lugar <em>na classificatória.</em></h2>
-        <p class="corpo" data-revela>Campos marcados com * são obrigatórios. A inscrição não garante vaga no grid: quem define é a Fase Classificatória.</p>
+        <p class="kicker" data-revela>Inscrições encerradas</p>
+        <h2 id="acompanhe-titulo" class="titulo" data-revela>Acompanhe <em>a temporada.</em></h2>
       </header>
-
-      <div class="inscricao__corpo">
-        <nav class="setores" aria-label="Progresso da inscrição">
-          <ol>
-            <li data-setor="1"><span class="setores__n">S1</span><span class="setores__nome">Piloto</span><span class="setores__barra"><span></span></span></li>
-            <li data-setor="2"><span class="setores__n">S2</span><span class="setores__nome">Categoria</span><span class="setores__barra"><span></span></span></li>
-            <li data-setor="3"><span class="setores__n">S3</span><span class="setores__nome">Experiência</span><span class="setores__barra"><span></span></span></li>
-            <li data-setor="4"><span class="setores__n">S4</span><span class="setores__nome">Declarações</span><span class="setores__barra"><span></span></span></li>
-          </ol>
-        </nav>
-
-        <div class="inscricao__form">
-          <div id="alert" class="alerta" role="alert" hidden></div>
-
-          <form id="form" novalidate>
-            <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
-
-            <fieldset data-setor="1">
-              <legend><span class="legend__n">S1</span>Dados do piloto</legend>
-              <div class="grade">
-                <label class="campo campo--cheio"><span>Nome completo *</span><input name="full_name" required maxlength="120" autocomplete="name"></label>
-                <label class="campo"><span>Data de nascimento *</span><input name="birth_date" type="date" required></label>
-                <label class="campo"><span>E-mail *</span><input name="email" type="email" required autocomplete="email"></label>
-                <label class="campo"><span>WhatsApp *</span><input name="whatsapp" type="tel" required autocomplete="tel" placeholder="(15) 99999-9999"></label>
-                <label class="campo"><span>Cidade *</span><input name="city" required autocomplete="address-level2"></label>
-                <label class="campo"><span>Estado *</span><select name="state" required><option value="">Selecione</option>
-                  <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
-                </select></label>
-                <label class="campo"><span>Nome no iRacing *</span><input name="iracing_name" required maxlength="80"></label>
-                <label class="campo"><span>iRacing Customer ID *</span><input name="iracing_customer_id" type="number" inputmode="numeric" min="1" step="1" required></label>
-                <label class="campo"><span>iRating *</span><input name="irating_declared" type="number" inputmode="numeric" min="0" step="1" required><small>O seu iRating no momento da inscrição. Para a Academy vale o momento de referência do regulamento.</small></label>
-                <label class="campo"><span>Discord *</span><input name="discord" required maxlength="60"></label>
-                <label class="campo"><span>Equipe de sim racing</span><input name="sim_team" maxlength="80"></label>
-                <label class="campo"><span>Instagram</span><input name="instagram" placeholder="@usuario" maxlength="60"></label>
-              </div>
-            </fieldset>
-
-            <fieldset data-setor="2">
-              <legend><span class="legend__n">S2</span>Categoria</legend>
-              <p class="pergunta" id="q-cat">Em qual categoria você quer competir? *</p>
-              <div class="opcoes" role="radiogroup" aria-labelledby="q-cat">
-                <label class="opcao"><input type="radio" name="category" value="Academy" required><span class="opcao__corpo"><strong>Caterham Academy</strong><small>iRating de referência até 2.000, sujeito aos critérios do regulamento.</small></span></label>
-                <label class="opcao"><input type="radio" name="category" value="420R" required><span class="opcao__corpo"><strong>Caterham 420R</strong><small>Categoria principal do Scuderia Bandeiras Esports Cup.</small></span></label>
-              </div>
-              <div id="academyExtra" class="condicional" hidden>
-                <p class="ajuda">A elegibilidade final para a Academy depende dos critérios do regulamento e da avaliação da Comissão Organizadora.</p>
-                <p class="pergunta" id="q-fallback">Se você não for elegível para a Academy, quer ser considerado para uma vaga na 420R? *</p>
-                <div class="linha-opcoes" role="radiogroup" aria-labelledby="q-fallback"><label><input type="radio" name="academy_fallback_420r" value="Sim"> Sim</label><label><input type="radio" name="academy_fallback_420r" value="Não"> Não</label></div>
-              </div>
-            </fieldset>
-
-            <fieldset data-setor="3">
-              <legend><span class="legend__n">S3</span>Experiência no automobilismo</legend>
-              <p class="pergunta" id="q-exp">Você já pilotou no automobilismo real? *</p>
-              <div class="linha-opcoes" role="radiogroup" aria-labelledby="q-exp"><label><input type="radio" name="real_motorsport_experience" value="Não" required> Não</label><label><input type="radio" name="real_motorsport_experience" value="Sim" required> Sim</label></div>
-              <p class="ajuda">Conta qualquer experiência conduzindo um veículo de competição em pista: corridas, testes, clínicas de pilotagem ou atividades parecidas.</p>
-              <div id="experienceExtra" class="condicional" hidden><label class="campo"><span>Conte rapidamente qual foi sua experiência. *</span><textarea name="experience_description" rows="5" maxlength="1200" placeholder="Se puder, informe veículo ou categoria, tipo de atividade e ano."></textarea></label></div>
-              <p class="nota"><strong>Ter experiência no automobilismo real não impede sua participação.</strong> Essa informação só define quem é elegível à clínica de pilotagem, conforme o regulamento.</p>
-            </fieldset>
-
-            <fieldset data-setor="4">
-              <legend><span class="legend__n">S4</span>Declarações</legend>
-              <div class="checks">
-                <label><input type="checkbox" name="accept_regulation" value="Sim" required><span>Li e aceito integralmente o <a href="regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Regulamento Específico do Scuderia Bandeiras Esports Cup 2026<span class="sr"> (PDF, abre em nova aba)</span></a>. *</span></label>
-                <label><input type="checkbox" name="truth_declaration" value="Sim" required><span>Declaro que todas as informações desta inscrição são verdadeiras. *</span></label>
-                <label><input type="checkbox" name="qualifying_ack" value="Sim" required><span>Estou ciente de que a Fase Classificatória é obrigatória e de que a inscrição não garante vaga no grid. *</span></label>
-                <label><input type="checkbox" name="grid_ack" value="Sim" required><span>Estou ciente de que cada categoria tem grid máximo de 30 pilotos, definidos pelos critérios do regulamento. *</span></label>
-                <label><input type="checkbox" name="privacy_consent" value="Sim" required><span>Autorizo o tratamento dos meus dados para inscrição, organização, administração e comunicação do Scuderia Bandeiras Esports Cup. *</span></label>
-                <label><input type="checkbox" name="marketing_consent" value="Sim"><span>Quero receber novidades sobre competições, eventos e ações da Scuderia Bandeiras.</span></label>
-              </div>
-            </fieldset>
-
-            <div class="enviar">
-              <button id="submitBtn" class="btn btn--lima btn--grande" type="submit">Enviar inscrição</button>
-            </div>
-          </form>
-
-          <section id="success" class="sucesso" hidden tabindex="-1" aria-labelledby="sucesso-titulo">
-            <div class="sucesso__xadrez" aria-hidden="true"></div>
-            <p class="kicker">Inscrição recebida</p>
-            <h2 id="sucesso-titulo" class="titulo">Você está <em>inscrito.</em></h2>
-            <p class="corpo">Recebemos sua inscrição no Scuderia Bandeiras Esports Cup 2026. As próximas informações chegam pelos contatos que você informou.</p>
-            <p id="registrationLine" class="sucesso__numero" hidden>Número de inscrição <strong id="registrationId"></strong></p>
-            <p class="nota"><strong>A inscrição não confirma vaga no grid.</strong> A vaga sai na Fase Classificatória, até 18/10 às 23h59: treine em Snetterton 200.</p>
-          </section>
-        </div>
+      <div class="categorias__grid">
+        <article class="cat cat--principal" data-revela>
+          <p class="cat__tag">Classificação</p>
+          <h3 class="cat__nome">Resultados</h3>
+          <p class="cat__desc">Ranking da Fase Classificatória e a classificação do campeonato, atualizada a cada etapa.</p>
+          <div class="acoes"><a class="btn btn--lima" href="resultados/">Ver resultados</a></div>
+        </article>
+        <article class="cat" data-revela>
+          <p class="cat__tag">Comissários</p>
+          <h3 class="cat__nome">Protestos</h3>
+          <p class="cat__desc">Viu um incidente numa bateria? Envie o protesto com o replay pelo formulário, dentro do prazo do regulamento.</p>
+          <div class="acoes"><a class="btn btn--linha" href="protestos/">Enviar protesto</a></div>
+        </article>
       </div>
     </section>
 
@@ -288,7 +213,7 @@
         <details class="faq__item" name="faq" data-revela>
           <summary>Até quando posso me inscrever?</summary>
           <div class="faq__resposta">
-            <p>As inscrições ficam abertas durante a Fase Classificatória, que vai de 15/10/2026 às 16h até 18/10/2026 às 23h59, horário de Brasília. Inscreva-se e registre a sua volta dentro desse prazo.</p>
+            <p>As inscrições ficaram abertas durante a Fase Classificatória, de 15/10/2026 às 16h até 18/10/2026 às 23h59, horário de Brasília, e já estão encerradas. Acompanhe a temporada pela página de <a href="resultados/">resultados</a>.</p>
           </div>
         </details>
 

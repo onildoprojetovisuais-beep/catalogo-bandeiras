@@ -259,6 +259,9 @@ a.topo__status:hover { color: var(--lime); }
 
 /* ------------------------------------------------------------ categorias */
 .categorias { padding: 0 var(--gutter) clamp(80px, 12vw, 160px); }
+/* Acompanhe (resultados + protestos): vem logo após a faixa .formato, então precisa de respiro no topo. */
+.acompanhe { padding-top: clamp(80px, 12vw, 160px); }
+.acompanhe:focus { outline: none; }
 .categorias__grid {
   display: grid; gap: 16px;
   max-width: var(--max); margin: 40px auto 0;
