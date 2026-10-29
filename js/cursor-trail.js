@@ -1,5 +1,5 @@
-// Cursor customizado — cor de marca (--vermelho: #ff4747), crossfade sutil
-// para o lima do escopo Caterham. Reduzido a detalhe de acabamento: sem
+// Cursor customizado — cor de marca (--vermelho: #ff4747) em toda a página
+// (o crossfade para o lima da Caterham saiu em 2026-10-29). Reduzido a detalhe de acabamento: sem
 // faíscas, resposta quase 1:1 ao mouse, rastro curto e fino, sem brilho.
 (() => {
   const canvas = document.getElementById('trailCanvas');
@@ -14,22 +14,15 @@
   if (!hasFinePointer || prefersReduced) return;
 
   const ctx = canvas.getContext('2d');
-  const RGB_RED = [255, 71, 71]; // --vermelho em rgb (resto da home)
-  const RGB_LIME = [202, 211, 2]; // --lime do escopo .caterham
   const TRAIL_LIFE = 160; // ms — rastro curto, quase imperceptível
   const MAX_TRAIL_POINTS = 14;
   const FOLLOW = 0.55; // resposta quase direta — pouco deslocamento/lag
-  const COLOR_FOLLOW = 0.08;
-
-  const caterhamEl = document.getElementById('caterham');
 
   const raw = { x: -100, y: -100 };
   const smooth = { x: -100, y: -100 };
   let hasMouse = false;
 
-  // 0 = vermelho (padrão), 1 = lima do Caterham — interpolado suavemente.
-  let colorT = 0;
-  let RGB = '255, 71, 71';
+  const RGB = '255, 71, 71'; // --vermelho em rgb
 
   let points = []; // {x, y, born}
 
@@ -56,23 +49,6 @@
   );
 
   document.body.style.cursor = 'none';
-
-  function updateColor() {
-    let targetT = 0;
-    if (caterhamEl && hasMouse) {
-      const r = caterhamEl.getBoundingClientRect();
-      const inside = smooth.x >= r.left && smooth.x <= r.right && smooth.y >= r.top && smooth.y <= r.bottom;
-      targetT = inside ? 1 : 0;
-    }
-    colorT += (targetT - colorT) * COLOR_FOLLOW;
-    if (colorT < 0.0005) colorT = 0;
-    if (colorT > 0.9995) colorT = 1;
-
-    const r = Math.round(RGB_RED[0] + (RGB_LIME[0] - RGB_RED[0]) * colorT);
-    const g = Math.round(RGB_RED[1] + (RGB_LIME[1] - RGB_RED[1]) * colorT);
-    const b = Math.round(RGB_RED[2] + (RGB_LIME[2] - RGB_RED[2]) * colorT);
-    RGB = `${r}, ${g}, ${b}`;
-  }
 
   function updateTrail(now) {
     smooth.x += (raw.x - smooth.x) * FOLLOW;
@@ -116,7 +92,6 @@
     const now = performance.now();
 
     updateTrail(now);
-    updateColor();
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawTrail();

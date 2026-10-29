@@ -64,11 +64,12 @@
   }
   .btn--ghost:hover { border-color: var(--luz); background: rgba(255, 255, 255, 0.08); }
 
-  /* CTA da Caterham: borda branca em repouso, vira o lima da marca no hover. */
+  /* CTA da Caterham: borda branca em repouso, vira o vermelho de botão no
+     hover (era lima da Caterham até 2026-10-29). */
   .btn--ghost-lime:hover {
-    border-color: #cad302;
-    background: #cad302;
-    color: var(--asfalto);
+    border-color: var(--vermelho-botao);
+    background: var(--vermelho-botao);
+    color: var(--on-vermelho);
   }
 
   /* Terciário — peso mínimo: link sublinhado, sem fundo nem borda. Usado
@@ -922,11 +923,6 @@
     background: linear-gradient(180deg, transparent 48%, rgba(15, 15, 15, 0.42) 72%, rgba(15, 15, 15, 0.86) 92%, var(--asfalto) 100%);
   }
   .experiencias__momento-overlay {
-    /* Race Experience tem mais a ver com Caterham que com o vermelho geral
-       da marca — mesma técnica de .card--caterham: sobrepõe --vermelho por
-       lima só neste escopo (eyebrow e o .grifo do título herdam sozinhos). */
-    --vermelho: #cad302;
-    --vermelho-escuro: #a8b002;
     position: relative;
     z-index: 1;
     display: flex;
@@ -1199,15 +1195,10 @@
      altura) e passa a ser 1 card dentro do grid "Também no escopo" — pedido
      explícito do usuário ("módulo, não seção gigante"; o HUD de cantos e
      régua de telemetria também caía no "gamer" que ele pediu para evitar).
-     .card--caterham só sobrepõe --vermelho/--vermelho-escuro para lima (o
-     resto do token system e do componente .card não muda). id="caterham"
-     fica no card para o crossfade de cursor em js/cursor-trail.js — a área
-     de crossfade agora é o card, não a seção inteira. */
+     Desde 2026-10-29 sem o lima da Caterham: o card usa o vermelho da
+     Scuderia como o resto da home. */
   .card--caterham {
-    --vermelho: #cad302;
-    --vermelho-escuro: #a8b002;
-    /* Fundo puxando pro verde-lima do Caterham, não só o acento/tipografia
-       — pra se reconhecer o card mesmo antes de ler o texto. */
+    /* Fundo puxando pro vermelho de marca, pra se destacar no grid. */
     background: color-mix(in srgb, var(--asfalto) 82%, var(--vermelho) 18%);
   }
   @media (hover: hover) and (pointer: fine) {
@@ -1218,16 +1209,7 @@
   .card--caterham__cta.btn {
     align-self: flex-start;
     margin-block-start: var(--space-s);
-    /* Fixa o texto em --asfalto (escuro): o fundo do .btn--primary aqui é o
-       lima local do Caterham (--vermelho sobreposto acima), então o texto
-       precisa continuar escuro por contraste — explícito para não depender
-       da ordem de cascata com .btn--primary. */
-    background: var(--vermelho); /* aqui = lima local do card, não o vermelho de botão */
-    color: var(--asfalto);
   }
-  .card--caterham__cta.btn:visited { color: var(--asfalto); }
-  .card--caterham__cta.btn:hover,
-  .card--caterham__cta.btn:active { background: var(--luz); color: var(--asfalto); }
 
   /* ============================================================ 06 · BANDEIRAS EMPRESARIAL
      Única dobra em registro claro (.section--paper no <section>, ver base.css)
@@ -2907,9 +2889,8 @@
    Experiências, logo depois do card "Caterham para Empresas" (antes era seção
    própria entre Experiências e Bandeiras Empresarial). Mídia agora é o loop
    de vídeo do Remotion (.sim__video), não mais a foto do 420R de estúdio.
-   Hierarquia: imagem → título → contexto → CTA. Acento lima local, mesma
-   técnica de .card--caterham: sobrepõe --vermelho/--vermelho-escuro só
-   neste escopo (eyebrow, grifo, filete e anel de foco herdam sozinhos).
+   Hierarquia: imagem → título → contexto → CTA. Acento no vermelho da
+   Scuderia (o lima local da Caterham saiu em 2026-10-29).
    Mobile: foto primeiro, com o título subindo sobre o pé escuro da foto.
    Desktop (>=1024): texto à esquerda no eixo do container, foto sangrando
    até a borda direita, com o título avançando sobre a fusão da foto.
@@ -2917,8 +2898,6 @@
    (é o que diferencia virtual de real); a página continua sem HUD de UI. */
 @layer components {
   .sim {
-    --vermelho: #cad302;
-    --vermelho-escuro: #a8b002;
     position: relative;
     margin-block: var(--space-2xl) 0;
     padding-block: 0 var(--space-xl);
@@ -3055,16 +3034,6 @@
   .sim__cta.btn {
     flex: 1 1 100%;
     min-height: 56px;
-  }
-  .sim__cta--primario.btn,
-  .sim__cta--primario.btn:visited {
-    background: var(--vermelho); /* aqui = lima local, não o vermelho de botão */
-    color: var(--asfalto);
-  }
-  .sim__cta--primario.btn:hover,
-  .sim__cta--primario.btn:active {
-    background: var(--luz);
-    color: var(--asfalto);
   }
 
   /* Celular: ganha ~40px para o CTA primário chegar perto da 1ª tela. */

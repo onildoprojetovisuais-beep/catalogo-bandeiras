@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets-build/favicon/favicon-180.png">
   <link rel="preload" href="assets-build/fonts/special-gothic-condensed-one-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.min.css?v=20261016a">
+  <link rel="stylesheet" href="css/site.min.css?v=20261029a">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -406,8 +406,8 @@
          statement "O automobilismo deixa de ser...".
 
          Caterham (ex-seção própria) continua 1 card dentro do grid de
-         formatos (não é reaberto nesta rodada). id="caterham" preservado
-         no card para o crossfade de cursor em js/cursor-trail.js. -->
+         formatos (não é reaberto nesta rodada). id="caterham" preservado como
+         âncora do card. -->
     <section id="experiencias" class="section experiencias">
       <div class="container intro-split">
         <div class="section-head">
@@ -540,7 +540,7 @@
            a frase final e o CTA de Team Building vêm depois dele. <section>
            própria (aria-labelledby) para manter o landmark e o id usado no
            link de volta da página de inscrição. Sem numeral de seção.
-           Acento lima local, mesma técnica de .card--caterham.
+           Acento no vermelho da Scuderia (lima da Caterham saiu em 2026-10-29).
            Mídia: loop "Do virtual para o real" renderizado no Remotion
            (EDICOES-VIDEO/src/videos/caterham-esports-brasil/), 4:5 no
            celular e 16:9 do tablet para cima; play/pausa acessível por
@@ -575,7 +575,7 @@
             </ul>
             <p class="sim__assinatura" data-reveal>Scuderia Bandeiras <span class="sim__x" aria-hidden="true">·</span> E-sports Cup</p>
             <div class="sim__ctas" data-reveal>
-              <a class="btn btn--xl sim__cta sim__cta--primario" href="campeonato-simulador/">Ver campeonato</a>
+              <a class="btn btn--primary btn--xl sim__cta sim__cta--primario" href="campeonato-simulador/">Ver campeonato</a>
               <a class="btn btn--ghost sim__cta" href="campeonato-simulador/regulamento-scuderia-bandeiras-esports-cup-2026.pdf" target="_blank" rel="noopener">Ver regulamento<span class="visually-hidden"> (PDF, abre em nova aba)</span></a>
             </div>
           </div>
@@ -1063,6 +1063,6 @@
   <script type="module" src="js/main.js?v=20261014a"></script>
 
   <canvas id="trailCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
-  <script src="js/cursor-trail.js"></script>
+  <script src="js/cursor-trail.js?v=20261029a"></script>
 </body>
 </html>

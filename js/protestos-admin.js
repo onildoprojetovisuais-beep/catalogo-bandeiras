@@ -73,7 +73,7 @@
     const msg = el("p", { className: "adm__msg", hidden: true });
 
     const salvar = el("button", {
-      type: "button", className: "btn btn--lima", textContent: "Salvar",
+      type: "button", className: "btn btn--primario", textContent: "Salvar",
       onclick: async () => {
         try {
           await api("POST", { action: "update", id: p.protest_id, sporting_status: desportivo.value, payment_status: financeiro.value, admin_notes: notas.value });
