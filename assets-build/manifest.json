@@ -1208,5 +1208,203 @@
       "1280": "assets-build/img/eco-producao-1280w-8c6f269cb2.jpg",
       "1920": "assets-build/img/eco-producao-1920w-8c6f269cb2.jpg"
     }
+  },
+  "rl-hero-corrida": {
+    "slug": "rl-hero-corrida",
+    "source": "assets/race-league/fotos/hero-corrida-caterhams.jpg",
+    "original_size_bytes": 472826,
+    "width": 2400,
+    "height": 1309,
+    "aspect_ratio": 1.8335,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-hero-corrida-480w-f7a9c2720f.avif",
+      "800": "assets-build/img/rl-hero-corrida-800w-f7a9c2720f.avif",
+      "1280": "assets-build/img/rl-hero-corrida-1280w-f7a9c2720f.avif",
+      "1920": "assets-build/img/rl-hero-corrida-1920w-f7a9c2720f.avif",
+      "2400": "assets-build/img/rl-hero-corrida-2400w-f7a9c2720f.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-hero-corrida-480w-f7a9c2720f.jpg",
+      "800": "assets-build/img/rl-hero-corrida-800w-f7a9c2720f.jpg",
+      "1280": "assets-build/img/rl-hero-corrida-1280w-f7a9c2720f.jpg",
+      "1920": "assets-build/img/rl-hero-corrida-1920w-f7a9c2720f.jpg",
+      "2400": "assets-build/img/rl-hero-corrida-2400w-f7a9c2720f.jpg"
+    }
+  },
+  "rl-hero-corrida-mobile": {
+    "slug": "rl-hero-corrida-mobile",
+    "source": "assets/race-league/fotos/hero-corrida-caterhams-mobile.jpg",
+    "original_size_bytes": 278273,
+    "width": 1200,
+    "height": 1500,
+    "aspect_ratio": 0.8,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-hero-corrida-mobile-480w-8cd9d7489d.avif",
+      "800": "assets-build/img/rl-hero-corrida-mobile-800w-8cd9d7489d.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-hero-corrida-mobile-480w-8cd9d7489d.jpg",
+      "800": "assets-build/img/rl-hero-corrida-mobile-800w-8cd9d7489d.jpg"
+    }
+  },
+  "rl-kings-arena": {
+    "slug": "rl-kings-arena",
+    "source": "assets/race-league/fotos/kings-league-arena.jpg",
+    "original_size_bytes": 578314,
+    "width": 2400,
+    "height": 1603,
+    "aspect_ratio": 1.4972,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-kings-arena-480w-502148f205.avif",
+      "800": "assets-build/img/rl-kings-arena-800w-502148f205.avif",
+      "1280": "assets-build/img/rl-kings-arena-1280w-502148f205.avif",
+      "1920": "assets-build/img/rl-kings-arena-1920w-502148f205.avif",
+      "2400": "assets-build/img/rl-kings-arena-2400w-502148f205.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-kings-arena-480w-502148f205.jpg",
+      "800": "assets-build/img/rl-kings-arena-800w-502148f205.jpg",
+      "1280": "assets-build/img/rl-kings-arena-1280w-502148f205.jpg",
+      "1920": "assets-build/img/rl-kings-arena-1920w-502148f205.jpg",
+      "2400": "assets-build/img/rl-kings-arena-2400w-502148f205.jpg"
+    }
+  },
+  "rl-kings-arena-mobile": {
+    "slug": "rl-kings-arena-mobile",
+    "source": "assets/race-league/fotos/kings-league-arena-mobile.jpg",
+    "original_size_bytes": 289823,
+    "width": 1200,
+    "height": 1500,
+    "aspect_ratio": 0.8,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-kings-arena-mobile-480w-ab7a5c7e5c.avif",
+      "800": "assets-build/img/rl-kings-arena-mobile-800w-ab7a5c7e5c.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-kings-arena-mobile-480w-ab7a5c7e5c.jpg",
+      "800": "assets-build/img/rl-kings-arena-mobile-800w-ab7a5c7e5c.jpg"
+    }
+  },
+  "rl-pista": {
+    "slug": "rl-pista",
+    "source": "assets/race-league/fotos/pista-tres-caterhams.jpg",
+    "original_size_bytes": 413816,
+    "width": 2400,
+    "height": 1598,
+    "aspect_ratio": 1.5019,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-pista-480w-d7beb13dca.avif",
+      "800": "assets-build/img/rl-pista-800w-d7beb13dca.avif",
+      "1280": "assets-build/img/rl-pista-1280w-d7beb13dca.avif",
+      "1920": "assets-build/img/rl-pista-1920w-d7beb13dca.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-pista-480w-d7beb13dca.jpg",
+      "800": "assets-build/img/rl-pista-800w-d7beb13dca.jpg",
+      "1280": "assets-build/img/rl-pista-1280w-d7beb13dca.jpg",
+      "1920": "assets-build/img/rl-pista-1920w-d7beb13dca.jpg"
+    }
+  },
+  "rl-pista-mobile": {
+    "slug": "rl-pista-mobile",
+    "source": "assets/race-league/fotos/pista-tres-caterhams-mobile.jpg",
+    "original_size_bytes": 205992,
+    "width": 1200,
+    "height": 1500,
+    "aspect_ratio": 0.8,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-pista-mobile-480w-c604d29f21.avif",
+      "800": "assets-build/img/rl-pista-mobile-800w-c604d29f21.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-pista-mobile-480w-c604d29f21.jpg",
+      "800": "assets-build/img/rl-pista-mobile-800w-c604d29f21.jpg"
+    }
+  },
+  "rl-420r": {
+    "slug": "rl-420r",
+    "source": "assets/race-league/fotos/caterham-420r.jpg",
+    "original_size_bytes": 331114,
+    "width": 1651,
+    "height": 2477,
+    "aspect_ratio": 0.6665,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-420r-480w-ff3e494e73.avif",
+      "800": "assets-build/img/rl-420r-800w-ff3e494e73.avif",
+      "1280": "assets-build/img/rl-420r-1280w-ff3e494e73.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-420r-480w-ff3e494e73.jpg",
+      "800": "assets-build/img/rl-420r-800w-ff3e494e73.jpg",
+      "1280": "assets-build/img/rl-420r-1280w-ff3e494e73.jpg"
+    }
+  },
+  "rl-420r-mobile": {
+    "slug": "rl-420r-mobile",
+    "source": "assets/race-league/fotos/caterham-420r-mobile.jpg",
+    "original_size_bytes": 175859,
+    "width": 1200,
+    "height": 1500,
+    "aspect_ratio": 0.8,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-420r-mobile-480w-1c4f74dd10.avif",
+      "800": "assets-build/img/rl-420r-mobile-800w-1c4f74dd10.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-420r-mobile-480w-1c4f74dd10.jpg",
+      "800": "assets-build/img/rl-420r-mobile-800w-1c4f74dd10.jpg"
+    }
+  },
+  "rl-historia-trio": {
+    "slug": "rl-historia-trio",
+    "source": "assets/race-league/fotos/historia-fittipaldi-senna-piquet.jpg",
+    "original_size_bytes": 290861,
+    "width": 1672,
+    "height": 941,
+    "aspect_ratio": 1.7768,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-historia-trio-480w-e9a0bbd528.avif",
+      "800": "assets-build/img/rl-historia-trio-800w-e9a0bbd528.avif",
+      "1280": "assets-build/img/rl-historia-trio-1280w-e9a0bbd528.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-historia-trio-480w-e9a0bbd528.jpg",
+      "800": "assets-build/img/rl-historia-trio-800w-e9a0bbd528.jpg",
+      "1280": "assets-build/img/rl-historia-trio-1280w-e9a0bbd528.jpg"
+    }
+  },
+  "rl-historia-chapman": {
+    "slug": "rl-historia-chapman",
+    "source": "assets/race-league/fotos/historia-colin-chapman.jpg",
+    "original_size_bytes": 33000,
+    "width": 739,
+    "height": 415,
+    "aspect_ratio": 1.7807,
+    "has_alpha": false,
+    "fallback_ext": "jpg",
+    "avif": {
+      "480": "assets-build/img/rl-historia-chapman-480w-ee13d2dc7d.avif"
+    },
+    "jpg": {
+      "480": "assets-build/img/rl-historia-chapman-480w-ee13d2dc7d.jpg"
+    }
   }
 }

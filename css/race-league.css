@@ -1,0 +1,473 @@
+/*
+  RACE LEAGUE — identidade escopada (home #race-league + página /race-league/)
+  2026-11-02. Entra no site.min.css (scripts/build-css.py, depois de
+  components.css). Os blocos exclusivos da página ficam em
+  css/race-league-pagina.css, carregado só lá.
+
+  Regras (scratchpad 00-consolidacao / 03-design v2):
+  - Tudo começa por .rl / .rl- . Nada em :root, body ou classe global.
+  - Tokens remapeados no escopo, como .section--paper faz: dentro de .rl o
+    --vermelho vira o neon (grifo, eyebrow, foco). --vermelho-botao NUNCA é
+    remapeado: nenhum botão vermelho da Scuderia muda.
+  - Neon #7CFC00 só como superfície com tinta preta por cima, ou como
+    texto/traço sobre preto. Texto branco sobre o neon é proibido (1,3:1).
+    Neon como texto/UI sobre o claro também (≈1,1:1).
+  - Sem glow, sem sombra, sem gradiente neon. Raio 0 (exceção única: .rl-card,
+    na página). Caixa alta liberada nos títulos só aqui.
+  - Motion só transform/opacity (+1 clip-path 1×, o wipe do logo). Estado
+    base = estado final visível; tudo que anima fica atrás de .js-motion.
+*/
+
+@layer components {
+
+  /* ============================================================ TOKENS */
+  .rl {
+    --rl-preto: #0D0D0D;
+    --rl-preto-v: #000;
+    --rl-cinza-c: #333;
+    --rl-papel: #F6F5F1;
+    --rl-papel-2: #FBF1EC;
+    --rl-branco: #fff;
+    --rl-corpo: #BFBFBF;
+    --rl-tinta: #0D0D0D;
+    --rl-corpo-c: #404040;
+    --rl-corpo-c2: #595959;
+    --rl-filete: #262626;
+    --rl-neon: #7CFC00;
+    --rl-mono: "JetBrains Mono", ui-monospace, monospace;
+    --rl-step: 120ms;
+
+    --rl-t-label: clamp(.8125rem, .78rem + .15vw, .9375rem); /* piso 13px (QA mobile P8) */
+    --rl-t-item: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+    --rl-t-num: clamp(4.5rem, 2.5rem + 7vw, 10rem);
+
+    --vermelho: var(--rl-neon);
+    --grifo-ink: var(--rl-tinta);
+    --grifo-h: 82%;
+    --luz: var(--rl-branco);
+    --luz-2: var(--rl-corpo);
+    --divisor: var(--rl-filete);
+
+    background: var(--rl-preto);
+    color: var(--rl-branco);
+    overflow-x: clip;
+    hyphens: manual;
+  }
+  .rl ::selection { background: var(--rl-neon); color: var(--rl-tinta); }
+  .rl h1, .rl h2, .rl h3 { letter-spacing: 0; max-width: none; }
+  .rl .grifo { padding-inline: .08em; }
+
+  /* rótulo mono (JetBrains Mono, caixa alta, tracking largo, nunca <12px) */
+  .rl-mono {
+    font-family: var(--rl-mono);
+    font-size: var(--rl-t-label);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  /* pixel neon (dispositivo do PPTX): decorativo, máx. 3 por viewport */
+  .rl-px {
+    position: absolute;
+    z-index: 2;
+    width: var(--px, 16px);
+    aspect-ratio: 1;
+    background: var(--rl-neon);
+    pointer-events: none;
+  }
+
+  /* ============================================================ CTA (placa neon reta)
+     Link interno, mesma aba. Repouso: neon cheio, tinta preta, mono.
+     Hover (só ponteiro fino): o preto entra pela esquerda e o texto vira
+     neon; a seta anda 6px. Foco: anel branco fora da placa (19:1 no preto). */
+  .rl-cta {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    width: 100%;
+    min-height: 56px;
+    padding: var(--space-xs) var(--space-s);
+    background: var(--rl-neon);
+    color: var(--rl-tinta);
+    border: 2px solid var(--rl-neon);
+    font-family: var(--rl-mono);
+    font-size: clamp(.8125rem, .75rem + .35vw, 1.0625rem);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    overflow: clip;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform var(--dur-fast) var(--ease-brake);
+  }
+  .rl-cta:visited { color: var(--rl-tinta); }
+  .rl-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--rl-preto);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--dur-fast) var(--ease-trail);
+  }
+  .rl-cta__seta {
+    font-family: var(--ff-text);
+    font-size: 1.5em;
+    line-height: 1;
+    transition: transform var(--dur-fast) var(--ease-drive);
+  }
+  .rl-cta:active { transform: scale(.98); }
+  .rl-cta:focus-visible { outline: 2px solid var(--rl-branco); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) {
+    .rl-cta:hover { color: var(--rl-neon); }
+    .rl-cta:hover::before { transform: scaleX(1); transform-origin: left; transition-timing-function: var(--ease-drive); }
+    .rl-cta:hover .rl-cta__seta { transform: translateX(6px); }
+  }
+  @media (min-width: 640px) {
+    .rl-cta { width: min(100%, 40rem); min-height: 64px; padding-inline: var(--space-m); }
+  }
+  @media (min-width: 1024px) {
+    .rl-cta { min-height: 80px; font-size: 1.125rem; }
+  }
+  @media (forced-colors: active) {
+    .rl-cta { border-color: CanvasText; }
+  }
+
+  /* ============================================================ HOME · #race-league */
+  .rl-home {
+    padding-block: var(--space-2xl);
+    scroll-margin-top: 64px; /* nav fixa */
+  }
+  /* Entrada vinda de uma seção ESCURA (desde 03/11 a home é #experiencias →
+     #race-league): #0F0F0F → #0D0D0D sozinho não se lê como corte, então a
+     borda da seção ganha o filete da própria RL (1px, sem neon). O risco
+     neon continua a --space-2xl (≥32px) de preto depois dele. Vindo do
+     papel (.section--paper) o corte de fundo já basta, sem filete. */
+  :not(.section--paper) + .rl-home { border-top: 1px solid var(--rl-filete); }
+
+  /* H0 · risco de largada: pixel 8×8 + rótulo mono + filete neon 1px */
+  .rl__topo { padding-block-start: var(--space-3xs); }
+  .rl__risco {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    max-width: none;
+    color: var(--rl-neon);
+    font-family: var(--rl-mono);
+    font-size: var(--rl-t-label);
+    letter-spacing: .2em;
+    line-height: 1;
+  }
+  .rl__risco::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rl-neon);
+    transform-origin: left;
+  }
+  .rl__risco-px { width: 8px; height: 8px; background: var(--rl-neon); flex-shrink: 0; }
+
+  .rl__marca { margin-block: var(--space-l) var(--space-m); max-width: none; }
+  .rl__marca img { width: clamp(220px, 58vw, 300px); height: auto; }
+  @media (min-width: 1024px) {
+    .rl__marca img { width: clamp(260px, 24vw, 380px); }
+  }
+
+  /* H1 · palco do teaser + headline */
+  .rl__runway { position: relative; }
+  .rl__palco { position: relative; }
+  .rl__teaser {
+    position: relative;
+    overflow: clip;
+    background: var(--rl-preto-v);
+    aspect-ratio: 4 / 5;
+    max-height: 78svh;
+    width: 100%;
+  }
+  .rl__teaser-poster,
+  .rl__teaser-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .rl__teaser-poster img,
+  .rl__teaser-video { width: 100%; height: 100%; object-fit: cover; }
+  /* topo escuro (placa "Circuito Estoril" nos primeiros 0,5 s) + base que
+     costura o vídeo com o preto da seção */
+  .rl__teaser::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, var(--rl-preto) 0%, rgba(13, 13, 13, 0) 20%),
+      linear-gradient(to top, var(--rl-preto) 0%, rgba(13, 13, 13, 0) 38%);
+  }
+  .rl__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--rl-preto);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .rl__bar {
+    position: absolute;
+    inset-inline: 0;
+    z-index: 1;
+    height: 18%;
+    background: var(--rl-preto);
+    transform: scaleY(0);
+    pointer-events: none;
+  }
+  .rl__bar--top { inset-block-start: 0; transform-origin: top; }
+  .rl__bar--bot { inset-block-end: 0; transform-origin: bottom; }
+  .rl__teaser .video-controls { z-index: 3; }
+
+  .rl__titulo-wrap { position: relative; z-index: 3; container-type: inline-size; }
+  .rl__titulo {
+    margin: -0.32em 0 0;
+    font-size: clamp(2.25rem, 14.5cqi, 9.5rem); /* "O AUTOMOBILISMO." ≈ 6,3em: ~92% da largura, sem quebrar a palavra */
+    line-height: .9;
+    text-wrap: initial;
+  }
+  .rl__linha { display: block; overflow: clip; padding-block: .02em; }
+  .rl__linha > span { display: block; }
+  .rl__sentinela { position: absolute; inset-block-start: 45%; inset-inline: 0; height: 1px; pointer-events: none; }
+
+  @media (min-width: 768px) {
+    .rl__teaser { aspect-ratio: 16 / 9; max-height: none; }
+  }
+  /* ≥1024: headline SOBRE o teaser, no terço inferior, alinhada ao container */
+  @media (min-width: 1024px) {
+    .rl__teaser { max-height: 100svh; }
+    .rl__titulo-wrap {
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: var(--space-xl);
+    }
+    .rl__titulo { margin: 0; }
+    .rl__scrim { opacity: .45; }
+    .rl__teaser::after {
+      background:
+        linear-gradient(to bottom, var(--rl-preto) 0%, rgba(13, 13, 13, 0) 18%),
+        linear-gradient(to top, rgba(13, 13, 13, .92) 0%, rgba(13, 13, 13, 0) 62%);
+    }
+    .rl__teaser .video-controls {
+      inset-block-start: auto;
+      inset-block-end: var(--space-m);
+      inset-inline-end: var(--container-margin);
+    }
+  }
+
+  /* H2 · contexto */
+  .rl__contexto {
+    display: grid;
+    gap: var(--space-m);
+    padding-block: var(--space-xl) var(--space-xl);
+  }
+  .rl__lead {
+    font-size: var(--t-m);
+    font-weight: 500;
+    line-height: 1.35;
+    max-width: 24ch;
+  }
+  .rl__corpo { display: grid; gap: var(--space-s); padding-inline-start: 16%; }
+  .rl__corpo p { color: var(--rl-corpo); max-width: 44ch; }
+  .rl__assinatura { display: grid; gap: var(--space-3xs); margin-block-start: var(--space-xs); }
+  .rl__corpo .rl__assinatura { color: var(--rl-branco); }
+  .rl__assinatura-marca {
+    font-family: var(--rl-mono);
+    font-size: var(--t-small);
+    letter-spacing: .2em;
+    color: var(--rl-neon);
+  }
+  .rl__assinatura-frase { font-weight: 600; }
+  @media (min-width: 1024px) {
+    .rl__contexto { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--container-gutter); }
+    .rl__lead { grid-column: 1 / span 5; max-width: none; }
+    .rl__corpo { grid-column: 7 / span 5; padding-inline-start: 0; padding-block-start: .4em; }
+  }
+
+  /* H3 · números — "luzes de largada" (sem contador) */
+  .rl__numeros {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--container-gutter);
+  }
+  .rl__numeros li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding-block: var(--space-s) var(--space-2xs);
+    justify-content: flex-end;
+    border-top: 1px solid var(--rl-filete);
+  }
+  .rl__numeros li::after {
+    content: "";
+    position: absolute;
+    inset-block-start: -1px;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--rl-neon);
+    transform-origin: left;
+  }
+  .rl__n {
+    display: block;
+    overflow: clip;
+    font-family: var(--ff-display);
+    font-size: var(--rl-t-num);
+    line-height: .82;
+    font-variant-numeric: tabular-nums;
+    color: var(--rl-branco);
+  }
+  .rl__n > span { display: inline-block; }
+  .rl__rot {
+    font-family: var(--rl-mono);
+    font-size: var(--rl-t-label);
+    letter-spacing: .16em;
+    color: var(--rl-corpo);
+  }
+  .rl__numeros-palavra { grid-column: 1 / -1; }
+  .rl__numeros-palavra .rl__n { font-size: calc(var(--rl-t-num) * .62); }
+  @media (min-width: 1024px) {
+    .rl__numeros { grid-template-columns: 2fr 2fr 2fr 4fr 2fr; }
+    .rl__numeros-palavra { grid-column: auto; }
+    .rl__numeros-palavra .rl__n { font-size: calc(var(--rl-t-num) * .55); }
+  }
+
+  /* B5 · MUITAS DISPUTAS! — grito neon (deriva por scroll no motion-base) */
+  .rl__deriva-wrap {
+    container-type: inline-size;
+    overflow: clip;
+    padding-block: var(--space-xl) var(--space-l);
+  }
+  .rl__deriva {
+    margin: 0;
+    max-width: none;
+    font-family: var(--ff-display);
+    font-size: clamp(3rem, 23cqi, 9rem);
+    line-height: .86;
+    color: var(--rl-neon);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .rl__deriva > span { display: block; }
+  @media (min-width: 768px) {
+    .rl__deriva { font-size: clamp(4rem, 13.5cqi, 13rem); }
+    .rl__deriva > span { display: inline; }
+  }
+
+  .rl__acao { padding-block-end: var(--space-s); }
+
+  @media (orientation: landscape) and (max-height: 500px) {
+    .rl__teaser { max-height: 70svh; }
+    .rl__titulo { font-size: min(clamp(2.25rem, 14.5cqi, 9.5rem), 15svh); }
+    .rl__deriva { font-size: min(clamp(3rem, 13.5cqi, 13rem), 22svh); }
+  }
+}
+
+@layer motion-base {
+  /* cascata de [data-stagger] (initMotion já grava --stagger-delay: 60 ms, máx. 4) */
+  .js-motion .rl [data-stagger] > [data-reveal].is-in { transition-delay: var(--stagger-delay, 0ms); }
+
+  /* ---- reveals 1× (só com .js-motion; base = estado final) ---- */
+  .js-motion .rl__risco::after { transform: scaleX(0); }
+  .js-motion .rl__risco.rl-in::after { transform: none; transition: transform var(--dur-slow) var(--ease-drive); }
+
+  /* o clip fica no <img>: o <p> observado pelo IO não pode ter clip-path
+     (com clip o Chromium entrega isIntersecting=false para sempre) */
+  .js-motion .rl__marca img { clip-path: inset(0 100% 0 0); transform: translateX(-3%); }
+  .js-motion .rl__marca.rl-in img {
+    clip-path: inset(0);
+    transform: none;
+    transition: clip-path var(--dur-slow) var(--ease-drive) 90ms, transform var(--dur-slow) var(--ease-drive) 90ms;
+  }
+
+  .js-motion .rl__linha > span { transform: translateY(105%); }
+  .js-motion [data-rl-linhas].rl-in .rl__linha > span { transform: none; transition: transform var(--dur-slow) var(--ease-brake); }
+  .js-motion [data-rl-linhas].rl-in .rl__linha:nth-child(2) > span { transition-delay: 80ms; }
+  .js-motion [data-rl-linhas].rl-in .rl__linha:nth-child(3) > span { transition-delay: 160ms; }
+
+  /* letterbox 1× (mobile, tablet e fallback sem animation-timeline) */
+  .js-motion .rl__bar { transform: scaleY(1); }
+  .js-motion .rl__teaser-video,
+  .js-motion .rl__teaser-poster { transform: scale(1.1); }
+  .js-motion .rl-aberta .rl__bar { transform: scaleY(0); transition: transform var(--dur-slow) var(--ease-brake); }
+  .js-motion .rl-aberta .rl__teaser-video,
+  .js-motion .rl-aberta .rl__teaser-poster { transform: none; transition: transform var(--dur-settle) var(--ease-brake); }
+
+  /* números: numeral sobe na janela, filete acende; 120 ms entre células */
+  .js-motion .rl__n > span { transform: translateY(100%); }
+  .js-motion .rl__numeros li::after { transform: scaleX(0); }
+  .js-motion .rl__numeros.rl-in .rl__n > span,
+  .js-motion .rl__numeros.rl-in li::after {
+    transform: none;
+    transition: transform var(--dur-medium) var(--ease-brake);
+    transition-delay: calc(var(--i, 0) * var(--rl-step));
+  }
+  .js-motion .rl__numeros.rl-in li::after { transition-timing-function: var(--ease-drive); transition-delay: calc(var(--i, 0) * var(--rl-step) + 60ms); }
+
+  /* ---- desktop: o ÚNICO pin da home (sticky CSS) + scrubs scroll-driven ---- */
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .js-motion .rl__runway { height: 200svh; view-timeline: --rl-run block; }
+    .js-motion .rl__palco { position: sticky; top: 0; height: 100svh; overflow: clip; }
+    .js-motion .rl__teaser { height: 100%; max-height: none; aspect-ratio: auto; }
+
+    @supports (animation-timeline: view()) {
+      .js-motion .rl__bar,
+      .js-motion .rl-aberta .rl__bar {
+        transition: none;
+        animation: rl-bar linear both;
+        animation-timeline: --rl-run;
+        animation-range: contain 0% contain 50%;
+        will-change: transform;
+      }
+      .js-motion .rl__teaser-video,
+      .js-motion .rl__teaser-poster,
+      .js-motion .rl-aberta .rl__teaser-video,
+      .js-motion .rl-aberta .rl__teaser-poster {
+        transition: none;
+        animation: rl-zoom linear both;
+        animation-timeline: --rl-run;
+        animation-range: contain 0% contain 100%;
+        will-change: transform;
+      }
+      .js-motion .rl__scrim {
+        animation: rl-scrim linear both;
+        animation-timeline: --rl-run;
+        animation-range: contain 30% contain 100%;
+      }
+    }
+  }
+
+  /* MUITAS DISPUTAS!: deriva só quando o usuário rola (não é marquee) */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .js-motion .rl__deriva {
+        animation: rl-deriva-m linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 100%;
+      }
+    }
+  }
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .js-motion .rl__deriva {
+        animation-name: rl-deriva;
+        will-change: transform;
+      }
+    }
+  }
+
+  @keyframes rl-bar { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+  @keyframes rl-zoom { from { transform: scale(1.1); } 50% { transform: scale(1); } to { transform: scale(1.04) translateY(-1.5%); } }
+  @keyframes rl-scrim { from { opacity: .45; } to { opacity: .6; } }
+  @keyframes rl-deriva { from { transform: translateX(6vw); } to { transform: translateX(-6vw); } }
+  @keyframes rl-deriva-m { from { transform: translateX(2.5vw); } to { transform: translateX(-2.5vw); } }
+}

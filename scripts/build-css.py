@@ -2,7 +2,8 @@
 """
 Build de CSS — Sprint 04 (performance).
 
-Concatena css/tokens.css + css/base.css + css/components.css (ordem original) em
+Concatena css/tokens.css + css/base.css + css/components.css + css/race-league.css
+(ordem original; race-league.css entrou em 2026-11-02, escopo .rl) em
 css/site.min.css removendo SÓ comentários e espaços redundantes. Não reescreve
 regras, não reordena, não toca em valores: a cascata e as @layer ficam idênticas
 (uma folha com as três em sequência = as três folhas em sequência).
@@ -16,7 +17,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCES = ["tokens.css", "base.css", "components.css"]
+SOURCES = ["tokens.css", "base.css", "components.css", "race-league.css"]
 OUT = ROOT / "css" / "site.min.css"
 
 

@@ -31,6 +31,10 @@
  *    "Observações internas" da linha.
  */
 const SECRET = "TROQUE-POR-UM-TEXTO-ALEATORIO";
+// Vazio = script criado dentro da planilha (Extensões → Apps Script).
+// Script avulso (criado em script.google.com): cole aqui o ID da planilha, o trecho
+// entre /d/ e /edit no endereço dela.
+const PLANILHA_ID = "";
 const ABA = "Inscrições";
 
 const EMAIL = {
@@ -93,7 +97,7 @@ function doPost(e) {
     const lock = LockService.getScriptLock();
     lock.waitLock(10000);
     try {
-      const planilha = SpreadsheetApp.getActiveSpreadsheet();
+      const planilha = planilha_();
       aba = planilha.getSheetByName(ABA) || planilha.insertSheet(ABA);
       if (aba.getLastRow() === 0) {
         aba.appendRow(COLUNAS);
@@ -176,7 +180,7 @@ function marcarEnviado_(aba, linha) {
 // Inscritos que ainda não receberam o e-mail: linha com e-mail, sem marca na coluna 29,
 // fora a linha de teste. Um envio por endereço (inscrição repetida não recebe duas vezes).
 function pendentes_() {
-  const aba = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA);
+  const aba = planilha_().getSheetByName(ABA);
   const valores = aba.getDataRange().getValues();
   const iEmail = COLUNAS.indexOf("email");
   const iNome = COLUNAS.indexOf("full_name");
@@ -227,6 +231,10 @@ function enviarParaJaInscritos() {
     }
   });
   Logger.log("Enviados: " + enviados + " · Falhas: " + falhas + " (motivo na coluna Observações internas)");
+}
+
+function planilha_() {
+  return PLANILHA_ID ? SpreadsheetApp.openById(PLANILHA_ID) : SpreadsheetApp.getActiveSpreadsheet();
 }
 
 function json_(obj) {

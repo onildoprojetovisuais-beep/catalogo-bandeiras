@@ -14,7 +14,7 @@
 */
 export function initVideoSoundToggle() {
   const frames = document.querySelectorAll(
-    ".bandeiras__video-frame, .legado__frame, .experiencias__momento, .sim__media"
+    ".bandeiras__video-frame, .legado__frame, .experiencias__momento, .sim__media, .rl__teaser"
   );
   if (!frames.length) return;
 
@@ -59,6 +59,21 @@ export function initVideoSoundToggle() {
       });
     }
 
+    // Race League (teaser da home, 2026-11-02): quadros com data-autoplay-economia
+    // não iniciam sozinhos com Save-Data, prefers-reduced-data ou rede 2g/3g (fica
+    // o poster; o botão continua para o visitante dar play) e pausam com a aba oculta.
+    if (frame.hasAttribute("data-autoplay-economia")) {
+      const conn = navigator.connection;
+      const lowData = !!conn?.saveData
+        || ["slow-2g", "2g", "3g"].includes(conn?.effectiveType)
+        || window.matchMedia("(prefers-reduced-data: reduce)").matches;
+      if (lowData) userPaused = true;
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) video.pause();
+        else if (inView && !userPaused && !reducedQuery.matches) video.play().catch(() => {});
+      });
+    }
+
     const applyReduced = () => {
       if (reducedQuery.matches) {
         video.removeAttribute("autoplay");
@@ -80,7 +95,7 @@ export function initVideoSoundToggle() {
     // autoplay (ele fazia o navegador baixar tudo no load, mesmo 4–11 mil px abaixo da
     // dobra). O play() abaixo continua sendo o autoplay aprovado — só acontece quando o
     // vídeo entra na tela. Este observador antecipa o download ~1 tela antes.
-    if (!reducedQuery.matches && video.preload === "none") {
+    if (!reducedQuery.matches && !userPaused && video.preload === "none") {
       const preloader = new IntersectionObserver(
         (entries) => {
           if (entries.some((e) => e.isIntersecting)) {

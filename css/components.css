@@ -411,7 +411,8 @@
   .nav__links a:hover {
     border-color: var(--luz-2);
   }
-  .nav__links a[aria-current="true"] {
+  .nav__links a[aria-current="true"],
+  .nav__links a[aria-current="page"] { /* "page": item da página própria (ex.: /race-league/) */
     border-color: var(--vermelho);
     font-weight: 600;
   }

@@ -6,6 +6,7 @@ import { initVideoSoundToggle, initBastidoresPreload } from "./video-sound-toggl
 import { initInstagramFeed } from "./instagram-feed.js";
 import { initCarrossel } from "./carrossel.js";
 import { initExperiencias } from "./experiencias.js";
+import { initRaceLeague } from "./race-league.js";
 
 // Largura da barra de rolagem em --sbw: 100vw a inclui, o .container não —
 // sem isso o --content-inset (tokens.css) fica meia barra à direita do eixo.
@@ -27,3 +28,4 @@ initBastidoresPreload();
 initInstagramFeed();
 initCarrossel();
 initExperiencias();
+initRaceLeague(); // depois de initMotion(): depende de .js-motion

@@ -38,6 +38,7 @@ PAGES = [
     (ROOT / "campeonato-simulador" / "seletiva" / "index.template.html", ROOT / "campeonato-simulador" / "seletiva" / "index.html", "/"),
     (ROOT / "campeonato-simulador" / "resultados" / "index.template.html", ROOT / "campeonato-simulador" / "resultados" / "index.html", "/"),
     (ROOT / "campeonato-simulador" / "protestos" / "index.template.html", ROOT / "campeonato-simulador" / "protestos" / "index.html", "/"),
+    (ROOT / "race-league" / "index.template.html", ROOT / "race-league" / "index.html", "/"),
 ]
 
 TAG_RE = re.compile(r"<x-img\s+([^>]*?)/?>\s*(?:</x-img>)?", re.IGNORECASE)
@@ -78,8 +79,33 @@ def build_picture(attrs: dict, manifest: dict, prefix: str = "") -> str:
 
     mime = "image/webp" if fallback_ext == "webp" else "image/jpeg"
 
+    # Art direction opcional (Race League, 2026-11-02): mobile-slug="<slug>" gera um
+    # par de <source media> com o recorte próprio do celular ANTES das sources
+    # desktop. mobile-media muda o corte (padrão: max-width 639px, eixo do site);
+    # mobile-sizes o sizes desse recorte (padrão: o mesmo sizes). width/height nas
+    # <source> reservam a proporção certa do recorte (CLS zero).
+    mobile_sources = ""
+    if "mobile-slug" in attrs:
+        m_slug = attrs["mobile-slug"]
+        if m_slug not in manifest:
+            raise ValueError(f"<x-img> com mobile-slug desconhecido: {attrs}")
+        m = manifest[m_slug]
+        m_ext = m["fallback_ext"]
+        m_widths = sorted(int(w) for w in m["avif"].keys())
+        m_avif = ", ".join(f'{prefix + m["avif"][str(w)]} {w}w' for w in m_widths)
+        m_fb = ", ".join(f'{prefix + m[m_ext][str(w)]} {w}w' for w in m_widths)
+        m_media = attrs.get("mobile-media", "(max-width: 639px)")
+        m_sizes = attrs.get("mobile-sizes", sizes)
+        m_mime = "image/webp" if m_ext == "webp" else "image/jpeg"
+        m_dim = f'width="{m["width"]}" height="{m["height"]}"'
+        mobile_sources = (
+            f'<source media="{m_media}" type="image/avif" srcset="{m_avif}" sizes="{m_sizes}" {m_dim}>'
+            f'<source media="{m_media}" type="{m_mime}" srcset="{m_fb}" sizes="{m_sizes}" {m_dim}>'
+        )
+
     return (
         f'<picture{css_class}>'
+        f'{mobile_sources}'
         f'<source type="image/avif" srcset="{avif_srcset}" sizes="{sizes}">'
         f'<source type="{mime}" srcset="{fallback_srcset}" sizes="{sizes}">'
         f'<img src="{largest}" width="{entry["width"]}" height="{entry["height"]}" '

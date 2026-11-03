@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets-build/favicon/favicon-180.png">
   <link rel="preload" href="assets-build/fonts/special-gothic-condensed-one-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets-build/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.min.css?v=20261029a">
+  <link rel="stylesheet" href="css/site.min.css?v=20261103a">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -73,6 +73,7 @@
         </div>
         <div class="nav__group">
           <a data-nav-link href="#experiencias">Experiências</a>
+          <a data-nav-link href="#race-league">Race League</a>
           <a data-nav-link href="#bandeiras-empresarial">Bandeiras Empresarial</a>
           <a data-nav-link href="#conteudo">Conteúdo</a>
         </div>
@@ -94,6 +95,7 @@
       <nav aria-label="Navegação (menu mobile)">
         <a href="#ecossistema">Ecossistema</a>
         <a href="#experiencias">Experiências</a>
+        <a href="#race-league">Race League</a>
         <a href="#bandeiras-empresarial">Bandeiras Empresarial</a>
         <a href="#conteudo">Conteúdo</a>
       </nav>
@@ -588,6 +590,94 @@
       </div>
     </section>
 
+    <!-- ============================================================ RACE LEAGUE (porta de sub-marca, sem numeral)
+         2026-11-02. Seção curta que leva à página própria /race-league/
+         (link interno, mesma aba; a Race League não tem site externo).
+         Copy: doc/race-league-fonte/COPY-RACE-LEAGUE-SCUDERIA.md, exata
+         (B1–B9; B10 "A corrida é só o começo." fica só na página, longe do
+         "A pista é só o começo." da .transicao). Identidade escopada em .rl
+         (css/race-league.css): preto #0D0D0D, neon #7CFC00 só com tinta
+         preta por cima, nunca texto branco sobre o neon.
+         Posição (03/11): entre #experiencias e #bandeiras-empresarial.
+         Entrada: vem do escuro de #experiencias, então a borda da seção tem
+         o filete 1px da RL (corte de marcha) e o risco neon só começa
+         depois de ≥32px de preto. Saída: corte seco preto → papel de
+         #bandeiras-empresarial, com o padding de baixo da seção em preto
+         (o neon nunca encosta no papel). Teaser mudo (8,5 s, POV de cockpit sem palavra
+         queimada) em loop: play/pausa por js/video-sound-toggle.js
+         (.rl__teaser na lista de quadros; data-autoplay-economia = sem
+         autoplay com Save-Data/2g/3g). Pin: o palco do teaser é o ÚNICO
+         pin da home, só ≥1024px com .js-motion (registrado em
+         doc/VISUAL-DIRECTION.md §12.3). Motion: js/race-league.js.
+         NUNCA data-cta aqui (o js/cta.js reescreveria para WhatsApp). -->
+    <section id="race-league" class="rl rl-home" aria-labelledby="rl-titulo" data-rl>
+      <div class="container rl__topo">
+        <p class="rl__risco" data-rl-risco aria-hidden="true"><span class="rl__risco-px"></span><span class="rl__risco-rotulo">RACE&nbsp;LEAGUE</span></p>
+        <p class="rl__marca" data-rl-wipe><img src="assets/race-league/logo/logo-race-league-branco.svg" alt="Race League" width="526" height="215" loading="lazy" decoding="async"></p>
+      </div>
+
+      <div class="rl__runway">
+        <div class="rl__palco">
+          <div class="rl__teaser" data-autoplay-economia>
+            <picture class="rl__teaser-poster" aria-hidden="true">
+              <source media="(max-width: 767px)" type="image/webp" srcset="assets-build/video/race-league-teaser-4x5-poster.webp" width="720" height="900">
+              <source media="(max-width: 767px)" srcset="assets-build/video/race-league-teaser-4x5-poster.jpg" width="720" height="900">
+              <source type="image/webp" srcset="assets-build/video/race-league-teaser-poster.webp">
+              <img src="assets-build/video/race-league-teaser-poster.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            </picture>
+            <video class="rl__teaser-video" muted loop playsinline preload="none" aria-hidden="true">
+              <source src="assets-build/video/race-league-teaser-4x5-720w.mp4" media="(max-width: 767px)" type="video/mp4">
+              <source src="assets-build/video/race-league-teaser-1920w.mp4" media="(min-width: 1281px)" type="video/mp4">
+              <source src="assets-build/video/race-league-teaser-1280w.mp4" type="video/mp4">
+            </video>
+            <span class="rl__bar rl__bar--top" aria-hidden="true"></span>
+            <span class="rl__bar rl__bar--bot" aria-hidden="true"></span>
+            <span class="rl__scrim" aria-hidden="true"></span>
+            <div class="video-controls">
+              <button type="button" class="video-pause-toggle" aria-label="Pausar vídeo">
+              <svg class="video-pause-toggle__icon video-pause-toggle__icon--pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              <svg class="video-pause-toggle__icon video-pause-toggle__icon--play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>
+            </button>
+            </div>
+          </div>
+          <div class="container rl__titulo-wrap">
+            <h2 id="rl-titulo" class="rl__titulo" data-rl-linhas>
+              <span class="rl__linha"><span>CHEGOU A HORA DE</span></span>
+              <span class="rl__linha"><span>REINVENTAR</span></span>
+              <span class="rl__linha"><span>O&nbsp;<mark class="grifo">AUTOMOBILISMO.</mark></span></span>
+            </h2>
+          </div>
+        </div>
+        <span class="rl__sentinela" data-rl-sentinela aria-hidden="true"></span>
+      </div>
+
+      <div class="container rl__contexto">
+        <p class="rl__lead" data-reveal>O Race League chega para revolucionar as experiências no automobilismo.</p>
+        <div class="rl__corpo" data-stagger>
+          <p data-reveal>Um evento que reúne toda a emoção e as disputas das pistas, onde celebridades, influenciadores, convidados e fãs deixam de ser espectadores para se tornarem protagonistas da competição.</p>
+          <p data-reveal>Velocidade, estratégia e entretenimento se encontram em corridas imprevisíveis, repletas de emoção e rivalidade.</p>
+          <p class="rl__assinatura" data-reveal><span class="rl__assinatura-marca">RACE&nbsp;LEAGUE</span> <span class="rl__assinatura-frase">Uma nova forma de viver o&nbsp;automobilismo.</span></p>
+        </div>
+      </div>
+
+      <div class="container">
+        <ul class="rl__numeros" role="list" data-rl-grid>
+          <li><span class="rl__n"><span>7</span></span> <span class="rl__rot">DISPUTAS</span></li>
+          <li><span class="rl__n"><span>8</span></span> <span class="rl__rot">CARROS</span></li>
+          <li><span class="rl__n"><span>8</span></span> <span class="rl__rot">EQUIPES</span></li>
+          <li class="rl__numeros-palavra"><span class="rl__n"><span>DIVERSOS</span></span> <span class="rl__rot">CONVIDADOS</span></li>
+        </ul>
+      </div>
+
+      <div class="rl__deriva-wrap">
+        <p class="rl__deriva"><span>MUITAS</span> <span>DISPUTAS!</span></p>
+      </div>
+
+      <div class="container rl__acao">
+        <a class="rl-cta" href="/race-league/" data-track="race-league" data-reveal><span class="rl-cta__texto">VAMOS ACELERAR JUNTOS!</span><span class="rl-cta__seta" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
     <!-- ============================================================ 05 · BANDEIRAS EMPRESARIAL
          Redesenho 2026-09-24: seção enxugada para 3 camadas (registro claro,
          .section--paper), estrutura física como PROVA VISUAL, não texto:
@@ -1022,6 +1112,7 @@
       <nav class="footer__links" aria-label="Navegação (rodapé)">
         <a href="#ecossistema">Ecossistema</a>
         <a href="#experiencias">Experiências</a>
+        <a href="#race-league">Race League</a>
         <a href="#bandeiras-empresarial">Bandeiras Empresarial</a>
         <a href="#conteudo">Conteúdo</a>
         <a data-cta="whatsapp" data-origin="footer" href="https://wa.me/5515998570854?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Scuderia%20Bandeiras%20e%20tenho%20interesse%20em%3A%20Ainda%20n%C3%A3o%20sei." target="_blank" rel="noopener">Contato</a>
@@ -1060,7 +1151,7 @@
     </div>
   </footer>
 
-  <script type="module" src="js/main.js?v=20261014a"></script>
+  <script type="module" src="js/main.js?v=20261102m"></script>
 
   <canvas id="trailCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
   <script src="js/cursor-trail.js?v=20261029a"></script>

@@ -1,0 +1,803 @@
+/*
+  RACE LEAGUE — página /race-league/ (blocos P1–P10). 2026-11-02.
+  Carregado só em race-league/index.html, DEPOIS do site.min.css (que já traz
+  tokens, nav, footer, botões e o escopo .rl de css/race-league.css). Mesmas
+  @layer do site (a ordem foi declarada no base.css). Servido sem minificar,
+  como o CSS das páginas do campeonato. Todo seletor começa por .rl / .rl-.
+
+  Ritmo de registro (PPTX): filme (preto) → manifesto → conceito (escuros) →
+  formato (CLARO) → corridas (escuro, o único pin) → cards (CLARO rosado) →
+  420R (escuro) → história (CLARO) → praças (NEON) → fecho (escuro).
+  Trocas por corte seco, nunca degradê entre registros.
+*/
+
+@layer components {
+
+  /* ============================================================ BASE DA PÁGINA */
+  .rl-pagina { display: block; }
+  .rl-pagina section { position: relative; }
+  .rl-titulo {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    line-height: .9;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .rl-neon { color: var(--rl-neon); }
+  .rl-lead { font-size: var(--t-m); font-weight: 500; line-height: 1.35; color: var(--rl-branco); }
+
+  /* registro claro: foco e filetes em tinta; o neon só como superfície */
+  .rl-claro {
+    --luz: var(--rl-tinta);
+    --luz-2: var(--rl-corpo-c);
+    --divisor: rgba(13, 13, 13, .14);
+    --vermelho: var(--rl-tinta);
+    background: var(--rl-papel);
+    color: var(--rl-tinta);
+  }
+  .rl-claro--rosa { background: var(--rl-papel-2); }
+  .rl-claro .grifo { background-image: linear-gradient(var(--rl-neon), var(--rl-neon)); }
+  .rl-claro ::selection { background: var(--rl-tinta); color: var(--rl-papel); }
+
+  /* ============================================================ P1 · FILME
+     Rodada 2 (pedido do usuário): no desktop o filme OCUPA A TELA: palco
+     full-bleed 100% x 100svh, object-fit: cover, nav fixa por cima do degradê
+     do topo, logo (h1) sobreposto no canto superior esquerdo, controles no
+     superior direito, play e legenda embaixo à esquerda (72-93% da altura).
+     Limite do cover: as palavras queimadas ficam no centro (35-65% da altura,
+     de 7% a 93% da largura em "AUTOMOBILISMO"). A altura do palco é
+     min(100svh, 100cqi / 1.58): numa tela mais "alta" que 1.58:1 o palco
+     encolhe na altura em vez de cortar as laterais além de ~5,6% (com 1.42,
+     a 1024x768, o corte era de 10% e comia o A e o O de AUTOMOBILISMO);
+     1280x800, 1440x900 e 1920x1080 seguem com 100svh. Em 21:9 o corte é só
+     em cima/embaixo (~12%).
+     Abaixo de 1024 (fora da paisagem baixa): 16:9 inteiro, sem corte. */
+  .rl-filme { position: relative; background: var(--rl-preto-v); }
+  .rl-filme__topo {
+    position: relative;
+    z-index: 4;
+    padding-block: calc(64px + var(--space-s)) var(--space-s);
+  }
+  .rl-filme__logo { margin: 0; line-height: 0; }
+  .rl-filme__logo img { width: clamp(180px, 50vw, 260px); height: auto; }
+
+  .rl-filme__palco { position: relative; background: var(--rl-preto-v); container-type: inline-size; }
+  .rl-filme__quadro { position: relative; aspect-ratio: 16 / 9; background: var(--rl-preto-v); overflow: clip; }
+  .rl-filme__video { width: 100%; height: 100%; object-fit: cover; background: var(--rl-preto-v); }
+  .rl-filme__degrade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 18%),
+      linear-gradient(to top, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, 0) 24%);
+  }
+  .rl-filme__play {
+    position: absolute;
+    inset-block-end: 8%;
+    inset-inline-start: var(--container-margin);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 48px;
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) var(--space-2xs);
+    background: var(--rl-neon);
+    color: var(--rl-tinta);
+    font-family: var(--rl-mono);
+    font-size: clamp(.8125rem, .75rem + .3vw, 1rem);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: transform var(--dur-fast) var(--ease-brake);
+  }
+  .rl-filme__play[hidden] { display: none; }
+  .rl-filme__play-icone { display: grid; place-items: center; width: 36px; height: 36px; background: var(--rl-tinta); color: var(--rl-neon); }
+  .rl-filme__play:active { transform: scale(.98); }
+  .rl-filme__play:focus-visible { outline: 2px solid var(--rl-branco); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) {
+    .rl-filme__play:hover .rl-filme__play-icone { background: var(--rl-preto); }
+  }
+
+  /* legenda própria (o <track> fica "hidden"): Inter 600, placa preta 78% */
+  .rl-filme__cc {
+    margin: 0;
+    max-width: none;
+    text-align: left;
+    pointer-events: none;
+    font-family: var(--ff-text);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+  .rl-filme__cc > span {
+    color: #fff;
+    background: rgba(0, 0, 0, .78);
+    padding: .1em .45em;
+    white-space: pre-line;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .rl-filme__cc > span:empty { display: none; }
+  /* mobile: faixa ABAIXO do vídeo com 2 linhas reservadas. Altura FIXA
+     (2 x entrelinha + placa + respiro): um cue de 2 linhas não empurra nada
+     (QA mobile P5: eram +3px de layout shift). */
+  .rl-filme__palco.is-custom .rl-filme__cc {
+    box-sizing: border-box;
+    height: calc(2 * 1.35em + .2em + 2 * var(--space-xs));
+    padding: var(--space-xs) var(--container-margin);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .rl-filme__palco.is-custom .rl-filme__cc > span { display: inline; }
+  .rl-filme__palco.is-custom .rl-filme__cc > span:empty { display: none; }
+
+  .rl-filme__controles {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2xs);
+    padding: 0 var(--container-margin) var(--space-s);
+  }
+  .rl-filme__controles[hidden] { display: none; }
+  .rl-filme__btn {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, .62);
+    border: 2px solid rgba(255, 255, 255, .24);
+    color: #fff;
+    font-family: var(--rl-mono);
+    font-size: .8125rem;
+    letter-spacing: .06em;
+    transition: background var(--dur-fast) var(--ease-brake), border-color var(--dur-fast) var(--ease-brake);
+  }
+  .rl-filme__btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  @media (hover: hover) and (pointer: fine) {
+    .rl-filme__btn:hover { background: rgba(0, 0, 0, .85); border-color: rgba(255, 255, 255, .6); }
+  }
+  .rl-filme__btn[aria-pressed="true"] { border-color: var(--rl-neon); }
+  .rl-filme__ico { display: none; }
+  [data-state="play"] > .rl-filme__ico--play,
+  [data-state="pause"] > .rl-filme__ico--pause,
+  [data-state="replay"] > .rl-filme__ico--replay { display: block; }
+  [data-rl-som][aria-pressed="false"] > .rl-filme__ico--mudo,
+  [data-rl-som][aria-pressed="true"] > .rl-filme__ico--som { display: block; }
+
+  /* >=768: legenda e controles DENTRO do quadro. Legenda embaixo à esquerda
+     (03-design: no inset, até 55% da largura, faixa 72-93% da altura), longe
+     do centro das palavras queimadas; o play ocupa o mesmo canto e some ao tocar. */
+  @media (min-width: 768px) {
+    .rl-filme__palco.is-custom .rl-filme__cc {
+      position: absolute;
+      inset-inline-start: var(--content-inset);
+      inset-block-end: max(7%, 32px);
+      z-index: 2;
+      width: min(55%, 36ch);
+      height: auto;
+      padding: 0;
+      align-items: flex-end;
+      overflow: visible;
+      font-size: clamp(1rem, .85rem + .6vw, 1.5rem);
+    }
+    .rl-filme__play { inset-inline-start: var(--content-inset); inset-block-end: max(7%, 32px); min-height: 64px; padding-inline-end: var(--space-m); gap: var(--space-xs); }
+    .rl-filme__play-icone { width: 48px; height: 48px; }
+    .rl-filme__controles {
+      position: absolute;
+      z-index: 3;
+      inset-block-start: var(--space-s);
+      inset-inline-end: var(--container-margin);
+      flex-direction: column;
+      padding: 0;
+    }
+    .rl-filme__btn { width: 44px; height: 44px; }
+  }
+
+  /* palco cheio: desktop e paisagem baixa (onde o 16:9 inteiro empurraria o
+     play para baixo da dobra) */
+  @media (min-width: 1024px), (orientation: landscape) and (max-height: 500px) {
+    .rl-filme__topo {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline: 0;
+      max-width: none;
+      padding-inline: var(--content-inset);
+      pointer-events: none;
+    }
+    .rl-filme__logo { pointer-events: auto; width: fit-content; }
+    .rl-filme__logo img { width: clamp(200px, 17vw, 340px); }
+    .rl-filme__quadro { aspect-ratio: auto; height: min(100svh, 100cqi / 1.58); }
+    .rl-filme__degrade {
+      background:
+        linear-gradient(to bottom, rgba(0, 0, 0, .72) 0%, rgba(0, 0, 0, .35) 16%, rgba(0, 0, 0, 0) 30%),
+        linear-gradient(to top, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, 0) 28%);
+    }
+    .rl-filme__controles { inset-block-start: calc(64px + var(--space-s)); }
+  }
+  @media (orientation: landscape) and (max-height: 500px) {
+    .rl-filme__topo { padding-block-start: calc(64px + var(--space-2xs)); }
+    .rl-filme__logo img { width: 96px; }
+    .rl-filme__quadro { height: 100svh; }
+    .rl-filme__play { min-height: 48px; inset-block-end: var(--space-s); }
+    .rl-filme__play-icone { width: 36px; height: 36px; }
+    .rl-filme__palco.is-custom .rl-filme__cc { inset-block-end: var(--space-s); font-size: 1rem; }
+    .rl-filme__controles { inset-block-start: calc(64px + var(--space-2xs)); flex-direction: row; }
+  }
+
+  /* ============================================================ P2 · MANIFESTO
+     Rodada 3 (pedido do usuário: a foto não ocupa mais a tela inteira).
+     Mobile: foto sangrando em cima, na proporção original (sem corte), texto
+     embaixo. >=1024: split — foto sangra da borda esquerda até o meio
+     (52vw), cortada em ~3:2 com os carros no centro; texto à direita.
+     Um filete neon vertical faz a "costura" entre foto e texto e um bloco
+     neon deslocado assenta a foto no chão. */
+  .rl-manifesto__texto, .rl-conceito__texto, .rl-carro__texto { width: 100%; min-width: 0; }
+  .rl-manifesto { padding-block: var(--space-xl) var(--space-2xl); }
+  .rl-manifesto__texto { position: relative; z-index: 2; container-type: inline-size; padding-block-start: var(--space-xl); }
+  .rl-manifesto__titulo { margin-block-end: var(--space-l); font-size: clamp(2.25rem, 14.5cqi, 10.5rem); }
+  .rl-manifesto__corpo { display: grid; gap: var(--space-s); }
+  .rl-manifesto__corpo p { color: var(--rl-corpo); max-width: 52ch; }
+  .rl-manifesto__corpo .rl-lead { color: var(--rl-branco); max-width: 30ch; }
+  .rl-manifesto__corpo .rl__assinatura {
+    color: var(--rl-branco);
+    margin-block-start: var(--space-xs);
+    padding-block-start: var(--space-s);
+    border-top: 1px solid var(--rl-filete);
+  }
+  .rl-manifesto__foto {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 2400 / 1309;
+    background: var(--asfalto-2);
+  }
+  .rl-manifesto__foto picture { display: block; height: 100%; overflow: clip; }
+  .rl-manifesto__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 62%; }
+  .rl-manifesto__px1 { --px: clamp(16px, 2.2vw, 36px); inset-block-start: calc(var(--px) * -1); inset-inline-start: 9%; }
+  .rl-manifesto__px2 { --px: clamp(10px, 1.1vw, 18px); inset-block-end: 12%; inset-inline-end: 0; }
+
+  @media (min-width: 1024px) {
+    .rl-manifesto {
+      display: grid;
+      grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
+      align-items: center;
+      padding-block: var(--space-2xl);
+    }
+    .rl-manifesto__foto {
+      align-self: stretch;
+      aspect-ratio: auto;
+      min-height: clamp(440px, 34vw, 720px);
+      max-height: 860px;
+      margin-block-end: var(--space-m);
+    }
+    /* filete neon na costura foto/texto */
+    .rl-manifesto__foto::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset-block: 14% 22%;
+      inset-inline-end: 0;
+      width: 4px;
+      background: var(--rl-neon);
+    }
+    /* bloco neon deslocado: a foto "assenta" sobre ele */
+    .rl-manifesto__foto::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset-block-end: calc(var(--space-m) * -1);
+      inset-inline-end: calc(var(--space-m) * -1);
+      width: 38%;
+      height: 46%;
+      background: var(--rl-neon);
+    }
+    .rl-manifesto__px1 { inset-inline-start: auto; inset-inline-end: 18%; }
+    .rl-manifesto__px2 { inset-block-end: auto; inset-block-start: 10%; inset-inline-end: auto; inset-inline-start: 0; }
+    .rl-manifesto__texto {
+      max-width: none;
+      margin: 0;
+      padding: 0 var(--content-inset) 0 clamp(var(--space-l), 4.5vw, var(--space-2xl));
+    }
+    .rl-manifesto__titulo { font-size: clamp(3rem, 14.5cqi, 9rem); }
+    .rl-manifesto__corpo { gap: var(--space-xs); }
+    .rl-manifesto__corpo p { max-width: 46ch; }
+  }
+
+  /* ============================================================ P3 · CONCEITO
+     Rodada 2: foto na proporção original (3:2), sem crop forte, até 2400w. */
+  .rl-conceito { display: grid; grid-template-columns: minmax(0, 1fr); padding-block-end: var(--space-2xl); }
+  .rl-conceito__foto { position: relative; aspect-ratio: 2400 / 1603; background: var(--asfalto-2); }
+  .rl-conceito__foto picture { display: block; height: 100%; }
+  .rl-conceito__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .rl-conceito__px1 { --px: 20px; inset-block-start: 0; inset-inline-end: 6%; }
+  .rl-conceito__px2 { --px: 36px; inset-block-end: 0; inset-inline-start: 8%; }
+  .rl-conceito__texto { padding-block-start: var(--space-xl); container-type: inline-size; }
+  .rl-conceito__kings { height: 32px; width: auto; margin-block-end: var(--space-m); }
+  .rl-conceito__titulo { font-size: clamp(2.5rem, 14cqi, 7.5rem); margin-block-end: var(--space-l); }
+  .rl-conceito__corpo { display: grid; gap: var(--space-s); margin-block-end: var(--space-l); }
+  .rl-conceito__corpo p { color: var(--rl-corpo); max-width: 52ch; }
+  .rl-conceito__corpo .rl-conceito__ponte { color: var(--rl-branco); font-weight: 600; }
+  .rl-mais { display: grid; margin-block-end: var(--space-l); border-top: 1px solid var(--rl-filete); }
+  .rl-mais li {
+    display: grid;
+    grid-template-columns: 1.75rem 1fr;
+    gap: var(--space-2xs);
+    padding-block: var(--space-xs);
+    border-bottom: 1px solid var(--rl-filete);
+    font-family: var(--rl-mono);
+    font-size: var(--t-small);
+    line-height: 1.5;
+    color: var(--rl-branco);
+  }
+  .rl-mais__sinal { color: var(--rl-neon); font-size: 1.25em; line-height: 1.1; }
+  .rl-conceito__fecho { font-weight: 500; font-size: var(--t-m); line-height: 1.35; max-width: 32ch; }
+
+  @media (min-width: 1024px) {
+    .rl-conceito { grid-template-columns: 1fr 1fr; align-items: center; padding-block: var(--space-xl) var(--space-2xl); }
+    .rl-conceito__texto {
+      max-width: none; margin: 0;
+      padding: 0 var(--content-inset) 0 var(--space-xl);
+    }
+    .rl-conceito__titulo { font-size: clamp(3rem, 12.5cqi, 7.5rem); }
+  }
+
+  /* ============================================================ TILES NEON + TARJA (P4) */
+  .rl-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2xs);
+  }
+  .rl-tiles li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    min-height: clamp(104px, 22vw, 168px);
+    padding: var(--space-xs) var(--space-xs) var(--space-s);
+    background: var(--rl-neon);
+    color: var(--rl-tinta);
+  }
+  .rl-tiles__n {
+    display: block;
+    overflow: clip;
+    font-family: var(--ff-display);
+    font-size: clamp(3.5rem, 2rem + 5vw, 6.5rem);
+    line-height: .82;
+    font-variant-numeric: tabular-nums;
+  }
+  .rl-tiles__n > span { display: inline-block; }
+  .rl-tiles__rot { font-family: var(--rl-mono); font-size: var(--rl-t-label); letter-spacing: .16em; }
+  .rl-tiles__palavra { grid-column: 1 / -1; }
+  .rl-tiles__palavra .rl-tiles__n { font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.5rem); }
+  @media (min-width: 640px) {
+    .rl-tiles { grid-template-columns: 1fr 1fr 1fr 2fr; }
+    .rl-tiles__palavra { grid-column: auto; }
+  }
+  .rl-tarja {
+    margin: var(--space-2xs) 0 0;
+    max-width: none;
+    padding: .08em .14em .02em;
+    background: var(--rl-tinta);
+    color: var(--rl-neon);
+    font-family: var(--ff-display);
+    font-size: clamp(2.5rem, 12.5cqi, 7rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* ============================================================ P4 · O FORMATO (claro) */
+  .rl-formato { padding-block: var(--space-2xl); }
+  .rl-formato__grade { position: relative; display: grid; gap: var(--space-xl); }
+  .rl-formato__logo { position: absolute; inset-block-start: 0; inset-inline-end: var(--container-margin); width: clamp(96px, 12vw, 150px); height: auto; }
+  .rl-formato__esq { container-type: inline-size; padding-block-start: var(--space-xl); }
+  .rl-formato__titulo { font-size: clamp(3.5rem, 21cqi, 13rem); line-height: .84; margin-block-end: var(--space-m); } /* "O FORMATO." ≈ 4,4em: numa linha só */
+  .rl-formato__lista { display: grid; margin: 0; }
+  .rl-formato__lista > div {
+    display: grid;
+    gap: var(--space-2xs);
+    padding-block: var(--space-s);
+    border-top: 1px solid var(--divisor);
+  }
+  .rl-formato__lista > div:last-child { border-bottom: 1px solid var(--divisor); }
+  .rl-formato__lista dt { font-family: var(--ff-display); font-size: var(--rl-t-item); line-height: 1; }
+  .rl-formato__lista dd { margin: 0; color: var(--rl-corpo-c2); max-width: 44ch; }
+  @media (min-width: 1024px) {
+    .rl-formato__grade { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--container-gutter); align-items: start; }
+    .rl-formato__esq { grid-column: 1 / span 6; padding-block-start: var(--space-xl); }
+    .rl-formato__lista { grid-column: 8 / -1; padding-block-start: var(--space-xl); }
+  }
+  /* título e descrição lado a lado só onde a descrição tem largura (>=1280) */
+  @media (min-width: 1280px) {
+    .rl-formato__lista > div { grid-template-columns: minmax(0, 12rem) 1fr; align-items: baseline; gap: var(--space-s); }
+  }
+
+  /* ============================================================ P5 · FORMATOS DE CORRIDA */
+  .rl-corridas { padding-block: var(--space-2xl); overflow: clip; }
+  .rl-corridas__fundo { position: absolute; inset: 0; opacity: .08; }
+  .rl-corridas__fundo img { filter: grayscale(1); }
+  .rl-corridas__grade { position: relative; display: grid; gap: var(--space-xl); }
+  .rl-corridas__cab { container-type: inline-size; }
+  .rl-corridas__titulo { font-size: clamp(2.75rem, 15.5cqi, 8.5rem); }
+  .rl-corridas__lista { display: grid; }
+  .rl-corridas__lista li {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-s);
+    align-items: start;
+    padding-block: var(--space-s);
+    border-bottom: 1px solid var(--rl-filete);
+  }
+  .rl-corridas__lista li:first-child { border-top: 1px solid var(--rl-filete); }
+  .rl-corridas__lista img { width: 40px; height: 40px; object-fit: contain; }
+  .rl-corridas__lista h3 { font-size: var(--rl-t-item); line-height: 1; margin: 0 0 var(--space-3xs); color: var(--rl-branco); }
+  .rl-corridas__lista p { color: var(--rl-corpo); }
+  @media (min-width: 1024px) {
+    .rl-corridas__grade { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--container-gutter); align-items: start; }
+    .rl-corridas__cab { grid-column: 1 / span 5; text-align: right; }
+    .rl-corridas__lista { grid-column: 7 / span 6; }
+    .rl-corridas__lista li { grid-template-columns: 56px 1fr; gap: var(--space-m); }
+    .rl-corridas__lista img { width: 52px; height: 52px; }
+  }
+
+  /* ============================================================ P6 · CARDS (claro rosado) */
+  .rl-cards { padding-block: var(--space-2xl); }
+  .rl-cards .container { position: relative; }
+  .rl-cards__logo { position: absolute; inset-block-start: 0; inset-inline-end: var(--container-margin); width: clamp(96px, 12vw, 150px); height: auto; }
+  .rl-cards__titulo { font-size: var(--t-xxl); max-width: 16ch; padding-block-start: var(--space-xl); margin-block-end: var(--space-m); }
+  .rl-cards__sub { color: var(--rl-corpo-c); max-width: 56ch; padding-block-end: var(--space-m); border-bottom: 1px solid var(--divisor); }
+  .rl-cards__trilho-wrap { margin-block: var(--space-l); container-type: inline-size; }
+  .rl-cards__trilho {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 74%);
+    gap: var(--space-s);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding-block: var(--space-3xs) var(--space-s);
+    scrollbar-width: thin;
+  }
+  .rl-cards__trilho:focus-visible { outline-offset: 4px; }
+  /* Alturas iguais (rodada 2): sem aspect-ratio no card (ele não estica no
+     grid); a proporção 0,71 vira altura MÍNIMA calculada pela largura da
+     coluna (cqi do trilho), e as linhas do grid igualam pelo mais alto. */
+  .rl-card {
+    --rl-card-w: max(220px, 74cqi);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-height: calc(var(--rl-card-w) / .71);
+    padding: calc(8px + var(--space-s)) calc(8px + var(--space-xs));
+    border-radius: 16px; /* exceção de sistema escopada: carta de jogo */
+    outline: 1.5px solid var(--rl-neon);
+    outline-offset: -8px;
+    background: var(--rl-preto);
+    color: var(--rl-branco);
+  }
+  .rl-card--cinza { background: var(--rl-cinza-c); }
+  .rl-card img { width: 48px; height: 48px; object-fit: contain; object-position: left center; margin-block-end: var(--space-xs); }
+  .rl-card h3 { margin: 0; font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem); line-height: .92; color: var(--rl-branco); }
+  .rl-card h3 > span { display: block; }
+  .rl-card h3 > .rl-neon { color: var(--rl-neon); }
+  .rl-card p { font-size: .9375rem; line-height: 1.5; color: var(--rl-corpo); }
+  /* nota abaixo dos cards: placa de vidro montada na emenda claro/escuro.
+     A seção dos cards perde o padding de baixo e a placa desce metade da
+     própria altura (`translate`, não `transform`, que é do reveal), ficando
+     meio sobre o rosa, meio sobre o P7 escuro. O backdrop-filter borra a
+     emenda por trás: é isso que lê como vidro. Tinta escura a .62 garante
+     contraste do texto branco também na metade clara (~6:1). */
+  .rl-cards { padding-block-end: 0; }
+  /* o respiro cards→placa é o próprio translate da placa (meia altura);
+     sem margem extra embaixo do trilho */
+  .rl-cards__trilho-wrap { margin-block-end: 0; }
+  @media (min-width: 1024px) {
+    .rl-cards__trilho { padding-block-end: 0; } /* sem scroller, sem folga de barra */
+  }
+  .rl-cards__nota-wrap { position: relative; z-index: 3; }
+  .rl-cards__nota {
+    position: relative;
+    max-width: 64ch;
+    margin: 0 auto; /* o respiro acima é só o margin-block do trilho (--space-l) */
+    padding: var(--space-s) var(--space-m);
+    translate: 0 50%;
+    border: 1.5px solid var(--rl-neon);
+    border-radius: 16px; /* mesma linguagem de carta dos .rl-card */
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0) 55%),
+      rgba(13, 13, 13, .62);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    color: var(--rl-branco);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 640px) {
+    .rl-cards__trilho { grid-auto-columns: minmax(240px, 40%); }
+    .rl-card { --rl-card-w: max(240px, 40cqi); }
+  }
+  /* 1024–1279: 4 + 3 centralizados (grid de 8 com span 2; o 5º começa na 2ª coluna) */
+  @media (min-width: 1024px) {
+    .rl-cards__trilho {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
+      overflow: visible;
+      scroll-snap-type: none;
+    }
+    .rl-card { grid-column: span 2; --rl-card-w: calc((100cqi - 3 * var(--space-s)) / 4); }
+    .rl-card:nth-child(5) { grid-column: 2 / span 2; }
+  }
+  @media (min-width: 1280px) {
+    .rl-cards__trilho { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-xs); }
+    .rl-card, .rl-card:nth-child(5) { grid-column: auto; --rl-card-w: calc((100cqi - 6 * var(--space-xs)) / 7); }
+    .rl-card { padding: calc(8px + var(--space-xs)); }
+    .rl-card h3 { font-size: clamp(1.5rem, .6rem + 1.15vw, 2rem); }
+    .rl-card p { font-size: .875rem; }
+    .rl-card img { width: 40px; height: 40px; }
+  }
+  /* hover: "película de vidro". Um reflexo diagonal translúcido (::after)
+     atravessa o card por translate; o card sobe 6px com um tilt de 0,6°; a
+     borda neon ganha intensidade por uma 2ª borda (::before) que entra por
+     opacity. Só transform/opacity. Só com ponteiro fino e sem reduced-motion.
+     Os cards não são focáveis (o trilho é), então não há :focus-visible no card. */
+  .rl-card::before,
+  .rl-card::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .rl-card::before {
+    inset: 6px;
+    z-index: 1;
+    border: 2.5px solid var(--rl-neon);
+    border-radius: 11px;
+  }
+  .rl-card::after {
+    inset: -20% -60%;
+    z-index: 2;
+    background: linear-gradient(105deg,
+      rgba(255, 255, 255, 0) 38%,
+      rgba(255, 255, 255, .16) 46%,
+      rgba(255, 255, 255, .34) 50%,
+      rgba(255, 255, 255, .10) 55%,
+      rgba(255, 255, 255, 0) 62%);
+    transform: translateX(-70%);
+  }
+  /* o transform do card (sobe + inclina) mora na layer motion-base, no fim do
+     arquivo: lá ele vence o `.js-motion [data-reveal].is-in { transform }`. */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .rl-card::before { transition: opacity var(--dur-medium) var(--ease-brake); }
+    .rl-card:hover::before { opacity: 1; }
+    .rl-card:hover::after {
+      opacity: 1;
+      transform: translateX(70%);
+      transition: transform var(--dur-settle) var(--ease-drive), opacity var(--dur-fast) linear;
+    }
+  }
+  /* teclado: o foco fica no trilho (os cards não são focáveis). Com
+     :focus-visible no trilho, todos os cards ganham a borda e a película
+     atravessa em cascata (60 ms entre cards). Vale em qualquer ponteiro;
+     desligado com reduced-motion (o anel de foco do trilho continua). */
+  @media (prefers-reduced-motion: no-preference) {
+    .rl-cards__trilho:focus-visible .rl-card::before { opacity: 1; transition: opacity var(--dur-medium) var(--ease-brake); }
+    .rl-cards__trilho:focus-visible .rl-card::after {
+      opacity: 1;
+      transform: translateX(70%);
+      transition: transform var(--dur-settle) var(--ease-drive), opacity var(--dur-fast) linear;
+      transition-delay: calc(var(--rl-card-i, 0) * 60ms);
+    }
+    .rl-card:nth-child(2) { --rl-card-i: 1; }
+    .rl-card:nth-child(3) { --rl-card-i: 2; }
+    .rl-card:nth-child(4) { --rl-card-i: 3; }
+    .rl-card:nth-child(5) { --rl-card-i: 4; }
+    .rl-card:nth-child(6) { --rl-card-i: 5; }
+    .rl-card:nth-child(7) { --rl-card-i: 6; }
+  }
+
+  /* ============================================================ P7 · CONHEÇA O 420R */
+  .rl-carro { display: grid; grid-template-columns: minmax(0, 1fr); padding-block-end: var(--space-2xl); } /* minmax(0): o dl com nowrap não alarga a coluna */
+  .rl-carro__foto { position: relative; aspect-ratio: 4 / 5; overflow: clip; background: var(--asfalto-2); }
+  /* fotos de preenchimento (420R e os fundos do P5/P10): o <picture> cobre a caixa */
+  .rl-carro__foto picture,
+  .rl-corridas__fundo picture,
+  .rl-fecho__fundo picture { position: absolute; inset: 0; }
+  .rl-carro__foto img,
+  .rl-corridas__fundo img,
+  .rl-fecho__fundo img { width: 100%; height: 100%; object-fit: cover; }
+  .rl-carro__foto img { object-position: 45% 72%; }
+  .rl-carro__foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--rl-preto) 0%, rgba(13, 13, 13, 0) 28%); }
+  .rl-carro__px1 { --px: 24px; inset-block-start: 8%; inset-inline-end: 0; }
+  .rl-carro__texto { position: relative; z-index: 2; }
+  .rl-carro__selo { width: 56px; height: 56px; margin-block: var(--space-m); }
+  .rl-carro__titulo { font-size: var(--t-xxl); margin-block-end: var(--space-m); }
+  .rl-carro__corpo { color: var(--rl-corpo); max-width: 48ch; margin-block-end: var(--space-l); }
+  /* Specs (rodada 2): valor principal grande; "@ 7.600 RPM" / "@ 6.300 RPM"
+     numa 2ª linha menor, igual nos dois. Fonte única para todos os valores,
+     pela largura da grade (container query), escolhida para "4 CILINDROS"
+     (o valor mais longo) caber na célula mais estreita de cada layout.
+     <640: 2 + 1 + 2 · >=640: 3 + 2 (6 colunas; a 2ª linha tem os dois valores
+     com "@ rpm", na mesma estrutura). 5 colunas iguais foram testadas em 1920 e
+     deixaram os valores pequenos demais (~26px) na coluna de texto. */
+  .rl-specs {
+    --rl-spec-fs: clamp(1.25rem, 9.2cqi, 3rem);
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin: 0;
+  }
+  .rl-specs > div { position: relative; display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: var(--space-2xs); padding-block-start: var(--space-s); min-width: 0; }
+  .rl-specs > div::before { content: ""; position: absolute; inset-block-start: 0; inset-inline: 0; height: 1px; background: #595959; transform-origin: left; }
+  .rl-specs > div:nth-child(3) { grid-column: 1 / -1; }
+  .rl-specs dd { margin: 0; font-family: var(--ff-display); font-size: var(--rl-spec-fs); line-height: .95; color: var(--rl-neon); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rl-specs__v, .rl-specs__sub { display: block; }
+  .rl-specs__sub { margin-block-start: .2em; font-size: .5em; letter-spacing: .02em; color: var(--rl-branco); }
+  .rl-specs dt { font-family: var(--rl-mono); font-size: var(--rl-t-label); letter-spacing: .16em; color: var(--rl-branco); }
+  @media (min-width: 640px) {
+    .rl-specs { --rl-spec-fs: clamp(1.25rem, 6.1cqi, 3rem); grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .rl-specs > div, .rl-specs > div:nth-child(3) { grid-column: span 2; }
+    .rl-specs > div:nth-child(n + 4) { grid-column: span 3; }
+  }
+  @media (min-width: 1024px) {
+    .rl-carro { grid-template-columns: 42% 1fr; padding-block: 0; min-height: clamp(680px, 100svh, 1000px); }
+    .rl-carro__foto { aspect-ratio: auto; }
+    .rl-carro__foto::after { background: linear-gradient(to left, var(--rl-preto) 0%, rgba(13, 13, 13, 0) 26%); }
+    .rl-carro__texto { max-width: none; margin: 0; padding: var(--space-2xl) var(--content-inset) var(--space-2xl) var(--space-xl); align-self: center; }
+    .rl-carro__selo { margin-block-start: 0; }
+  }
+  /* tablet: recorte desktop do 420R em 4:3 (DEPOIS da regra base 4:5 — QA mobile P2) */
+  @media (min-width: 640px) and (max-width: 1023.98px) {
+    .rl-carro__foto { aspect-ratio: 4 / 3; }
+  }
+
+  /* ============================================================ P8 · HISTÓRIA (claro) */
+  .rl-historia { padding-block: var(--space-2xl); }
+  .rl-historia__grade { display: grid; gap: var(--space-xl); }
+  .rl-historia__selo { width: 56px; height: 56px; margin-block-end: var(--space-m); }
+  .rl-historia__titulo { font-size: var(--t-xxl); max-width: 14ch; margin-block-end: var(--space-l); }
+  .rl-historia__corpo { display: grid; gap: var(--space-s); }
+  .rl-historia__corpo p { color: var(--rl-corpo-c); max-width: 52ch; }
+  .rl-historia__fotos { display: grid; }
+  .rl-historia__trio { aspect-ratio: 16 / 9; overflow: clip; margin-inline: calc(var(--container-margin) * -1); }
+  .rl-historia__trio picture, .rl-historia__chapman picture { display: block; height: 100%; }
+  .rl-historia__trio img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+  .rl-historia__chapman {
+    position: relative;
+    z-index: 1;
+    width: 72%;
+    max-width: 560px;
+    justify-self: end;
+    margin-block-start: -32px;
+    border: 6px solid var(--rl-papel);
+    background: var(--rl-papel);
+  }
+  .rl-historia__chapman img { width: 100%; height: auto; }
+  @media (min-width: 1024px) {
+    .rl-historia__grade { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--container-gutter); align-items: center; }
+    .rl-historia__texto { grid-column: 1 / span 5; }
+    .rl-historia__fotos { grid-column: 7 / -1; }
+    .rl-historia__trio { margin-inline: 0 calc(var(--content-inset) * -1); }
+    .rl-historia__chapman { width: 64%; justify-self: start; margin-inline-start: 8%; margin-block-start: -48px; }
+  }
+
+  /* ============================================================ P9 · PRAÇAS (neon inteiro) */
+  .rl-pracas {
+    /* TESTE (rodada 2, pedido do usuário): texto da tarja "O BRASIL!" em
+       branco. Para voltar ao neon: --rl-pracas-tarja-ink: var(--rl-neon). */
+    --rl-pracas-tarja-ink: var(--rl-branco);
+    --vermelho: var(--rl-tinta);
+    --divisor: var(--rl-tinta);
+    background: var(--rl-neon);
+    color: var(--rl-tinta);
+    border-top: 8px solid var(--rl-tinta); /* "zebra": separa o papel do neon */
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+  .rl-pracas ::selection { background: var(--rl-tinta); color: var(--rl-neon); }
+  .rl-pracas__topo { display: grid; gap: var(--space-m); margin-block-end: var(--space-xl); container-type: inline-size; }
+  .rl-pracas__titulo { font-size: clamp(3rem, 17cqi, 8.5rem); }
+  .rl-pracas__l1, .rl-pracas__tarja { display: block; width: fit-content; }
+  .rl-pracas__tarja { margin-block-start: .06em; padding: .04em .14em 0; background: var(--rl-tinta); color: var(--rl-pracas-tarja-ink); }
+  .rl-pracas__texto { font-size: var(--t-m); line-height: 1.4; max-width: 28ch; padding-block-start: var(--space-s); border-top: 2px solid var(--rl-tinta); }
+  .rl-pracas__grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-l) var(--space-s); }
+  .rl-pracas__grade li { display: grid; justify-items: center; gap: var(--space-s); text-align: center; }
+  .rl-pracas__grade img { width: 100%; max-width: min(78%, 220px); height: clamp(84px, 11vw, 150px); object-fit: contain; }
+  .rl-pracas__grade p { max-width: none; font-family: var(--ff-display); font-size: clamp(1.25rem, .9rem + 1.3vw, 2.25rem); line-height: 1; }
+  .rl-pracas__grade .rl-mono { font-size: max(.8125rem, .55em); letter-spacing: .12em; }
+  .rl-pracas__rodape { display: grid; justify-items: center; gap: var(--space-l); margin-block-start: var(--space-xl); }
+  .rl-pracas__nota { margin: 0; max-width: none; padding: var(--space-2xs) var(--space-s); border: 1px solid var(--rl-tinta); font-size: .8125rem; letter-spacing: .25em; text-align: center; }
+  .rl-pracas__logo { width: clamp(110px, 12vw, 150px); height: auto; justify-self: end; }
+  @media (min-width: 768px) {
+    .rl-pracas__grade { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .rl-pracas__topo { grid-template-columns: auto 1fr; align-items: center; column-gap: var(--space-xl); container-type: normal; }
+    .rl-pracas__titulo { font-size: clamp(5rem, 8.5vw, 9rem); }
+    .rl-pracas__texto { padding: 0 0 0 var(--space-l); border-top: 0; border-left: 2px solid var(--rl-tinta); }
+    .rl-pracas__rodape { grid-template-columns: 1fr auto 1fr; align-items: end; }
+    .rl-pracas__nota { grid-column: 2; }
+    .rl-pracas__logo { grid-column: 3; }
+  }
+
+  /* ============================================================ P10 · FECHAMENTO */
+  .rl-fecho {
+    display: grid;
+    align-items: center;
+    min-height: clamp(560px, 84svh, 880px);
+    padding-block: var(--space-2xl);
+    overflow: clip;
+  }
+  .rl-fecho__fundo { position: absolute; inset: 0; }
+  .rl-fecho__fundo img { filter: grayscale(1); }
+  .rl-fecho__fundo::after { content: ""; position: absolute; inset: 0; background: rgba(13, 13, 13, .88); }
+  .rl-fecho__px1 { --px: 32px; inset-block-start: 10%; inset-inline-end: 8%; }
+  .rl-fecho__px2 { --px: 14px; inset-block-start: 18%; inset-inline-end: 4%; }
+  .rl-fecho__px3 { --px: 10px; inset-block-end: 20%; inset-inline-start: 43%; display: none; }
+  @media (min-width: 1024px) { .rl-fecho__px3 { display: block; } }
+  .rl-fecho__grade { position: relative; z-index: 2; display: grid; gap: var(--space-xl); width: 100%; }
+  .rl-fecho__marca img { width: min(80%, 320px); height: auto; }
+  .rl-fecho__tag { margin-block-start: var(--space-s); color: var(--rl-branco); letter-spacing: .17em; max-width: none; }
+  .rl-fecho__titulo { font-size: clamp(4rem, 22vw, 12rem); line-height: .86; }
+  @media (min-width: 1024px) {
+    .rl-fecho__grade { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--container-gutter); align-items: center; container-type: inline-size; }
+    .rl-fecho__marca { grid-column: 1 / span 5; }
+    .rl-fecho__marca img { width: clamp(320px, 36vw, 560px); }
+    .rl-fecho__titulo { grid-column: 7 / -1; font-size: clamp(5rem, 10.5cqi, 11rem); } /* pela largura do grid: o container para em 1440 (em 1920 o 12vw quebrava ACELERAR) */
+  }
+
+  .rl-pagina + .footer { border-top: 0; } /* P10 → footer: só respiro (03-design) */
+
+  /* o ÚNICO pin da página (VISUAL-DIRECTION §12.3): só desktop e sem reduced-motion */
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .rl-corridas__cab { position: sticky; top: calc(64px + var(--space-l)); }
+  }
+
+  /* paisagem baixa: títulos gigantes não podem empurrar o conteúdo duas telas */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .rl-formato__titulo, .rl-fecho__titulo, .rl-pracas__titulo { font-size: clamp(2.5rem, 16svh, 5rem); }
+  }
+}
+
+@layer motion-base {
+  /* specs do 420R: filetes desenham em sequência (60 ms) */
+  .js-motion .rl-specs > div::before { transform: scaleX(0); }
+  .js-motion .rl-specs.rl-in > div::before { transform: none; transition: transform var(--dur-slow) var(--ease-drive); transition-delay: calc(var(--i, 0) * 60ms); }
+
+  /* tiles do formato: "luzes de largada" (sem contador) */
+  .js-motion .rl-tiles__n > span { transform: translateY(100%); }
+  .js-motion .rl-tiles li { opacity: 0; }
+  .js-motion .rl-tiles.rl-in li { opacity: 1; transition: opacity var(--dur-medium) var(--ease-brake); transition-delay: calc(var(--i, 0) * var(--rl-step)); }
+  .js-motion .rl-tiles.rl-in .rl-tiles__n > span { transform: none; transition: transform var(--dur-medium) var(--ease-brake); transition-delay: calc(var(--i, 0) * var(--rl-step) + 60ms); }
+
+  /* logo do topo entra por wipe (o único clip-path do bloco do filme) */
+  .js-motion .rl-filme__logo img { clip-path: inset(0 100% 0 0); }
+  .js-motion .rl-filme__logo.rl-in img { clip-path: inset(0); transition: clip-path var(--dur-slow) var(--ease-drive); }
+
+  /* cards: tilt 3D que segue o mouse, como carta na mão girada da esquerda
+     pra direita. --tx/--ty (-1..1) vêm do initCardTilt() (race-league.js).
+     Precisa estar nesta layer e com especificidade > `.js-motion
+     [data-reveal].is-in`, senão o reveal zera o transform. transition-delay 0
+     anula o --stagger-delay no hover. */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .rl-card,
+    .js-motion .rl .rl-card[data-reveal].is-in {
+      transition: transform var(--dur-medium) var(--ease-brake), opacity var(--dur-medium) var(--ease-brake);
+    }
+    .rl-card:hover,
+    .js-motion .rl .rl-card[data-reveal].is-in:hover {
+      z-index: 3;
+      transform: perspective(900px) translateY(-8px)
+        rotateY(calc(var(--tx, 0) * 9deg))
+        rotateX(calc(var(--ty, 0) * -5deg))
+        rotateZ(calc(var(--tx, 0) * 1.5deg));
+      transition: transform 140ms linear, opacity var(--dur-medium) var(--ease-brake);
+      transition-delay: 0ms;
+    }
+  }
+
+}

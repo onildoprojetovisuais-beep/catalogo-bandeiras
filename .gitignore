@@ -16,3 +16,11 @@ assets/videos/pilotos/*.mp4
 ~$*
 
 .env*
+# material-fonte da Race League: filme bruto (223MB, acima do limite de 100MB do GitHub)
+# e originais > 2MB. O site usa os derivados de assets/race-league e assets-build/video
+doc/race-league-fonte/RL_ANUNCIO_V5.mp4
+doc/race-league-fonte/*.pptx
+doc/race-league-fonte/assets-originais/hero-corrida-caterhams-original.png
+doc/race-league-fonte/assets-originais/kings-league-arena-original.png
+doc/race-league-fonte/assets-originais/largada-bandeirada-original.jpg
+doc/race-league-fonte/assets-originais/pista-tres-caterhams-original.jpg

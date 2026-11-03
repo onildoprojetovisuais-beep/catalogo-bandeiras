@@ -35,6 +35,12 @@ OUT_DIR = ROOT / "assets-build" / "img"
 WIDTHS = (480, 800, 1280, 1920)
 AVIF_QUALITY = 52
 JPEG_QUALITY = 78
+# Larguras extras por slug (sem mudar as de nenhum outro): fotos da Race League que
+# aparecem full-bleed/grandes em telas de 1920–2560px precisam do arquivo cheio de 2400px.
+EXTRA_WIDTHS: dict[str, tuple[int, ...]] = {
+    "rl-hero-corrida": (2400,),
+    "rl-kings-arena": (2400,),
+}
 
 # slug -> caminho de origem relativo à raiz do projeto
 MANIFEST: dict[str, str] = {
@@ -146,6 +152,21 @@ MANIFEST: dict[str, str] = {
     "eco-pista": "assets/Imagens/ecossistema/pista.jpeg",
     "eco-estrutura": "assets/Imagens/ecossistema/estrutura.JPG.jpeg",
     "eco-producao": "assets/Imagens/ecossistema/producoes.jpg.jpeg",
+    # Race League (página /race-league/, 2026-11-02) — fotos do PPTX "Race League -
+    # Versão Site" (fonte em doc/race-league-fonte/), já recortadas em
+    # assets/race-league/fotos/ (desktop + "-mobile" 4:5). FORA de propósito:
+    # largada-bandeirada (image5, banners Caterham — vetada pelo usuário) e
+    # encerramento-motor-pb (image62, "CATERHAM MOTORSPORT BRASIL" legível).
+    "rl-hero-corrida": "assets/race-league/fotos/hero-corrida-caterhams.jpg",
+    "rl-hero-corrida-mobile": "assets/race-league/fotos/hero-corrida-caterhams-mobile.jpg",
+    "rl-kings-arena": "assets/race-league/fotos/kings-league-arena.jpg",
+    "rl-kings-arena-mobile": "assets/race-league/fotos/kings-league-arena-mobile.jpg",
+    "rl-pista": "assets/race-league/fotos/pista-tres-caterhams.jpg",
+    "rl-pista-mobile": "assets/race-league/fotos/pista-tres-caterhams-mobile.jpg",
+    "rl-420r": "assets/race-league/fotos/caterham-420r.jpg",
+    "rl-420r-mobile": "assets/race-league/fotos/caterham-420r-mobile.jpg",
+    "rl-historia-trio": "assets/race-league/fotos/historia-fittipaldi-senna-piquet.jpg",
+    "rl-historia-chapman": "assets/race-league/fotos/historia-colin-chapman.jpg",
 }
 
 EXCLUDED_NOTE = """
@@ -211,7 +232,7 @@ def build_one(slug: str, rel_src: str, dry_run: bool) -> dict:
         aspect = orig_h / orig_w
 
         variants = {"avif": {}, fallback_ext: {}}
-        usable_widths = [w for w in WIDTHS if w <= orig_w] or [orig_w]
+        usable_widths = [w for w in (*WIDTHS, *EXTRA_WIDTHS.get(slug, ())) if w <= orig_w] or [orig_w]
         for w in usable_widths:
             h = round(w * aspect)
             resized = im.resize((w, h), Image.LANCZOS)

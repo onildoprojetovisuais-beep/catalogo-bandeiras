@@ -24,3 +24,6 @@ assets/videos/topo-mobile.mp4
 .env*
 # planilhas de ranking/inscrição têm e-mail dos pilotos: nunca vão para o site
 *.csv
+# Race League: CSS-fonte da home (vai minificado para o site.min.css). O
+# race-league-pagina.css NÃO entra aqui: a página /race-league/ carrega ele direto.
+css/race-league.css
