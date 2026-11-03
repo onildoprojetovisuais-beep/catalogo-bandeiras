@@ -106,6 +106,12 @@ export function initRaceLeagueFilme() {
   const ccSpan = palco.querySelector("[data-rl-cc] > span");
   const track = video.textTracks && video.textTracks[0];
 
+  // celular em retrato toca a versão 9:16 (o <source> escolhe pelo mesmo media);
+  // o pôster acompanha, senão o 16:9 aparece cortado no quadro vertical
+  if (window.matchMedia("(max-width: 767px) and (orientation: portrait)").matches) {
+    video.poster = "/assets-build/video/race-league-filme-poster-9x16.jpg";
+  }
+
   // os controles próprios assumem
   video.removeAttribute("controls");
   palco.classList.add("is-custom");
